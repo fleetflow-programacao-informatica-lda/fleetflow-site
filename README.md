@@ -5,13 +5,14 @@ Site público da FleetFlow. Estático, sem build.
 ## Estrutura
 ```
 /
-├── index.html          ← Experiência 3D (a versão em uso) — Three.js via CDN
+├── index.html          ← Experiência 3D v2 (EM USO) — 42k partículas GPU morph, Three.js via CDN
+├── v1/                 ← Experiência 3D v1 anterior (guardada como reversão)
 ├── brand/              ← logótipo oficial
 └── landing/            ← Landing detalhada anterior (guardada; PT/EN/ES, secções completas)
 ```
 
-- **Raiz (`index.html`)** — a experiência cinematográfica 3D (globo → cidade neon), PT/EN/ES.
-- **`landing/`** — a landing anterior com todas as secções (o problema, 3 destinos, como funciona, operação diária, etc.). Mantida como alternativa/reversão.
+- **Raiz (`index.html`)** — a experiência v2: uma nuvem de partículas que se transforma (globo → cidade → camião frigorífico → escritório → logo »»»). Só PT por agora. Autónoma — sem assets locais, só CDN.
+- **`v1/`** — a versão anterior (objetos separados). **`landing/`** — a landing clássica com todas as secções. Ambas mantidas como alternativa/reversão.
 
 ## Correr localmente
 ```bash

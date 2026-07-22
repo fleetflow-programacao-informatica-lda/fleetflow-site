@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FleetFlow.one — O sistema operativo da logística moderna</title>
+<meta name="description" content="FleetFlow — o sistema operativo da logística. Transporte movido a IA, do pedido à entrega. Uma só rede para cargas, frota, motoristas e clientes." />
+<meta name="theme-color" content="#05060a" />
+<link rel="canonical" href="https://fleetflow.one/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FleetFlow.one — O sistema operativo da logística moderna" />
+<meta property="og:description" content="Transporte movido a IA, do pedido à entrega. Uma só rede operacional." />
+<meta property="og:url" content="https://fleetflow.one/" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%2331e0a0'%3E%3Cpath d='M8,3H17L13.5,29H4.5Z'/%3E%3Cpath d='M15.6,3H29L25.8,10.4H13Z'/%3E%3Cpath d='M13.8,13.6H24.6L21.6,20.7H11.1Z'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+<style>
+  :root{
+    --bg:#05060a; --ink:#eef1f7; --muted:#8a93a6; --dim:#5b6472;
+    --green:#31e0a0; --green-2:#0bd08c; --blue:#5aa2ff; --line:rgba(255,255,255,.08);
+    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  /* Canvas 3D fixo, atrás de tudo */
+  #scene{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+  /* vinheta + grão por cima do 3D */
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% 40%,transparent 55%,rgba(0,0,0,.55) 100%);}
+  .noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* HUD topo */
+  .hud{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+    padding:20px 30px;font-size:13px;letter-spacing:.02em}
+  .hud .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.14em}
+  .hud .brand i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);display:block}
+  .hud .status{color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .hud .status b{color:var(--green)}
+  .hud-right{display:flex;align-items:center;gap:16px}
+  .lang{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.02)}
+  .lang button{padding:4px 9px;border-radius:6px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--dim);background:none;border:none;cursor:pointer;transition:color .2s,background .2s}
+  .lang button:hover{color:var(--muted)}
+  .lang button.on{color:#04120c;background:var(--green)}
+  @media(max-width:640px){.hud .status{display:none}}
+
+  /* conteúdo que faz scroll por cima do 3D */
+  main{position:relative;z-index:3}
+  .panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(24px,7vw,120px);max-width:1100px}
+  .panel.right{margin-left:auto;text-align:right;align-items:flex-end}
+  .panel.center{margin:0 auto;text-align:center;align-items:center}
+
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--green);
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;opacity:.9}
+  .kicker::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--green),transparent)}
+  .panel.right .kicker::before{display:none}
+  .panel.right .kicker::after{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--green))}
+
+  h1{font-size:clamp(38px,7.2vw,104px);font-weight:900;line-height:.98;letter-spacing:-.03em}
+  h2{font-size:clamp(32px,5.6vw,76px);font-weight:800;line-height:1.02;letter-spacing:-.03em}
+  .grad{background:linear-gradient(100deg,#fff 20%,var(--green) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub{margin-top:22px;font-size:clamp(16px,2vw,21px);color:var(--muted);max-width:560px;line-height:1.5}
+  .panel.right .sub{margin-left:auto}
+  .panel.center .sub{margin-left:auto;margin-right:auto}
+
+  .cta{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
+  .panel.right .cta,.panel.center .cta{justify-content:flex-end}
+  .panel.center .cta{justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:12px;font-size:15px;font-weight:600;
+    transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s,border-color .3s;will-change:transform}
+  .btn--p{background:linear-gradient(180deg,var(--green),var(--green-2));color:#04120c;box-shadow:0 10px 30px -10px rgba(49,224,160,.5)}
+  .btn--p:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(49,224,160,.6)}
+  .btn--g{border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn--g:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+
+  .stat{margin-top:40px;display:flex;gap:40px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+  .panel.right .stat{justify-content:flex-end}
+  .stat span{display:flex;flex-direction:column;gap:4px}
+  .stat b{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .stat b em{color:var(--green);font-style:normal}
+
+  /* reveal ao entrar no ecrã */
+  .reveal{opacity:0;transform:translateY(34px) scale(.99);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.18s}.reveal.d3{transition-delay:.28s}
+
+  /* indicador de scroll */
+  .scrollhint{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;color:var(--dim);
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;
+    transition:opacity .5s}
+  .scrollhint i{width:1px;height:34px;background:linear-gradient(var(--green),transparent);animation:drop 1.8s ease-in-out infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* barra de progresso lateral */
+  .rail{position:fixed;top:50%;right:22px;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:12px}
+  .rail b{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.16);transition:all .4s}
+  .rail b.on{background:var(--green);box-shadow:0 0 10px var(--green);height:20px;border-radius:4px}
+
+  .note{position:fixed;bottom:0;left:0;right:0;z-index:5;text-align:center;padding:10px;font-size:11px;color:var(--dim);
+    background:linear-gradient(transparent,rgba(0,0,0,.5));letter-spacing:.05em}
+
+  @media(max-width:640px){.rail{display:none}.hud{padding:16px 18px}.stat{gap:24px}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.scrollhint i{animation:none}}
+</style>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div class="noise"></div>
+  <div class="grain"></div>
+
+  <header class="hud">
+    <div class="brand"><img src="brand/fleetflow_logo_nobg.png" alt="FleetFlow" style="height:28px;width:auto;display:block"/></div>
+    <div class="hud-right">
+      <div class="status"><span data-i18n="status">Sistema</span> · <b data-i18n="online">online</b></div>
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="rail" id="rail"></div>
+
+  <main id="main">
+    <!-- 1 · HERO -->
+    <section class="panel" data-beat="0">
+      <span class="kicker reveal" data-i18n="hero.k">FleetFlow · AI Logistics OS</span>
+      <h1 class="reveal d1" data-i18n="hero.h">O sistema operativo<br><span class="grad">da logística moderna.</span></h1>
+      <p class="sub reveal d2" data-i18n="hero.s">Transporte movido a IA — do pedido à entrega. Uma só rede para cargas, frota, motoristas e clientes.</p>
+      <div class="cta reveal d3">
+        <a class="btn btn--p" href="https://app.fleetflow.systems/" target="_blank" rel="noopener" data-i18n="cta.start">Começar grátis</a>
+        <a class="btn btn--g" href="https://app.fleetflow.systems/" target="_blank" rel="noopener" data-i18n="cta.exp">Ver a experiência ↓</a>
+      </div>
+    </section>
+
+    <!-- 2 · DISPATCH -->
+    <section class="panel" data-beat="1">
+      <span class="kicker reveal" data-i18n="disp.k">01 · Dispatch</span>
+      <h2 class="reveal d1" data-i18n="disp.h">A carga certa,<br>no camião certo.</h2>
+      <p class="sub reveal d2" data-i18n="disp.s">A IA lê o pedido, encaixa a carga e otimiza a rota — em segundos, não em horas.</p>
+    </section>
+
+    <!-- 3 · TRACKING -->
+    <section class="panel right" id="tracking" data-beat="2">
+      <span class="kicker reveal" data-i18n="trk.k">02 · Tracking</span>
+      <h2 class="reveal d1" data-i18n="trk.h">Cada camião.<br>Cada rota.<br><span class="grad">Sempre visível.</span></h2>
+      <p class="sub reveal d2" data-i18n="trk.s">Localização em tempo real, sinais a pulsar, decisões antes de o problema acontecer.</p>
+    </section>
+
+    <!-- 4 · REDE -->
+    <section class="panel" data-beat="3">
+      <span class="kicker reveal" data-i18n="net.k">03 · Rede</span>
+      <h2 class="reveal d1" data-i18n="net.h">Uma rede<br>operacional global.</h2>
+      <p class="sub reveal d2" data-i18n="net.s">Grupos, transportistas e motoristas ligados numa só malha inteligente que aprende com cada viagem.</p>
+      <div class="stat reveal d2">
+        <span><b data-i18n="net.n1"><em>1</em> rede</b><span data-i18n="net.l1">casa · grupo · pública</span></span>
+        <span><b data-i18n="net.n2">&lt; 60<em>s</em></b><span data-i18n="net.l2">do pedido ao plano</span></span>
+        <span><b data-i18n="net.n3">24<em>/7</em></b><span data-i18n="net.l3">operação ligada</span></span>
+      </div>
+    </section>
+
+    <!-- 5 · FINAL -->
+    <section class="panel center" data-beat="4">
+      <img class="reveal" src="brand/fleetflow_logo_nobg.png" alt="FleetFlow.one" style="width:min(440px,74vw);height:auto;margin-bottom:8px;filter:drop-shadow(0 12px 44px rgba(90,162,255,.45))"/>
+      <h1 class="reveal d1" style="font-size:clamp(20px,3vw,34px);letter-spacing:.34em;font-weight:700"><span class="grad">WE ARE CONNECTED</span></h1>
+      <p class="sub reveal d2" data-i18n="final.s">Cargas deixam de ficar perdidas. A operação fica ligada.</p>
+      <div class="cta reveal d3">
+        <a class="btn btn--p" href="https://app.fleetflow.systems/" target="_blank" rel="noopener" data-i18n="final.cta1">Entrar na plataforma →</a>
+        <a class="btn btn--g" href="https://app.fleetflow.systems/" target="_blank" rel="noopener" data-i18n="final.cta2">Ver site</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="scrollhint" id="hint"><span data-i18n="scroll">Scroll</span><i></i></div>
+  <div class="note" data-i18n="note">FleetFlow.one · a operação, ligada.</div>
+
+  <script>
+  /* i18n PT / EN / ES (vanilla) */
+  (function(){
+    var D={
+      pt:{
+        status:'Sistema', online:'online',
+        'hero.k':'FleetFlow · AI Logistics OS',
+        'hero.h':'O sistema operativo<br><span class="grad">da logística moderna.</span>',
+        'hero.s':'Transporte movido a IA — do pedido à entrega. Uma só rede para cargas, frota, motoristas e clientes.',
+        'cta.start':'Começar grátis', 'cta.exp':'Ver a experiência ↓',
+        'disp.k':'01 · Dispatch', 'disp.h':'A carga certa,<br>no camião certo.',
+        'disp.s':'A IA lê o pedido, encaixa a carga e otimiza a rota — em segundos, não em horas.',
+        'trk.k':'02 · Tracking', 'trk.h':'Cada camião.<br>Cada rota.<br><span class="grad">Sempre visível.</span>',
+        'trk.s':'Localização em tempo real, sinais a pulsar, decisões antes de o problema acontecer.',
+        'net.k':'03 · Rede', 'net.h':'Uma rede<br>operacional global.',
+        'net.s':'Grupos, transportistas e motoristas ligados numa só malha inteligente que aprende com cada viagem.',
+        'net.n1':'<em>1</em> rede','net.l1':'casa · grupo · pública',
+        'net.n2':'&lt; 60<em>s</em>','net.l2':'do pedido ao plano',
+        'net.n3':'24<em>/7</em>','net.l3':'operação ligada',
+        'final.s':'Cargas deixam de ficar perdidas. A operação fica ligada.',
+        'final.cta1':'Entrar na plataforma →','final.cta2':'Ver site',
+        scroll:'Scroll', note:'FleetFlow.one · a operação, ligada.'
+      },
+      en:{
+        status:'System', online:'online',
+        'hero.k':'FleetFlow · AI Logistics OS',
+        'hero.h':'The operating system<br><span class="grad">of modern logistics.</span>',
+        'hero.s':'AI-powered transport — from quote to delivery. One network for loads, fleet, drivers and customers.',
+        'cta.start':'Start free', 'cta.exp':'See the experience ↓',
+        'disp.k':'01 · Dispatch', 'disp.h':'The right load,<br>in the right truck.',
+        'disp.s':'AI reads the request, fits the load and optimises the route — in seconds, not hours.',
+        'trk.k':'02 · Tracking', 'trk.h':'Every truck.<br>Every route.<br><span class="grad">Always visible.</span>',
+        'trk.s':'Real-time location, pulsing signals, decisions before the problem happens.',
+        'net.k':'03 · Network', 'net.h':'A global<br>operational network.',
+        'net.s':'Groups, carriers and drivers linked in one intelligent mesh that learns from every trip.',
+        'net.n1':'<em>1</em> network','net.l1':'in-house · group · public',
+        'net.n2':'&lt; 60<em>s</em>','net.l2':'from request to plan',
+        'net.n3':'24<em>/7</em>','net.l3':'always-on operation',
+        'final.s':'Loads stop getting lost. The operation stays connected.',
+        'final.cta1':'Enter the platform →','final.cta2':'View site',
+        scroll:'Scroll', note:'FleetFlow.one · the operation, connected.'
+      },
+      es:{
+        status:'Sistema', online:'en línea',
+        'hero.k':'FleetFlow · AI Logistics OS',
+        'hero.h':'El sistema operativo<br><span class="grad">de la logística moderna.</span>',
+        'hero.s':'Transporte impulsado por IA — del pedido a la entrega. Una sola red para cargas, flota, conductores y clientes.',
+        'cta.start':'Empezar gratis', 'cta.exp':'Ver la experiencia ↓',
+        'disp.k':'01 · Dispatch', 'disp.h':'La carga correcta,<br>en el camión correcto.',
+        'disp.s':'La IA lee la solicitud, encaja la carga y optimiza la ruta — en segundos, no en horas.',
+        'trk.k':'02 · Tracking', 'trk.h':'Cada camión.<br>Cada ruta.<br><span class="grad">Siempre visible.</span>',
+        'trk.s':'Ubicación en tiempo real, señales pulsando, decisiones antes de que ocurra el problema.',
+        'net.k':'03 · Red', 'net.h':'Una red<br>operativa global.',
+        'net.s':'Grupos, transportistas y conductores conectados en una malla inteligente que aprende de cada viaje.',
+        'net.n1':'<em>1</em> red','net.l1':'casa · grupo · pública',
+        'net.n2':'&lt; 60<em>s</em>','net.l2':'del pedido al plan',
+        'net.n3':'24<em>/7</em>','net.l3':'operación siempre activa',
+        'final.s':'Las cargas dejan de perderse. La operación queda conectada.',
+        'final.cta1':'Entrar en la plataforma →','final.cta2':'Ver sitio',
+        scroll:'Scroll', note:'FleetFlow.one · la operación, conectada.'
+      }
+    };
+    var SUP=['pt','en','es'];
+    function pick(){var s=null;try{s=localStorage.getItem('ff3d_lang')}catch(e){}
+      if(s&&SUP.indexOf(s)>-1)return s; var n=(navigator.language||'pt').slice(0,2).toLowerCase();
+      return SUP.indexOf(n)>-1?n:'pt';}
+    function apply(l){ if(SUP.indexOf(l)<0)l='pt'; var d=D[l]; document.documentElement.lang=l;
+      document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n'),v=d[k];
+        if(v==null)return; if(v.indexOf('<')>-1)el.innerHTML=v; else el.textContent=v;});
+      document.querySelectorAll('[data-lang]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-lang')===l);});
+      try{localStorage.setItem('ff3d_lang',l)}catch(e){} }
+    apply(pick());
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-lang'));});});
+  })();
+  </script>
+
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.161.0";
+
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canvas = document.getElementById("scene");
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:"high-performance" });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x05060a, 0.04);
+
+    const camera = new THREE.PerspectiveCamera(48, innerWidth/innerHeight, 0.1, 200);
+    camera.position.set(0, 1.6, 12);
+
+    const GREEN = 0x31e0a0, BLUE = 0x5aa2ff;
+
+    // ---------- Planeta / rede global ----------
+    const R = 4;
+    const globe = new THREE.Group();
+    globe.rotation.x = -0.32;
+    scene.add(globe);
+
+    // halo suave à volta do planeta
+    const globeHaloMat=new THREE.MeshBasicMaterial({ color: GREEN, transparent:true, opacity:0.05, side:THREE.BackSide });
+    globe.add(new THREE.Mesh(new THREE.SphereGeometry(R*1.15, 32, 32), globeHaloMat));
+
+    // esfera wireframe subtil
+    const globeWireMat=new THREE.MeshBasicMaterial({ color:0x0f3a2b, wireframe:true, transparent:true, opacity:0.20 });
+    globe.add(new THREE.Mesh(new THREE.SphereGeometry(R, 34, 34), globeWireMat));
+
+    // superfície pontilhada (planeta digital) — distribuição fibonacci
+    const DN = reduce ? 700 : 2200;
+    const dpos = new Float32Array(DN*3);
+    for (let i=0;i<DN;i++){
+      const off=2/DN, y=i*off-1+off/2, rr=Math.sqrt(Math.max(0,1-y*y)), phi=i*Math.PI*(3-Math.sqrt(5));
+      dpos[i*3]=Math.cos(phi)*rr*R; dpos[i*3+1]=y*R; dpos[i*3+2]=Math.sin(phi)*rr*R;
+    }
+    const dgeo=new THREE.BufferGeometry(); dgeo.setAttribute("position",new THREE.BufferAttribute(dpos,3));
+    const globeDotsMat=new THREE.PointsMaterial({color:0x1f6b52,size:0.045,sizeAttenuation:true,transparent:true,opacity:0.75,depthWrite:false});
+    globe.add(new THREE.Points(dgeo,globeDotsMat));
+
+    // cidades (nós luminosos)
+    const NC = reduce ? 22 : 46;
+    const cityVecs=[];
+    for (let i=0;i<NC;i++) cityVecs.push(new THREE.Vector3(Math.random()-0.5,Math.random()-0.5,Math.random()-0.5).normalize());
+    const cpos=new Float32Array(NC*3);
+    cityVecs.forEach((v,i)=>{ cpos[i*3]=v.x*R; cpos[i*3+1]=v.y*R; cpos[i*3+2]=v.z*R; });
+    const cgeo=new THREE.BufferGeometry(); cgeo.setAttribute("position",new THREE.BufferAttribute(cpos,3));
+    const globeCitiesMat=new THREE.PointsMaterial({color:GREEN,size:0.17,sizeAttenuation:true,transparent:true,opacity:1,depthWrite:false,blending:THREE.AdditiveBlending});
+    globe.add(new THREE.Points(cgeo,globeCitiesMat));
+
+    // rotas em arco entre cidades
+    const arcs=[]; const arcMats=[];
+    const NARC = reduce ? 8 : 16;
+    for (let k=0;k<NARC;k++){
+      const a=cityVecs[(Math.random()*NC)|0], b=cityVecs[(Math.random()*NC)|0];
+      if (a===b) continue;
+      const A=a.clone().multiplyScalar(R), B=b.clone().multiplyScalar(R);
+      const mid=A.clone().add(B).multiplyScalar(0.5).normalize().multiplyScalar(R + A.distanceTo(B)*0.55);
+      const curve=new THREE.QuadraticBezierCurve3(A,mid,B);
+      const g=new THREE.BufferGeometry().setFromPoints(curve.getPoints(46));
+      const am=new THREE.LineBasicMaterial({color:(k%3===0?BLUE:GREEN),transparent:true,opacity:0.28,blending:THREE.AdditiveBlending});
+      globe.add(new THREE.Line(g,am)); arcMats.push(am);
+      arcs.push({curve, t:Math.random(), speed:0.001+Math.random()*0.0018});
+    }
+    // pulsos que viajam pelas rotas (cargas a circular)
+    const ppos=new Float32Array(arcs.length*3);
+    const pgeo2=new THREE.BufferGeometry(); pgeo2.setAttribute("position",new THREE.BufferAttribute(ppos,3));
+    const pulses=new THREE.Points(pgeo2,new THREE.PointsMaterial({color:0x9dffde,size:0.22,sizeAttenuation:true,transparent:true,opacity:1,depthWrite:false,blending:THREE.AdditiveBlending}));
+    globe.add(pulses);
+
+    // ---------- Estrelas de fundo ----------
+    const COUNT = reduce ? 500 : 1500;
+    const pos = new Float32Array(COUNT*3);
+    for (let i=0;i<COUNT;i++){ pos[i*3]=(Math.random()-0.5)*90; pos[i*3+1]=(Math.random()-0.5)*60; pos[i*3+2]=(Math.random()-0.5)*90; }
+    const sgeo=new THREE.BufferGeometry(); sgeo.setAttribute("position",new THREE.BufferAttribute(pos,3));
+    const particles=new THREE.Points(sgeo,new THREE.PointsMaterial({color:0xbfeee0,size:0.05,sizeAttenuation:true,transparent:true,opacity:0.5,depthWrite:false}));
+    scene.add(particles);
+
+    // ---------- Cidade futurista (nasce com o scroll) ----------
+    const CYAN=0x24e6d6, MAG=0xff4df0, NEON=[GREEN,CYAN,GREEN,CYAN,0x39ffb0,MAG,GREEN,CYAN];
+    const groundY=-3;
+    const city=new THREE.Group(); scene.add(city);
+
+    // grelhas (ruas circuito) — duas densidades
+    const g1=new THREE.GridHelper(220,110,GREEN,0x0b241c); g1.position.y=groundY; g1.material.transparent=true; g1.material.opacity=0; g1.material.blending=THREE.AdditiveBlending; city.add(g1);
+    const g2=new THREE.GridHelper(220,22,CYAN,CYAN); g2.position.y=groundY+0.02; g2.material.transparent=true; g2.material.opacity=0; g2.material.blending=THREE.AdditiveBlending; city.add(g2);
+
+    // edifícios neon — avenida central livre (x≈0) para a câmara voar; torres altas + linhas de andares
+    const buildings=[];
+    const fillMat=new THREE.MeshBasicMaterial({color:0x04080e,transparent:true,opacity:0.86});
+    function makeBuilding(x,z,w,d,h,col){
+      const b=new THREE.Group();
+      const boxGeo=new THREE.BoxGeometry(w,h,d); boxGeo.translate(0,h/2,0);
+      b.add(new THREE.Mesh(boxGeo, fillMat));
+      b.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0.95,blending:THREE.AdditiveBlending})));
+      // "andares" — muitas linhas horizontais (janelas / dados)
+      const floors=Math.max(3,Math.floor(h/1.0)), fp=[];
+      for (let f=1;f<floors;f++){ const y=(f/floors)*h;
+        fp.push(-w/2,y,-d/2, w/2,y,-d/2,  w/2,y,-d/2, w/2,y,d/2,  w/2,y,d/2,-w/2,y,d/2,  -w/2,y,d/2,-w/2,y,-d/2); }
+      const fg=new THREE.BufferGeometry(); fg.setAttribute("position",new THREE.Float32BufferAttribute(fp,3));
+      b.add(new THREE.LineSegments(fg,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0.32,blending:THREE.AdditiveBlending})));
+      b.position.set(x,groundY,z); b.scale.y=0.001;
+      city.add(b); buildings.push(b);
+      return b;
+    }
+    for (let zc=-64; zc<=24; zc+=3.0){
+      for (const side of [-1,1]){
+        for (let lane=0; lane<6; lane++){
+          if (Math.random()<0.08) continue;
+          const x=side*(2.3+lane*2.6+(Math.random()-0.5));
+          const z=zc+(Math.random()-0.5)*1.2;
+          const w=0.9+Math.random()*1.4, d=0.9+Math.random()*1.5, h=4+Math.random()*18;
+          const b=makeBuilding(x,z,w,d,h,NEON[(Math.random()*NEON.length)|0]);
+          b.userData.delay=Math.max(0,Math.min(1,(20-z)/84));
+        }
+      }
+    }
+
+    // trânsito / rastos de luz na avenida
+    const TR = reduce ? 40 : 130;
+    const tpos=new Float32Array(TR*3);
+    for (let i=0;i<TR;i++){ tpos[i*3]=(Math.random()<0.5?-1:1)*(0.5+Math.random()*1.4); tpos[i*3+1]=groundY+0.12; tpos[i*3+2]=16-Math.random()*72; }
+    const tgeo=new THREE.BufferGeometry(); tgeo.setAttribute("position",new THREE.BufferAttribute(tpos,3));
+    const trailMat=new THREE.PointsMaterial({color:0x9dffe0,size:0.16,sizeAttenuation:true,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending});
+    const trails=new THREE.Points(tgeo,trailMat); city.add(trails);
+
+    // ---------- Riscos de luz a CAIR (o globo desfaz-se e chove luz sobre a cidade) ----------
+    const NBEAM = reduce ? 80 : 240;
+    const beamPos = new Float32Array(NBEAM*2*3);
+    const beamData=[];
+    for (let i=0;i<NBEAM;i++){
+      const x=(Math.random()-0.5)*42, z=(Math.random()-0.5)*56 - 8;
+      beamData.push({x,z, sp:10+Math.random()*16, off:Math.random()*15, len:1.6+Math.random()*2.6});
+      const o=i*6;
+      beamPos[o]=x;   beamPos[o+1]=0; beamPos[o+2]=z;
+      beamPos[o+3]=x; beamPos[o+4]=0; beamPos[o+5]=z;
+    }
+    const beamGeo=new THREE.BufferGeometry(); beamGeo.setAttribute("position",new THREE.BufferAttribute(beamPos,3));
+    const dissolveMat=new THREE.LineBasicMaterial({color:0x8dffd6,transparent:true,opacity:0,blending:THREE.AdditiveBlending});
+    const dissolve=new THREE.LineSegments(beamGeo,dissolveMat); scene.add(dissolve);
+
+    // ---------- Scroll + rato ----------
+    let scrollN = 0, targetScroll = 0;      // 0..1 ao longo da página
+    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    const total = () => document.body.scrollHeight - innerHeight;
+    addEventListener("scroll", () => { targetScroll = Math.min(1, Math.max(0, scrollY/total())); }, { passive:true });
+    addEventListener("mousemove", e => { tmx = e.clientX/innerWidth-0.5; tmy = e.clientY/innerHeight-0.5; }, { passive:true });
+    addEventListener("resize", () => { camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
+
+    const lerp = (a,b,t)=>a+(b-a)*t;
+
+    let t = 0;
+    function frame(){
+      requestAnimationFrame(frame);
+      t += 0.006;
+      scrollN = lerp(scrollN, targetScroll, 0.06);
+      mx = lerp(mx, tmx, 0.05); my = lerp(my, tmy, 0.05);
+
+      const smooth=(a,b,x)=>{ x=Math.min(1,Math.max(0,(x-a)/(b-a))); return x*x*(3-2*x); };
+
+      // o planeta roda; sobe e encolhe para o céu enquanto a cidade nasce
+      globe.rotation.y += 0.0016 + scrollN*0.003;
+      globe.rotation.x = -0.32 + my*0.12;
+      const gUp = smooth(0.16,0.42,scrollN);
+      globe.position.y = gUp*2.0;
+
+      // o globo DESFAZ-SE cedo (pontos, cidades, rotas, halo) e encolhe
+      const gfade = smooth(0.12,0.30,scrollN);
+      globe.scale.setScalar(1 - gfade*0.45);
+      globeDotsMat.opacity   = 0.75*(1-gfade);
+      globeCitiesMat.opacity = 1.0*(1-gfade);
+      globeWireMat.opacity   = 0.20*(1-gfade);
+      globeHaloMat.opacity   = 0.05*(1-gfade);
+      for (let i=0;i<arcMats.length;i++) arcMats[i].opacity = 0.28*(1-gfade);
+      pulses.material.opacity = 1.0*(1-gfade);
+
+      // pulsos nas rotas do globo (cargas a circular)
+      const pa = pulses.geometry.attributes.position;
+      for (let i=0;i<arcs.length;i++){ arcs[i].t += arcs[i].speed; if (arcs[i].t>1) arcs[i].t-=1;
+        const p=arcs[i].curve.getPoint(arcs[i].t); pa.array[i*3]=p.x; pa.array[i*3+1]=p.y; pa.array[i*3+2]=p.z; }
+      pa.needsUpdate = true;
+
+      // RISCOS DE LUZ A CAIR — movem-se sempre (não ficam parados); visíveis só na transição
+      const ba = dissolve.geometry.attributes.position;
+      for (let i=0;i<NBEAM;i++){
+        const bd=beamData[i], o=i*6;
+        const y = 7 - ((t*bd.sp + bd.off) % 15);   // cai e reinicia no topo
+        ba.array[o+1] = y + bd.len;                // topo do risco
+        ba.array[o+4] = y;                         // base do risco
+      }
+      ba.needsUpdate = true;
+      dissolveMat.opacity = 0.85*smooth(0.13,0.22,scrollN)*(1-smooth(0.40,0.54,scrollN));
+
+      // a cidade ERGUE-SE cedo (toda antes de a câmara mergulhar); depois só brilha e move
+      const cityFade = smooth(0.08,0.30,scrollN);
+      g1.material.opacity=0.42*cityFade; g2.material.opacity=0.15*cityFade; trailMat.opacity=0.9*cityFade;
+      const cityProg = smooth(0.16,0.62,scrollN);   // torres sobem depois de o globo sair
+      for (let i=0;i<buildings.length;i++){
+        const b=buildings[i]; let s=(cityProg-b.userData.delay*0.33)/0.2; s=Math.min(1,Math.max(0,s)); s=s*s*(3-2*s);
+        b.visible = s>0.015;              // escondido enquanto não sobe (sem quadrados no chão)
+        b.scale.y = Math.max(0.001, s);
+      }
+      const tp=trails.geometry.attributes.position;
+      for (let i=0;i<TR;i++){ tp.array[i*3+2]-=0.7; if (tp.array[i*3+2]<-58) tp.array[i*3+2]=16; }
+      tp.needsUpdate=true;
+
+      // câmara: olha o globo; desce à rua e penetra depressa; olhar NIVELADO (corredor cheio, sem céu preto)
+      const dive = smooth(0.30,0.44,scrollN);
+      const camY = lerp(4.5, 1.6, dive) - my*0.7;
+      const fly = Math.pow(Math.min(1,Math.max(0,(scrollN-0.33)/0.63)), 0.82);
+      const camZ = 13 - 60*fly;
+      const camX = mx*1.4;
+      camera.position.set(camX, camY, camZ);
+      camera.lookAt(camX*0.3, lerp(2.0, 0.9, dive), camZ - 12);
+
+      particles.rotation.y = t*0.015;
+      renderer.render(scene, camera);
+    }
+    frame();
+
+    // ---------- Reveal + rail + hint ----------
+    const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in"); }), { threshold:0.2 });
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+    const beats = [...document.querySelectorAll("[data-beat]")];
+    const rail = document.getElementById("rail");
+    beats.forEach(()=>{ const b=document.createElement("b"); rail.appendChild(b); });
+    const dots = [...rail.children];
+    const hint = document.getElementById("hint");
+    const bio = new IntersectionObserver((es)=>es.forEach(e=>{
+      if(e.isIntersecting){ const i=beats.indexOf(e.target); dots.forEach((d,k)=>d.classList.toggle("on",k===i)); hint.style.opacity = i===0?"1":"0"; }
+    }, { threshold:0.5 }));
+    beats.forEach(b=>bio.observe(b));
+  </script>
+</body>
+</html>
