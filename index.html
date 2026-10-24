@@ -136,8 +136,10 @@
   body.link #ring{width:54px;height:54px;border-color:var(--orange)}
   @media(hover:none){#cur,#ring{display:none}body{cursor:auto}}
 
-  #foot{position:fixed;bottom:22px;left:clamp(20px,4vw,52px);z-index:15;opacity:0;transition:opacity .6s}
+  #foot{position:fixed;bottom:22px;left:clamp(20px,4vw,52px);z-index:15;opacity:.72;transition:opacity .6s;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 40px)}
   #foot.on{opacity:1}
+  #foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+  #foot a:hover,#foot a:focus-visible{color:#31e0a0;border-color:#31e0a0;outline:none}
 </style>
 </head>
 <body>
@@ -157,7 +159,7 @@
   </div>
 </nav>
 
-<div class="ui">
+<main class="ui">
   <div class="block" data-i="0">
     <div class="eyebrow">Fleetflow.one</div>
     <h1 data-i18n="hero.h1">A logística tem<br>um novo <span>sistema<br>operativo.</span></h1>
@@ -196,11 +198,11 @@
       <a class="btn ghost" href="https://app.fleetflow.systems/bolsa" data-i18n="cta.bolsa">Ver a bolsa pública</a>
     </div>
   </div>
-</div>
+</main>
 
 <div id="rail"></div>
 <div id="hint"><span class="mono" data-i18n="hint">scroll</span><div class="line"></div></div>
-<div id="foot" class="mono">© 2026 FleetFlow — fleetflow.one</div>
+<footer id="foot" class="mono"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a><a href="https://www.livroreclamacoes.pt/Inicio/" rel="noopener" target="_blank" data-i18n="foot.complaints">Livro de Reclamações</a></footer>
 <div id="cur"></div><div id="ring"></div>
 
 <script type="importmap">
@@ -561,6 +563,7 @@ const I18N={
     desc:"Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.",
     "nav.login":"Entrar", pre:"a ligar a rede…", hint:"scroll",
     "hero.h1":"A logística tem<br>um novo <span>sistema<br>operativo.</span>",
+    "foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies","foot.complaints":"Livro de Reclamações",
     "hero.p":"Frota própria, grupos privados e bolsa pública — uma rede viva de cargas e camiões, num só lugar.",
     "b1.eyebrow":"01 / Operação",
     "b1.h2":"Cada carga sabe<br><span>para onde vai.</span>",
@@ -582,6 +585,7 @@ const I18N={
     desc:"Own fleet, private groups and a public freight exchange — a living network, in one place.",
     "nav.login":"Sign in", pre:"connecting the network…", hint:"scroll",
     "hero.h1":"Logistics has<br>a new <span>operating<br>system.</span>",
+    "foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies","foot.complaints":"Complaints book (PT)",
     "hero.p":"Own fleet, private groups and a public freight exchange — a living network of loads and trucks, in one place.",
     "b1.eyebrow":"01 / Operations",
     "b1.h2":"Every load knows<br><span>where it's going.</span>",
@@ -603,6 +607,7 @@ const I18N={
     desc:"Flota propia, grupos privados y bolsa pública — una red viva, en un solo lugar.",
     "nav.login":"Acceder", pre:"conectando la red…", hint:"desliza",
     "hero.h1":"La logística tiene<br>un nuevo <span>sistema<br>operativo.</span>",
+    "foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies","foot.complaints":"Libro de reclamaciones (PT)",
     "hero.p":"Flota propia, grupos privados y bolsa pública — una red viva de cargas y camiones, en un solo lugar.",
     "b1.eyebrow":"01 / Operación",
     "b1.h2":"Cada carga sabe<br><span>adónde va.</span>",
