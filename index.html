@@ -19,9 +19,21 @@
 <meta name="twitter:description" content="Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.">
 <meta name="twitter:image" content="https://fleetflow.one/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050807'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='20' fill='%2331e0a0' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fontes servidas daqui (RGPD: sem pedidos à Google) — Space Grotesk e IBM Plex Mono, OFL -->
+<style>
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <style>
   :root{
     --bg:#030607; --green:#31e0a0; --mint:#9dffd0; --orange:#fb923c;
@@ -202,7 +214,7 @@
 
 <div id="rail"></div>
 <div id="hint"><span class="mono" data-i18n="hint">scroll</span><div class="line"></div></div>
-<footer id="foot" class="mono"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a><a href="https://www.livroreclamacoes.pt/Inicio/" rel="noopener" target="_blank" data-i18n="foot.complaints">Livro de Reclamações</a></footer>
+<footer id="foot" class="mono"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
 <div id="cur"></div><div id="ring"></div>
 
 <script type="importmap">
@@ -563,7 +575,7 @@ const I18N={
     desc:"Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.",
     "nav.login":"Entrar", pre:"a ligar a rede…", hint:"scroll",
     "hero.h1":"A logística tem<br>um novo <span>sistema<br>operativo.</span>",
-    "foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies","foot.complaints":"Livro de Reclamações",
+    "foot.terms":"Termos","foot.capital":"Capital social","foot.privacy":"Privacidade","foot.cookies":"Cookies",
     "hero.p":"Frota própria, grupos privados e bolsa pública — uma rede viva de cargas e camiões, num só lugar.",
     "b1.eyebrow":"01 / Operação",
     "b1.h2":"Cada carga sabe<br><span>para onde vai.</span>",
@@ -585,7 +597,7 @@ const I18N={
     desc:"Own fleet, private groups and a public freight exchange — a living network, in one place.",
     "nav.login":"Sign in", pre:"connecting the network…", hint:"scroll",
     "hero.h1":"Logistics has<br>a new <span>operating<br>system.</span>",
-    "foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies","foot.complaints":"Complaints book (PT)",
+    "foot.terms":"Terms","foot.capital":"Share capital","foot.privacy":"Privacy","foot.cookies":"Cookies",
     "hero.p":"Own fleet, private groups and a public freight exchange — a living network of loads and trucks, in one place.",
     "b1.eyebrow":"01 / Operations",
     "b1.h2":"Every load knows<br><span>where it's going.</span>",
@@ -607,7 +619,7 @@ const I18N={
     desc:"Flota propia, grupos privados y bolsa pública — una red viva, en un solo lugar.",
     "nav.login":"Acceder", pre:"conectando la red…", hint:"desliza",
     "hero.h1":"La logística tiene<br>un nuevo <span>sistema<br>operativo.</span>",
-    "foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies","foot.complaints":"Libro de reclamaciones (PT)",
+    "foot.terms":"Términos","foot.capital":"Capital social","foot.privacy":"Privacidad","foot.cookies":"Cookies",
     "hero.p":"Flota propia, grupos privados y bolsa pública — una red viva de cargas y camiones, en un solo lugar.",
     "b1.eyebrow":"01 / Operación",
     "b1.h2":"Cada carga sabe<br><span>adónde va.</span>",
