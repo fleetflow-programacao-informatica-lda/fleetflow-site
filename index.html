@@ -152,6 +152,33 @@
   #foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
   #foot a:hover,#foot a:focus-visible{color:var(--green);border-color:var(--green);outline:none}
   .space{height:640vh}
+
+  /* ---------- TELEMÓVEL ---------- */
+  @media (max-width:640px){
+    nav{padding:12px 14px}
+    .logo{font-size:14px;gap:8px}
+    .logo .f{width:30px;height:30px}
+    .nav-r{gap:8px}
+    .lang{padding:2px}
+    .lang button{padding:5px 8px;font-size:10px;letter-spacing:.06em}
+    .btn.sm{padding:8px 13px;font-size:12px}
+    .block{left:20px;right:20px;width:auto;top:47%}
+    .block.right{left:20px;right:20px}
+    .block.center{left:50%;right:auto;width:92vw;top:42%}
+    .block::before{inset:-34px -24px;border-radius:32px}
+    h1{font-size:34px;line-height:1.03}
+    h2{font-size:27px}
+    .block p{font-size:15px;margin-top:16px;max-width:none}
+    .eyebrow{font-size:11px;margin-bottom:14px;letter-spacing:.18em}
+    .stat-row{gap:20px;margin-top:20px}
+    .stat b{font-size:20px}
+    .cta{justify-content:flex-start;gap:10px}
+    .block.center .cta{justify-content:center}
+    .btn{padding:11px 18px;font-size:14px}
+    #rail{display:none}
+    #hint{bottom:18px}
+    #foot{left:16px;right:16px;bottom:14px;gap:.3em .7em;font-size:9.5px;line-height:1.5}
+  }
 </style>
 </head>
 <body>
