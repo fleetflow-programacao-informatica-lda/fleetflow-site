@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FleetFlow — O sistema operativo da logística</title>
+<meta name="description" content="Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FleetFlow">
+<meta property="og:title" content="FleetFlow — O sistema operativo da logística">
+<meta property="og:description" content="Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar. 3 destinos · 1 decisão · 0 papel.">
+<meta property="og:url" content="https://fleetflow.one/">
+<meta property="og:image" content="https://fleetflow.one/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FleetFlow — O sistema operativo da logística">
+<meta name="twitter:description" content="Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.">
+<meta name="twitter:image" content="https://fleetflow.one/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050807'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='20' fill='%2331e0a0' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<!-- Fontes servidas daqui (RGPD: sem pedidos à Google) — Space Grotesk e IBM Plex Mono, OFL -->
+<style>
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<style>
+  :root{
+    --bg:#030607; --green:#31e0a0; --mint:#9dffd0; --orange:#fb923c;
+    --txt:#eef7f2; --muted:#7fa294; --line:rgba(49,224,160,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scrollbar-width:thin;scrollbar-color:rgba(49,224,160,.35) transparent}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:"Space Grotesk",system-ui,sans-serif;
+    overflow-x:hidden; cursor:none;
+  }
+  a{color:inherit;text-decoration:none}
+  canvas#gl{position:fixed;inset:0;z-index:0;display:block}
+  .space{height:720vh}
+
+  /* ---------- grain + vignette ---------- */
+  .grain{position:fixed;inset:-100px;z-index:6;pointer-events:none;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:gr 8s steps(10) infinite}
+  @keyframes gr{0%{transform:translate(0,0)}50%{transform:translate(-60px,30px)}100%{transform:translate(30px,-50px)}}
+  .vig{position:fixed;inset:0;z-index:5;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%)}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,4vw,52px);mix-blend-mode:normal}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .logo .f{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(140deg,#0d2b20,#07130e);border:1px solid var(--line);
+    color:var(--orange);font-weight:900;font-size:17px;box-shadow:0 0 22px rgba(49,224,160,.18)}
+  .logo em{font-style:normal;color:var(--green)}
+  .nav-r{display:flex;align-items:center;gap:22px}
+  .nav-r .mono{display:none}
+  @media(min-width:760px){.nav-r .mono{display:block}}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;
+    font-weight:600;font-size:14.5px;letter-spacing:.01em;transition:.28s cubic-bezier(.2,.7,.2,1);
+    background:var(--green);color:#031008;border:1px solid var(--green)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 34px rgba(49,224,160,.35)}
+  .btn.ghost{background:transparent;color:var(--txt);border-color:rgba(158,255,208,.28)}
+  .btn.ghost:hover{border-color:var(--green);box-shadow:0 8px 30px rgba(49,224,160,.15)}
+  .btn.sm{padding:9px 18px;font-size:13.5px}
+
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+  /* seletor de língua */
+  .lang{display:flex;gap:2px;border:1px solid rgba(158,255,208,.22);border-radius:999px;padding:3px}
+  .lang button{background:none;border:0;cursor:none;font-family:"IBM Plex Mono",monospace;
+    font-size:11px;letter-spacing:.12em;color:var(--muted);padding:6px 11px;border-radius:999px;transition:.25s}
+  .lang button:hover{color:var(--mint)}
+  .lang button.on{background:rgba(49,224,160,.15);color:var(--green)}
+
+  /* ---------- scene text blocks ---------- */
+  .ui{position:fixed;inset:0;z-index:10;pointer-events:none}
+  .block{position:absolute;top:50%;left:clamp(20px,7vw,120px);width:min(600px,86vw);
+    opacity:0;transform:translateY(-50%);will-change:transform,opacity}
+  .block.right{left:auto;right:clamp(20px,7vw,120px)}
+  .block.center{left:50%;text-align:center;width:min(760px,92vw)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.22em;color:var(--green);
+    text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .block.center .eyebrow{justify-content:center}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--green);opacity:.7}
+  .block.center .eyebrow::before{display:none}
+  /* legibilidade: véu escuro + sombra por trás do texto */
+  .block h1,.block h2{text-shadow:0 2px 30px rgba(0,0,0,.9),0 0 70px rgba(0,0,0,.65)}
+  .block p,.block .eyebrow,.stat b,.stat i{text-shadow:0 1px 16px rgba(0,0,0,.95)}
+  .block::before{content:"";position:absolute;inset:-70px -80px;z-index:-1;border-radius:48px;
+    background:radial-gradient(ellipse at 50% 45%, rgba(2,6,5,.9), rgba(2,6,5,.55) 55%, transparent 78%)}
+  .block.center{top:36%}
+  /* cenas 1-3: texto SOBE, fora da massa de partículas */
+  .block[data-i="1"],.block[data-i="2"],.block[data-i="3"]{top:30%}
+  h1{font-size:clamp(44px,7.4vw,98px);line-height:.98;letter-spacing:-.035em;font-weight:700}
+  h1 span,h2 span{color:var(--green)}
+  h2{font-size:clamp(34px,4.8vw,66px);line-height:1.02;letter-spacing:-.03em;font-weight:700}
+  .block p{margin-top:22px;font-size:clamp(15.5px,1.35vw,18.5px);line-height:1.65;color:var(--muted);max-width:46ch}
+  .block.center p{margin-left:auto;margin-right:auto}
+  .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .stat-row{margin-top:26px;display:flex;gap:34px}
+  .stat b{display:block;font-size:24px;letter-spacing:-.02em;color:var(--mint)}
+  .stat i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---------- rail ---------- */
+  #rail{position:fixed;right:clamp(14px,2.2vw,30px);top:50%;transform:translateY(-50%);z-index:15;
+    display:flex;flex-direction:column;gap:18px;align-items:flex-end}
+  #rail .dot{display:flex;align-items:center;gap:10px;cursor:pointer;pointer-events:auto}
+  #rail .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;color:var(--muted);
+    text-transform:uppercase;opacity:0;transform:translateX(6px);transition:.3s}
+  #rail .dot:hover .lbl{opacity:1;transform:none}
+  #rail b{width:7px;height:7px;border-radius:50%;background:rgba(158,255,208,.25);transition:.35s;display:block}
+  #rail .dot.on b{background:var(--green);box-shadow:0 0 14px rgba(49,224,160,.8);transform:scale(1.35)}
+  #rail .dot.on .lbl{opacity:1;transform:none;color:var(--green)}
+
+  /* ---------- hint ---------- */
+  #hint{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:15;text-align:center;transition:opacity .5s}
+  #hint .line{width:1px;height:44px;margin:10px auto 0;background:linear-gradient(var(--green),transparent);
+    animation:hl 1.8s ease-in-out infinite;transform-origin:top}
+  @keyframes hl{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* ---------- preloader ---------- */
+  #pre{position:fixed;inset:0;z-index:60;background:var(--bg);display:grid;place-items:center;transition:opacity .8s, visibility .8s}
+  #pre.done{opacity:0;visibility:hidden}
+  #pre .in{text-align:center}
+  #pre .pct{font-size:clamp(60px,10vw,120px);font-weight:700;letter-spacing:-.04em;
+    background:linear-gradient(90deg,var(--green),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+  #pre .mono{margin-top:10px}
+
+  /* ---------- cursor ---------- */
+  #cur{position:fixed;z-index:70;width:8px;height:8px;border-radius:50%;background:var(--green);
+    pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen}
+  #ring{position:fixed;z-index:70;width:34px;height:34px;border-radius:50%;border:1px solid rgba(49,224,160,.45);
+    pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
+  body.link #ring{width:54px;height:54px;border-color:var(--orange)}
+  @media(hover:none){#cur,#ring{display:none}body{cursor:auto}}
+
+  #foot{position:fixed;bottom:22px;left:clamp(20px,4vw,52px);z-index:15;opacity:.72;transition:opacity .6s;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 40px)}
+  #foot.on{opacity:1}
+  #foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+  #foot a:hover,#foot a:focus-visible{color:#31e0a0;border-color:#31e0a0;outline:none}
+</style>
+</head>
+<body>
+
+<div id="pre"><div class="in"><div class="pct" id="pct">0</div><div class="mono" data-i18n="pre">a ligar a rede…</div></div></div>
+
+<canvas id="gl"></canvas>
+<div class="vig"></div><div class="grain"></div>
+
+<nav>
+  <a class="logo" href="#"><span class="f"><svg viewBox="0 0 320 320" width="20" height="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="34"><path d="M62 92l68 68-68 68M130 92l68 68-68 68" stroke="#31e0a0"/><path d="M198 92l68 68-68 68" stroke="#fb923c" opacity=".85"/></svg></span><span>FleetFlow<em>.one</em></span></a>
+  <div class="nav-r">
+    <div class="lang" id="lang">
+      <button data-l="pt">PT</button><button data-l="en">EN</button><button data-l="es">ES</button>
+    </div>
+    <a class="btn ghost sm" href="https://app.fleetflow.systems" data-i18n="nav.login">Entrar</a>
+  </div>
+</nav>
+
+<main class="ui">
+  <div class="block" data-i="0">
+    <div class="eyebrow">Fleetflow.one</div>
+    <h1 data-i18n="hero.h1">A logística tem<br>um novo <span>sistema<br>operativo.</span></h1>
+    <p data-i18n="hero.p">Frota própria, grupos privados e bolsa pública — uma rede viva de cargas e camiões, num só lugar.</p>
+  </div>
+
+  <div class="block right" data-i="1">
+    <div class="eyebrow" data-i18n="b1.eyebrow">01 / Operação</div>
+    <h2 data-i18n="b1.h2">Cada carga sabe<br><span>para onde vai.</span></h2>
+    <p data-i18n="b1.p">O padrão da tua operação classifica tudo — casa, grupo ou bolsa. A IA lê os emails e prepara o plano; o gestor só decide.</p>
+    <div class="stat-row">
+      <div class="stat"><b>3</b><i data-i18n="b1.s1">destinos</i></div>
+      <div class="stat"><b>1</b><i data-i18n="b1.s2">decisão</i></div>
+      <div class="stat"><b>0</b><i data-i18n="b1.s3">papel</i></div>
+    </div>
+  </div>
+
+  <div class="block" data-i="2">
+    <div class="eyebrow" data-i18n="b2.eyebrow">02 / Estrada</div>
+    <h2 data-i18n="b2.h2">A estrada toda,<br><span>em tempo real.</span></h2>
+    <p data-i18n="b2.p">GPS ao vivo, rotas e entregas — tudo o que acontece na estrada corre dentro do software, sem papel e sem telefonemas.</p>
+  </div>
+
+  <div class="block right" data-i="3">
+    <div class="eyebrow" data-i18n="b3.eyebrow">03 / Escritório</div>
+    <h2 data-i18n="b3.h2">O Orbit trabalha<br><span>contigo.</span></h2>
+    <p data-i18n="b3.p">Sugere encaixes, prepara envios, responde a clientes. Tu aprovas — ele executa. Um copiloto de operação, não um chatbot.</p>
+  </div>
+
+  <div class="block center" data-i="4">
+    <div class="eyebrow">Fleetflow</div>
+    <h2 data-i18n="b4.h2">E se a tua frota<br><span>pensasse?</span></h2>
+    <p data-i18n="b4.p">Junta-te às transportadoras que já operam com a FleetFlow.</p>
+    <div class="cta">
+      <a class="btn" href="https://app.fleetflow.systems" data-i18n="cta.create">Criar conta</a>
+      <a class="btn ghost" href="https://app.fleetflow.systems/bolsa" data-i18n="cta.bolsa">Ver a bolsa pública</a>
+    </div>
+  </div>
+</main>
+
+<div id="rail"></div>
+<div id="hint"><span class="mono" data-i18n="hint">scroll</span><div class="line"></div></div>
+<footer id="foot" class="mono"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
+<div id="cur"></div><div id="ring"></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/",
+  "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import Lenis from "lenis";
+
+/* ============================================================
+   FLEETFLOW v2 — uma única matéria de partículas (GPU morph)
+   globo → cidade → semi-reboque → escritório → F
+   ============================================================ */
+
+const GREEN=0x31e0a0, MINT=0x9dffd0, ORANGE=0xfb923c;
+const N = 42000;
+
+const renderer = new THREE.WebGLRenderer({ canvas:document.getElementById("gl"), antialias:true, alpha:false });
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));
+renderer.setSize(innerWidth,innerHeight);
+renderer.setClearColor(0x030607,1);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x030607, 0.016);
+const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, .1, 300);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene,camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight), 1.0, .65, .12);
+composer.addPass(bloom);
+
+/* ---------------- formas (cada uma = Float32Array N*3) ---------------- */
+
+function makeGlobe(n){
+  const a=new Float32Array(n*3), R=5.2;
+  for(let i=0;i<n;i++){
+    const r=Math.random(); let x,y,z;
+    if(r<0.88){
+      const u=Math.random()*2-1, th=Math.random()*Math.PI*2, s=Math.sqrt(1-u*u);
+      const m=R*(1+(Math.random()-.5)*.015);
+      x=m*s*Math.cos(th); y=m*u; z=m*s*Math.sin(th);
+    }else{
+      const ring = r<0.945 ? {r:7.3,t:.5} : {r:8.6,t:-.38};
+      const an=Math.random()*Math.PI*2;
+      x=Math.cos(an)*ring.r; z=Math.sin(an)*ring.r; y=(Math.random()-.5)*.05;
+      const c=Math.cos(ring.t), s2=Math.sin(ring.t);
+      const y2=y*c-z*s2, z2=y*s2+z*c; y=y2; z=z2;
+    }
+    a[i*3]=x; a[i*3+1]=y; a[i*3+2]=z;
+  }
+  return a;
+}
+
+function makeCity(n){
+  const a=new Float32Array(n*3), builds=[];
+  for(let gx=-4;gx<=4;gx++)for(let gz=-4;gz<=4;gz++){
+    if(gx===0&&gz===0) continue;
+    if(Math.random()<0.16) continue;
+    builds.push({ x:gx*3+(Math.random()-.5)*.6, z:gz*3+(Math.random()-.5)*.6,
+                  h:1.2+Math.pow(Math.random(),1.7)*7.5, w:.9+Math.random()*.9 });
+  }
+  const streets=Math.floor(n*0.10), per=(n-streets)/builds.length;
+  let i=0;
+  for(const b of builds){
+    const cnt=Math.round(per*(0.55+b.h/7));
+    for(let k=0;k<cnt && i<n-streets;k++,i++){
+      const face=(Math.random()*4)|0, t=Math.random(), y=Math.random()*b.h, hw=b.w/2;
+      let x=b.x, z=b.z;
+      if(face===0){x+=-hw+t*b.w; z+=hw;} else if(face===1){x+=-hw+t*b.w; z+=-hw;}
+      else if(face===2){x+=hw; z+=-hw+t*b.w;} else {x+=-hw; z+=-hw+t*b.w;}
+      a[i*3]=x; a[i*3+1]=y; a[i*3+2]=z;
+    }
+  }
+  for(;i<n;i++){
+    const along=Math.random()<.5, line=(((Math.random()*9)|0)-4)*3+1.5, p=(Math.random()-.5)*26;
+    a[i*3]=along?p:line; a[i*3+1]=0.02; a[i*3+2]=along?line:p;
+  }
+  return a;
+}
+
+function boxEdges(cx,cy,cz,sx,sy,sz){
+  const x0=cx-sx/2,x1=cx+sx/2,y0=cy-sy/2,y1=cy+sy/2,z0=cz-sz/2,z1=cz+sz/2;
+  const c=[[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1],[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]];
+  return [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]]
+    .map(([p,q])=>[...c[p],...c[q]]);
+}
+function sampleSegs(segs,count,arr,off){
+  const lens=segs.map(s=>Math.hypot(s[3]-s[0],s[4]-s[1],s[5]-s[2]));
+  const total=lens.reduce((x,y)=>x+y,0)||1;
+  let i=off;
+  for(let k=0;k<count;k++,i++){
+    let d=Math.random()*total, si=0;
+    while(d>lens[si] && si<segs.length-1){ d-=lens[si]; si++; }
+    const s=segs[si], f=lens[si]?d/lens[si]:0;
+    arr[i*3]=s[0]+(s[3]-s[0])*f; arr[i*3+1]=s[1]+(s[4]-s[1])*f; arr[i*3+2]=s[2]+(s[5]-s[2])*f;
+  }
+  return i;
+}
+
+function makeOffice(n){
+  const a=new Float32Array(n*3), segs=[];
+  segs.push(...boxEdges(0,.01,0,15,.02,10));                       // perímetro do chão
+  const deskX=[-4,0,4], deskZ=[1.4,-1.6];
+  for(const z of deskZ) for(const x of deskX){
+    segs.push(...boxEdges(x,1.0,z,2.4,.1,1.1));                    // tampo
+    segs.push(...boxEdges(x-1.05,.5,z,.08,1.0,.9));                // pernas
+    segs.push(...boxEdges(x+1.05,.5,z,.08,1.0,.9));
+    segs.push(...boxEdges(x,1.62,z-.25,.95,.6,.05));               // monitor
+  }
+  segs.push(...boxEdges(0,2.7,-4.6,7.5,3.4,.08));                  // ecrã de parede
+  segs.push(...boxEdges(-6.8,1.8,-2,.25,3.6,.25));                 // colunas de luz
+  segs.push(...boxEdges( 6.8,1.8,-2,.25,3.6,.25));
+
+  let i=sampleSegs(segs, Math.floor(n*.60), a, 0);
+  const wall=Math.floor(n*.16);                                    // dashboard na parede
+  for(let k=0;k<wall;k++,i++){
+    a[i*3]=(Math.random()-.5)*6.8; a[i*3+1]=1.2+Math.random()*3.0; a[i*3+2]=-4.56;
+  }
+  const mon=Math.floor(n*.10);                                     // ecrãs das secretárias
+  for(let k=0;k<mon;k++,i++){
+    const x=deskX[(Math.random()*3)|0], z=deskZ[(Math.random()*2)|0];
+    a[i*3]=x+(Math.random()-.5)*.8; a[i*3+1]=1.38+Math.random()*.48; a[i*3+2]=z-.27;
+  }
+  for(;i<n;i++){                                                    // pó no chão
+    a[i*3]=(Math.random()-.5)*14; a[i*3+1]=.02; a[i*3+2]=(Math.random()-.5)*9;
+  }
+  return a;
+}
+
+function makeLogoMark(n){
+  // logo NOVO: "»»»" — três chevrons em avanço. O FF de FleetFlow
+  // em fast-forward + os 3 balões (casa/grupo/bolsa). Geometria pura.
+  const a=new Float32Array(n*3);
+  const cv=document.createElement("canvas"); cv.width=cv.height=320;
+  const cx=cv.getContext("2d");
+  cx.strokeStyle="#fff"; cx.lineCap="round"; cx.lineJoin="round";
+  cx.lineWidth=30;
+  for(const x0 of [96,164,232]){
+    cx.beginPath(); cx.moveTo(x0-34,92); cx.lineTo(x0+34,160); cx.lineTo(x0-34,228); cx.stroke();
+  }
+  const d=cx.getImageData(0,0,320,320).data, pts=[];
+  for(let y=0;y<320;y+=2)for(let x=0;x<320;x+=2){ if(d[(y*320+x)*4+3]>100) pts.push([x,y]); }
+  const nf=Math.floor(n*.86);
+  for(let k=0;k<nf;k++){
+    const [px,py]=pts[(Math.random()*pts.length)|0];
+    a[k*3]  =((px+(Math.random()-.5)*1.6)/320-.51)*6.4;
+    a[k*3+1]=(.5-(py+(Math.random()-.5)*1.6)/320)*6.4-2.1;               // ABAIXO do texto
+    a[k*3+2]=(Math.random()-.5)*.45;
+  }
+  for(let k=nf;k<n;k++){                                                  // casulo cósmico à volta
+    const u=Math.random()*2-1, th=Math.random()*Math.PI*2, s=Math.sqrt(1-u*u), r=9+Math.random()*7;
+    a[k*3]=r*s*Math.cos(th); a[k*3+1]=r*u*.6; a[k*3+2]=r*s*Math.sin(th);
+  }
+  return a;
+}
+
+function makeTruck(n){
+  // semi-reboque FRIGORÍFICO procedural — caixa quadrada, unidade de frio,
+  // 10 rodas e "FLEETFLOW" escrito em pontos na lateral. Anda para -X.
+  const a=new Float32Array(n*3), segs=[];
+  segs.push(...boxEdges(-3.85,.95,0, 1.3,1.1,1.4));    // cabine — base
+  segs.push(...boxEdges(-3.8,1.85,0, 1.1,.75,1.35));   // cabine — cabina
+  segs.push(...boxEdges(-3.45,2.32,0, .5,.3,1.2));     // deflector de tejadilho
+  segs.push(...boxEdges(1.05,1.5,0, 6.9,1.7,1.45));    // caixa frigorífica
+  segs.push(...boxEdges(-2.32,1.6,0, .18,.9,1.05));    // unidade de frio (frente da caixa)
+  segs.push(...boxEdges(0,.45,0, 7.2,.18,.9));         // chassis
+  segs.push(...boxEdges(-2.9,.45,.55, .9,.35,.28));    // depósito
+  for(const y of [1.0,1.5,2.0]){                        // frisos dos painéis laterais
+    segs.push([-2.4,y,.727, 4.5,y,.727]); segs.push([-2.4,y,-.727, 4.5,y,-.727]); }
+  let i=sampleSegs(segs, Math.floor(n*.34), a, 0);
+
+  // "FLEETFLOW" na lateral, em pontos
+  const cv=document.createElement("canvas"); cv.width=640; cv.height=96;
+  const cx=cv.getContext("2d"); cx.fillStyle="#fff"; cx.font="900 68px Arial";
+  cx.textAlign="center"; cx.textBaseline="middle"; cx.fillText("FLEETFLOW",320,50);
+  const d=cx.getImageData(0,0,640,96).data, tp=[];
+  for(let y=0;y<96;y+=2)for(let x=0;x<640;x+=2){ if(d[(y*640+x)*4+3]>100) tp.push([x,y]); }
+  const nt=Math.floor(n*.11);
+  for(let k=0;k<nt;k++,i++){
+    const [px,py]=tp[(Math.random()*tp.length)|0];
+    a[i*3]=-2.05+(px/640)*6.2+(Math.random()-.5)*.02;
+    a[i*3+1]=1.94-(py/96)*.93; a[i*3+2]=.735;
+  }
+  // faces da caixa (esparso, dá corpo sem rebentar o bloom)
+  const nf=Math.floor(n*.15);
+  for(let k=0;k<nf;k++,i++){
+    const r=Math.random(), x=-2.4+Math.random()*6.9;
+    if(r<.4){ a[i*3]=x; a[i*3+1]=.65+Math.random()*1.7; a[i*3+2]=.725; }
+    else if(r<.8){ a[i*3]=x; a[i*3+1]=.65+Math.random()*1.7; a[i*3+2]=-.725; }
+    else { a[i*3]=x; a[i*3+1]=2.35; a[i*3+2]=(Math.random()-.5)*1.45; }
+  }
+  // faces da cabine
+  const nc=Math.floor(n*.07);
+  for(let k=0;k<nc;k++,i++){
+    if(Math.random()<.5){ a[i*3]=-4.5; a[i*3+1]=.4+Math.random()*1.8; a[i*3+2]=(Math.random()-.5)*1.35; }
+    else { a[i*3]=-4.5+Math.random()*1.3; a[i*3+1]=.4+Math.random()*1.8; a[i*3+2]=(Math.random()<.5?.7:-.7); }
+  }
+  // 10 rodas (2 cabine dianteiras, 2 traseiras, 3 eixos do reboque)
+  const axles=[-4.15,-2.85,2.9,3.6,4.25], perW=Math.floor(n*.012);
+  for(const ax of axles) for(const sz of [.62,-.62]){
+    for(let k=0;k<perW;k++,i++){
+      const an=Math.random()*Math.PI*2, rr=.34*(.65+.35*Math.random());
+      a[i*3]=ax+Math.cos(an)*rr; a[i*3+1]=.34+Math.sin(an)*rr; a[i*3+2]=sz+(Math.random()-.5)*.06;
+    }
+  }
+  // luzes (frente + traseira)
+  const nl=Math.floor(n*.03);
+  for(let k=0;k<nl;k++,i++){
+    const f=Math.random()<.5;
+    a[i*3]=(f?-4.52:4.52)+(Math.random()-.5)*.06;
+    a[i*3+1]=(f?1.0:.9)+(Math.random()-.5)*.12;
+    a[i*3+2]=(Math.random()<.5?1:-1)*(.45+Math.random()*.15);
+  }
+  // sombra de pontos no chão
+  for(;i<n;i++){ a[i*3]=-4.6+Math.random()*9.3; a[i*3+1]=.012; a[i*3+2]=(Math.random()-.5)*1.9; }
+  return a;
+}
+
+/* ---------------- geometria + shader ---------------- */
+
+const geo = new THREE.BufferGeometry();
+geo.setAttribute("position", new THREE.BufferAttribute(makeGlobe(N),3));
+geo.setAttribute("aP1", new THREE.BufferAttribute(makeCity(N),3));
+geo.setAttribute("aP2", new THREE.BufferAttribute(makeTruck(N),3));
+geo.setAttribute("aP3", new THREE.BufferAttribute(makeOffice(N),3));
+geo.setAttribute("aP4", new THREE.BufferAttribute(makeLogoMark(N),3));
+const seeds=new Float32Array(N); for(let i=0;i<N;i++) seeds[i]=Math.random();
+geo.setAttribute("aSeed", new THREE.BufferAttribute(seeds,1));
+
+const uniforms = {
+  uScene:{value:0}, uTime:{value:0}, uSize:{value:1.5}, uDpr:{value:Math.min(devicePixelRatio,1.8)},
+  uColA:{value:new THREE.Color(GREEN)}, uColB:{value:new THREE.Color(MINT)}, uColC:{value:new THREE.Color(ORANGE)},
+  uOrange:{value:0}, uOpacity:{value:1}
+};
+
+const mat = new THREE.ShaderMaterial({
+  uniforms, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+  vertexShader:/*glsl*/`
+    attribute vec3 aP1; attribute vec3 aP2; attribute vec3 aP3; attribute vec3 aP4;
+    attribute float aSeed;
+    uniform float uScene, uTime, uSize, uDpr;
+    varying float vSeed, vTr;
+    vec3 rotY(vec3 p, float a){ float c=cos(a),s=sin(a); return vec3(c*p.x+s*p.z, p.y, -s*p.x+c*p.z); }
+    vec3 shapeAt(float i){
+      if(i<.5)  return rotY(position, uTime*.12);
+      if(i<1.5) return aP1;
+      if(i<2.5) return aP2 + vec3(0., sin(uTime*2.2+aSeed*6.28)*.02, 0.);
+      if(i<3.5) return aP3;
+      return aP4;
+    }
+    void main(){
+      float i0=floor(clamp(uScene,0.,3.999));
+      float f=uScene-i0;
+      float p=smoothstep(0.,1., clamp(f*1.35-aSeed*.35, 0., 1.));
+      vec3 pos=mix(shapeAt(i0), shapeAt(i0+1.), p);
+      float tr=sin(p*3.14159); vTr=tr;
+      pos += tr*1.5*vec3(sin(aSeed*12.9+uTime*1.7), cos(aSeed*7.7+uTime*1.3), sin(aSeed*5.3-uTime*1.1));
+      pos += .03*vec3(sin(uTime*.8+aSeed*40.), cos(uTime*.7+aSeed*30.), sin(uTime*.9+aSeed*20.));
+      // cena final: o símbolo está VIVO — ondula; com mais scroll nada para fora da página
+      float w4 = smoothstep(3.3, 4., uScene);
+      pos.y += w4 * sin(uTime*1.8 + pos.x*1.1 + aSeed*2.) * .16;
+      float ex = smoothstep(4.05, 4.6, uScene);
+      pos.x += ex*ex*36.;
+      pos.y += ex * sin(uTime*2.6 + aSeed*6.28 + pos.x*.5) * 1.2;
+      vec4 mv=modelViewMatrix*vec4(pos,1.);
+      gl_PointSize = uSize*uDpr*(1.+tr*.9)*(30./-mv.z)*(.55+aSeed*.9);
+      gl_Position = projectionMatrix*mv;
+      vSeed=aSeed;
+    }`,
+  fragmentShader:/*glsl*/`
+    uniform vec3 uColA,uColB,uColC; uniform float uOrange,uOpacity;
+    varying float vSeed,vTr;
+    void main(){
+      float d=length(gl_PointCoord-.5);
+      float alpha=smoothstep(.5,.06,d);
+      vec3 col=mix(uColA,uColB,smoothstep(.55,.95,vSeed));
+      col=mix(col,uColC, uOrange*step(.3,vSeed)*.5);   // laranja suave, não vivo
+      col+=vTr*.35;
+      gl_FragColor=vec4(col, alpha*uOpacity*(.5+.5*vSeed));
+    }`
+});
+const cloud = new THREE.Points(geo, mat);
+cloud.frustumCulled = false;
+scene.add(cloud);
+
+window.__truckLoaded=true;   // camião é procedural — pronto de imediato
+
+/* ---------------- cenografia por cena ---------------- */
+
+// arcos do globo
+const arcGroup=new THREE.Group(); scene.add(arcGroup);
+const arcMat=new THREE.LineBasicMaterial({color:GREEN,transparent:true,opacity:0,blending:THREE.AdditiveBlending});
+for(let k=0;k<16;k++){
+  const A=new THREE.Vector3().randomDirection().multiplyScalar(5.2);
+  const B=new THREE.Vector3().randomDirection().multiplyScalar(5.2);
+  const M=A.clone().add(B).normalize().multiplyScalar(6.8+Math.random()*1.8);
+  const pts=[]; for(let s=0;s<=40;s++){ const t=s/40;
+    pts.push(new THREE.Vector3().copy(A).multiplyScalar((1-t)*(1-t)).addScaledVector(M,2*(1-t)*t).addScaledVector(B,t*t)); }
+  arcGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), arcMat));
+}
+
+// grelha do chão
+const grid=new THREE.GridHelper(80,50,0x1d5c45,0x0c2a20);
+grid.material.transparent=true; grid.material.opacity=0; grid.position.y=-.04; scene.add(grid);
+
+// estrada do camião
+const roadGroup=new THREE.Group(); scene.add(roadGroup);
+const dashMat=new THREE.LineBasicMaterial({color:MINT,transparent:true,opacity:0,blending:THREE.AdditiveBlending});
+const edgeMat=new THREE.LineBasicMaterial({color:ORANGE,transparent:true,opacity:0,blending:THREE.AdditiveBlending});
+const dashN=26, dashPos=new Float32Array(dashN*6);
+for(let k=0;k<dashN;k++){ const x=-30+k*2.4, o=k*6;
+  dashPos[o]=x; dashPos[o+1]=.01; dashPos[o+2]=0; dashPos[o+3]=x+1.1; dashPos[o+4]=.01; dashPos[o+5]=0; }
+const dashGeo=new THREE.BufferGeometry(); dashGeo.setAttribute("position",new THREE.BufferAttribute(dashPos,3));
+roadGroup.add(new THREE.LineSegments(dashGeo,dashMat));
+const edgeGeo=new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(-34,.01,-2.8), new THREE.Vector3(34,.01,-2.8),
+  new THREE.Vector3(-34,.01, 2.8), new THREE.Vector3(34,.01, 2.8)]);
+roadGroup.add(new THREE.LineSegments(edgeGeo,edgeMat));
+
+// poeira de fundo
+const starGeo=new THREE.BufferGeometry(), starArr=new Float32Array(1500*3);
+for(let i=0;i<1500;i++){ const u=Math.random()*2-1, th=Math.random()*Math.PI*2, s=Math.sqrt(1-u*u), r=28+Math.random()*36;
+  starArr[i*3]=r*s*Math.cos(th); starArr[i*3+1]=r*u; starArr[i*3+2]=r*s*Math.sin(th); }
+starGeo.setAttribute("position",new THREE.BufferAttribute(starArr,3));
+const starMat=new THREE.PointsMaterial({color:MINT,size:.09,transparent:true,opacity:.35,depthWrite:false,blending:THREE.AdditiveBlending});
+const stars=new THREE.Points(starGeo,starMat); stars.frustumCulled=false; scene.add(stars);
+
+/* ---------------- câmaras por cena ---------------- */
+const cams=[
+  {p:[0,1.2,14.5],   l:[0,.3,0]},      // globo
+  {p:[8,6.5,12],     l:[0,2.2,0]},     // cidade — aéreo 3/4
+  {p:[-9.5,4.3,10.5],l:[.5,1.1,0]},    // camião — 3/4 inclinado
+  {p:[.5,3.4,11.5],  l:[0,1.8,-1]},    // escritório
+  {p:[0,.6,15.5],    l:[0,.6,0]},      // F
+];
+const ease=t=>t*t*(3-2*t);
+
+/* ---------------- scroll + rato + loop ---------------- */
+const lenis=new Lenis({lerp:.09});
+let scrollN=0, uScene=0, mx=0,my=0,tmx=0,tmy=0, t=0;
+addEventListener("scroll",()=>{ const tot=document.body.scrollHeight-innerHeight;
+  scrollN=Math.min(1,Math.max(0,scrollY/tot)); },{passive:true});
+addEventListener("mousemove",e=>{ tmx=e.clientX/innerWidth-.5; tmy=e.clientY/innerHeight-.5; },{passive:true});
+addEventListener("resize",()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight); });
+
+/* ---------------- i18n (PT fonte · EN · ES) ---------------- */
+const I18N={
+  pt:{
+    title:"FleetFlow — O sistema operativo da logística",
+    desc:"Frota própria, grupos privados e bolsa pública — uma rede viva, num só lugar.",
+    "nav.login":"Entrar", pre:"a ligar a rede…", hint:"scroll",
+    "hero.h1":"A logística tem<br>um novo <span>sistema<br>operativo.</span>",
+    "foot.terms":"Termos","foot.capital":"Capital social","foot.privacy":"Privacidade","foot.cookies":"Cookies",
+    "hero.p":"Frota própria, grupos privados e bolsa pública — uma rede viva de cargas e camiões, num só lugar.",
+    "b1.eyebrow":"01 / Operação",
+    "b1.h2":"Cada carga sabe<br><span>para onde vai.</span>",
+    "b1.p":"O padrão da tua operação classifica tudo — casa, grupo ou bolsa. A IA lê os emails e prepara o plano; o gestor só decide.",
+    "b1.s1":"destinos","b1.s2":"decisão","b1.s3":"papel",
+    "b2.eyebrow":"02 / Estrada",
+    "b2.h2":"A estrada toda,<br><span>em tempo real.</span>",
+    "b2.p":"GPS ao vivo, rotas e entregas — tudo o que acontece na estrada corre dentro do software, sem papel e sem telefonemas.",
+    "b3.eyebrow":"03 / Escritório",
+    "b3.h2":"O Orbit trabalha<br><span>contigo.</span>",
+    "b3.p":"Sugere encaixes, prepara envios, responde a clientes. Tu aprovas — ele executa. Um copiloto de operação, não um chatbot.",
+    "b4.h2":"E se a tua frota<br><span>pensasse?</span>",
+    "b4.p":"Junta-te às transportadoras que já operam com a FleetFlow.",
+    "cta.create":"Criar conta","cta.bolsa":"Ver a bolsa pública",
+    rail:["Rede","Operação","Estrada","Escritório","Começar"]
+  },
+  en:{
+    title:"FleetFlow — The operating system of logistics",
+    desc:"Own fleet, private groups and a public freight exchange — a living network, in one place.",
+    "nav.login":"Sign in", pre:"connecting the network…", hint:"scroll",
+    "hero.h1":"Logistics has<br>a new <span>operating<br>system.</span>",
+    "foot.terms":"Terms","foot.capital":"Share capital","foot.privacy":"Privacy","foot.cookies":"Cookies",
+    "hero.p":"Own fleet, private groups and a public freight exchange — a living network of loads and trucks, in one place.",
+    "b1.eyebrow":"01 / Operations",
+    "b1.h2":"Every load knows<br><span>where it's going.</span>",
+    "b1.p":"Your operation's pattern classifies everything — home, group or exchange. The AI reads the emails and drafts the plan; the manager just decides.",
+    "b1.s1":"destinations","b1.s2":"decision","b1.s3":"paper",
+    "b2.eyebrow":"02 / Road",
+    "b2.h2":"The whole road,<br><span>in real time.</span>",
+    "b2.p":"Live GPS, routes and deliveries — everything that happens on the road runs inside the software, paperless and call-free.",
+    "b3.eyebrow":"03 / Office",
+    "b3.h2":"Orbit works<br><span>with you.</span>",
+    "b3.p":"It suggests backloads, prepares dispatches, replies to customers. You approve — it executes. An operations copilot, not a chatbot.",
+    "b4.h2":"What if your fleet<br><span>could think?</span>",
+    "b4.p":"Join the carriers already running on FleetFlow.",
+    "cta.create":"Create account","cta.bolsa":"See the public exchange",
+    rail:["Network","Operations","Road","Office","Start"]
+  },
+  es:{
+    title:"FleetFlow — El sistema operativo de la logística",
+    desc:"Flota propia, grupos privados y bolsa pública — una red viva, en un solo lugar.",
+    "nav.login":"Acceder", pre:"conectando la red…", hint:"desliza",
+    "hero.h1":"La logística tiene<br>un nuevo <span>sistema<br>operativo.</span>",
+    "foot.terms":"Términos","foot.capital":"Capital social","foot.privacy":"Privacidad","foot.cookies":"Cookies",
+    "hero.p":"Flota propia, grupos privados y bolsa pública — una red viva de cargas y camiones, en un solo lugar.",
+    "b1.eyebrow":"01 / Operación",
+    "b1.h2":"Cada carga sabe<br><span>adónde va.</span>",
+    "b1.p":"El patrón de tu operación lo clasifica todo — casa, grupo o bolsa. La IA lee los correos y prepara el plan; el gestor solo decide.",
+    "b1.s1":"destinos","b1.s2":"decisión","b1.s3":"papel",
+    "b2.eyebrow":"02 / Carretera",
+    "b2.h2":"Toda la carretera,<br><span>en tiempo real.</span>",
+    "b2.p":"GPS en vivo, rutas y entregas — todo lo que pasa en la carretera ocurre dentro del software, sin papel ni llamadas.",
+    "b3.eyebrow":"03 / Oficina",
+    "b3.h2":"Orbit trabaja<br><span>contigo.</span>",
+    "b3.p":"Sugiere encajes, prepara envíos, responde a clientes. Tú apruebas — él ejecuta. Un copiloto de operación, no un chatbot.",
+    "b4.h2":"¿Y si tu flota<br><span>pensara?</span>",
+    "b4.p":"Únete a los transportistas que ya operan con FleetFlow.",
+    "cta.create":"Crear cuenta","cta.bolsa":"Ver la bolsa pública",
+    rail:["Red","Operación","Carretera","Oficina","Empezar"]
+  }
+};
+
+const blocks=[...document.querySelectorAll(".block")];
+const rail=document.getElementById("rail");
+I18N.pt.rail.forEach((lb,i)=>{ const d=document.createElement("div"); d.className="dot";
+  d.innerHTML=`<span class="lbl">${lb}</span><b></b>`;
+  d.addEventListener("click",()=>lenis.scrollTo((document.body.scrollHeight-innerHeight)*i/4.6,{duration:1.6}));
+  rail.appendChild(d); });
+const dots=[...rail.children];
+
+let LANG="pt";
+function setLang(l){
+  if(!I18N[l]) l="pt";
+  LANG=l; localStorage.setItem("ff_lang",l);
+  document.documentElement.lang=l;
+  document.title=I18N[l].title;
+  const md=document.querySelector('meta[name="description"]'); if(md) md.content=I18N[l].desc;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const v=I18N[l][el.dataset.i18n]; if(v!==undefined) el.innerHTML=v;
+  });
+  dots.forEach((d,i)=>d.querySelector(".lbl").textContent=I18N[l].rail[i]);
+  document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+}
+document.querySelectorAll("#lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+setLang(localStorage.getItem("ff_lang") || (navigator.language||"pt").slice(0,2));
+const hint=document.getElementById("hint"), foot=document.getElementById("foot");
+const prox=i=>Math.max(0,1-Math.abs(uScene-i));
+
+function frame(now){
+  requestAnimationFrame(frame);
+  lenis.raf(now||performance.now());
+  t+=.006;
+  mx+= (tmx-mx)*.05; my+=(tmy-my)*.05;
+  uScene += (Math.min(4.6,scrollN*4.6)-uScene)*.06;   // 4→4.6 = o símbolo nada para fora
+
+  uniforms.uScene.value=uScene;
+  uniforms.uTime.value=t;
+  uniforms.uOrange.value=Math.max(0,Math.min(1,(uScene-3.25)/.65));
+
+  arcMat.opacity=prox(0)*.5;  arcGroup.rotation.y=t*.12;
+  grid.material.opacity=Math.max(prox(1),prox(2),prox(3))*.4;
+  const rOn=prox(2);
+  dashMat.opacity=rOn*.85; edgeMat.opacity=rOn*.45;
+  if(rOn>.02){ const ra=dashGeo.attributes.position.array;
+    for(let k=0;k<dashN;k++){ const o=k*6; ra[o]-=.42; ra[o+3]-=.42;
+      if(ra[o]<-32){ ra[o]+=62.4; ra[o+3]+=62.4; } }
+    dashGeo.attributes.position.needsUpdate=true; }
+  starMat.opacity=.25+prox(0)*.15+prox(4)*.2;
+
+  // câmara: interpola entre cenas + paralaxe do rato + deriva viva
+  const i0=Math.min(3,Math.floor(uScene)), f=ease(Math.min(1,uScene-i0));
+  const A=cams[i0], B=cams[i0+1];
+  const px=A.p[0]+(B.p[0]-A.p[0])*f + mx*1.4 + Math.sin(t*.25+i0)*.35;
+  const py=A.p[1]+(B.p[1]-A.p[1])*f - my*.9;
+  const pz=A.p[2]+(B.p[2]-A.p[2])*f;
+  camera.position.set(px,py,pz);
+  camera.lookAt(A.l[0]+(B.l[0]-A.l[0])*f + mx*.5, A.l[1]+(B.l[1]-A.l[1])*f, A.l[2]+(B.l[2]-A.l[2])*f);
+
+  // texto por cena (preso a 4 — o CTA fica visível enquanto o símbolo sai)
+  const us=Math.min(4,uScene);
+  for(const b of blocks){
+    const i=+b.dataset.i, a=Math.max(0,Math.min(1,1-Math.abs(us-i)*2.1));
+    const dy=(us-i)*-56;
+    b.style.opacity=a;
+    b.style.transform = b.classList.contains("center")
+      ? `translate(-50%, calc(-50% + ${dy}px))` : `translateY(calc(-50% + ${dy}px))`;
+    b.style.pointerEvents = (i===4 && a>.5) ? "auto" : "none";
+  }
+  const act=Math.round(us);
+  dots.forEach((d,i)=>d.classList.toggle("on",i===act));
+  hint.style.opacity = scrollN>.02?0:1;
+  foot.classList.toggle("on", uScene>3.4);
+
+  composer.render();
+}
+frame();
+
+/* ---------------- cursor + preloader ---------------- */
+const cur=document.getElementById("cur"), ring=document.getElementById("ring");
+let rx=innerWidth/2, ry=innerHeight/2, cx2=rx, cy2=ry;
+addEventListener("mousemove",e=>{ cx2=e.clientX; cy2=e.clientY;
+  cur.style.left=cx2+"px"; cur.style.top=cy2+"px"; });
+(function ringLoop(){ requestAnimationFrame(ringLoop);
+  rx+=(cx2-rx)*.16; ry+=(cy2-ry)*.16; ring.style.left=rx+"px"; ring.style.top=ry+"px"; })();
+document.querySelectorAll("a,.dot,.lang button").forEach(el=>{
+  el.addEventListener("mouseenter",()=>document.body.classList.add("link"));
+  el.addEventListener("mouseleave",()=>document.body.classList.remove("link"));
+});
+
+const pre=document.getElementById("pre"), pct=document.getElementById("pct");
+let pv=0; const start=performance.now();
+(function preLoop(){
+  const target = window.__truckLoaded ? 100 : 88;
+  pv += (target-pv)*.06;
+  pct.textContent=Math.round(pv);
+  if(pv>99.2 && performance.now()-start>1100){ pct.textContent=100; pre.classList.add("done"); return; }
+  requestAnimationFrame(preLoop);
+})();
+
+window.__v2ok=true;
+</script>
+
+<div class="space"></div>
+</body>
+</html>

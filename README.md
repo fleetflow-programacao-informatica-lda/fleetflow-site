@@ -5,14 +5,18 @@ Site público da FleetFlow. Estático, sem build.
 ## Estrutura
 ```
 /
-├── index.html          ← Experiência 3D v2 (EM USO) — 42k partículas GPU morph, Three.js via CDN
-├── v1/                 ← Experiência 3D v1 anterior (guardada como reversão)
+├── index.html          ← "Mundo Real" (EM USO) — filme real (Higgsfield) a fazer scrub com o scroll
+├── assets/             ← journey.mp4 (a viagem), poster.png, loader-truck.png
+├── fonts/              ← Space Grotesk + IBM Plex Mono locais (RGPD, sem Google)
+├── og.png              ← cartão social
+├── v2/                 ← Experiência 3D néon (partículas GPU) — reversão
+├── v1/                 ← Experiência 3D v1 — reversão
 ├── brand/              ← logótipo oficial
-└── landing/            ← Landing detalhada anterior (guardada; PT/EN/ES, secções completas)
+└── landing/            ← Landing clássica (PT/EN/ES, secções completas) — reversão
 ```
 
-- **Raiz (`index.html`)** — a experiência v2: uma nuvem de partículas que se transforma (globo → cidade → camião frigorífico → escritório → logo »»»). Só PT por agora. Autónoma — sem assets locais, só CDN.
-- **`v1/`** — a versão anterior (objetos separados). **`landing/`** — a landing clássica com todas as secções. Ambas mantidas como alternativa/reversão.
+- **Raiz (`index.html`)** — experiência realista e cinematográfica: espaço → avião → campo → camião → restaurante → empresa de software, tudo num vídeo real (`assets/journey.mp4`) controlado pelo scroll. Loader com a frente de um camião cujos faróis acendem no fim. Conteúdo: Transporte (agente IA Orbit), Oficina, Software & Sites. i18n PT/EN/ES. Sem GPS/CMR no copy.
+- **`v2/`**, **`v1/`**, **`landing/`** — versões anteriores, mantidas como reversão.
 
 ## Correr localmente
 ```bash
