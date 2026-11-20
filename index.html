@@ -357,14 +357,21 @@ setLang(saved);
 
 /* ---------------- scroll → vídeo (scrub) + conteúdo ---------------- */
 const vid=document.getElementById("bg"), bgwrap=document.getElementById("bgwrap");
+// telemóvel/touch: o scrub de vídeo pelo scroll não funciona → tocar em loop de fundo
+const mobileMode = matchMedia("(hover:none)").matches || matchMedia("(pointer:coarse)").matches || innerWidth<=760;
 let dur=6, tT=0, cT=0, ready=false;
-vid.addEventListener("loadedmetadata",()=>{ dur=vid.duration||6; ready=true; });
+vid.addEventListener("loadedmetadata",()=>{ dur=vid.duration||6; ready=true; if(mobileMode){ vid.loop=true; vid.play().catch(()=>{}); } });
 vid.addEventListener("error",()=>{ bgwrap.classList.add("novid"); });     // sem vídeo → fica o poster
 const vsrc=vid.querySelector("source"); if(vsrc) vsrc.addEventListener("error",()=>bgwrap.classList.add("novid"));
 let failsafe=false; setTimeout(()=>{ failsafe=true; if(vid.readyState<2) bgwrap.classList.add("novid"); }, 3500);
-// priming: alguns browsers só descodificam frames depois de um play()
-const prime=()=>{ vid.play().then(()=>vid.pause()).catch(()=>{}); window.removeEventListener("pointerdown",prime); };
+// priming: no PC descodifica frames (play→pause); no telemóvel arranca em loop
+const prime=()=>{
+  if(mobileMode){ vid.loop=true; vid.play().catch(()=>{}); }
+  else { vid.play().then(()=>vid.pause()).catch(()=>{}); }
+  window.removeEventListener("pointerdown",prime); window.removeEventListener("touchstart",prime);
+};
 window.addEventListener("pointerdown",prime,{once:true});
+window.addEventListener("touchstart",prime,{once:true,passive:true});
 
 const hint=document.getElementById("hint"), foot=document.getElementById("foot");
 let scrollN=0;
@@ -373,8 +380,7 @@ addEventListener("scroll",()=>{ const h=document.body.scrollHeight-innerHeight; 
 
 function frame(){
   requestAnimationFrame(frame);
-  cT += (tT-cT)*0.12;
-  if(ready){ try{ vid.currentTime=cT; }catch(e){} }
+  if(ready && !mobileMode){ cT += (tT-cT)*0.12; try{ vid.currentTime=cT; }catch(e){} }
   for(const b of blocks){
     const i=+b.dataset.i, c=CENTERS[i];
     const a=Math.max(0,Math.min(1,1-Math.abs(scrollN-c)*8));
