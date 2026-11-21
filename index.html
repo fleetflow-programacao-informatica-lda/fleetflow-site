@@ -1,217 +1,1114 @@
 <!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FleetFlow — Software e IA que movem o mundo real</title>
-  <meta name="description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." />
-  <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="FleetFlow" />
-  <meta property="og:title" content="FleetFlow — Software que move o mundo real" />
-  <meta property="og:description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit." />
-  <meta property="og:url" content="https://fleetflow.one/" />
-  <meta property="og:image" content="https://fleetflow.one/og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="pt_PT" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FleetFlow — Software que move o mundo real" />
-  <meta name="twitter:image" content="https://fleetflow.one/og.png" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cg stroke='%2331e0a0' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 9l5 5-5 5M13 9l5 5-5 5'/%3E%3Cpath d='M19 9l5 5-5 5' stroke='%23fb923c'/%3E%3C/g%3E%3C/svg%3E" />
-  <style>
-    .hold__cta{margin-top:24px;display:inline-flex}
-    #ff-foot{position:fixed;left:clamp(16px,4vw,40px);bottom:16px;z-index:40;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 32px);font-family:var(--font);font-size:11px;letter-spacing:.02em;color:var(--text-muted);opacity:.82;pointer-events:none}
-    #ff-foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22);pointer-events:auto}
-    #ff-foot a:hover{color:var(--primary);border-color:var(--primary)}
-    @media (max-width:760px){#ff-foot{font-size:9.5px;bottom:12px;left:12px;right:12px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FleetFlow — Software e IA que movem o mundo real</title>
+<meta name="description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma.">
+<meta name="theme-color" content="#04070a">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FleetFlow">
+<meta property="og:title" content="FleetFlow — Software que move o mundo real">
+<meta property="og:description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit.">
+<meta property="og:url" content="https://fleetflow.one/">
+<meta property="og:image" content="https://fleetflow.one/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FleetFlow — Software que move o mundo real">
+<meta name="twitter:image" content="https://fleetflow.one/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cg stroke='%2331e0a0' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 9l5 5-5 5M13 9l5 5-5 5'/%3E%3Cpath d='M19 9l5 5-5 5' stroke='%23fb923c'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<!--
+  Landing FleetFlow (21/11/2026): fundo de medusas em ASCII desenhadas ao vivo num canvas.
+  Base: template "Kurage Dashboard" (HorizonX, licença comercial da conta) adaptado à FleetFlow —
+  cores da marca, Orbit, PT/EN/ES, fonte local (RGPD), sem bibliotecas e sem chamadas a terceiros.
+  A caixa "Pergunta ao Orbit" NÃO envia nada: convida a entrar na plataforma. Versão anterior: /maos/.
+-->
+<style>
+@font-face{font-family:"Geist";src:url("fonts/geist.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* ---------- tokens: primitivos -> papéis ---------- */
+:root{
+  color-scheme:dark;
+  --ink-950:#04070a; --ink-900:#060a0e; --ink-850:#0a0f14; --ink-800:#0e141b; --ink-700:#151d26;
+  --mist-50:#f1f6f4; --mist-200:#c8d4cf; --mist-400:#93a39d; --mist-500:#7c8b86;
+  --green-200:#c4ffe6; --green-300:#31e0a0; --green-soft:#9dffd0; --cyan-300:#6fd6f0; --orange-300:#fb923c; --red-300:#fca5a5;
+
+  --bg:var(--ink-950);
+  --surface:rgba(9,14,18,.72);
+  --surface-solid:var(--ink-850);
+  --surface-hover:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.09);
+  --border-strong:rgba(255,255,255,.18);
+  --text:var(--mist-50);
+  --text-2:var(--mist-200);
+  --text-muted:var(--mist-400);
+  --text-faint:var(--mist-500);
+  --accent:var(--green-300);
+  --accent-2:var(--cyan-300);
+  --danger:var(--red-300);
+  --focus:#7ff0c4;
+
+  --font-sans:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --composer-radius:22px;
+  --control:40px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);overflow-x:clip;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100dvh;overflow-x:clip;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+button,input,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.i-sm{width:16px;height:16px}
+kbd{font-family:var(--font-mono);font-size:12px;font-weight:400}
+
+.skip{position:fixed;left:12px;top:12px;z-index:100;padding:10px 14px;border-radius:10px;background:var(--mist-50);color:var(--ink-950);font-weight:500;text-decoration:none;transform:translateY(-160%);transition:transform .15s}
+.skip:focus{transform:none}
+
+/* ---------- oceano (camada ASCII) ---------- */
+.ocean{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(to right,rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:var(--cw,10px) var(--ch,15px);
+  -webkit-mask-image:radial-gradient(140% 120% at 50% 45%,#000 55%,rgba(0,0,0,.55) 100%);
+          mask-image:radial-gradient(140% 120% at 50% 45%,#000 55%,rgba(0,0,0,.55) 100%)}
+.ocean canvas{display:block;width:100%;height:100%}
+
+/* ---------- barra de topo ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) clamp(16px,3vw,28px) 14px;
+  background:linear-gradient(180deg,rgba(4,7,10,.82),rgba(4,7,10,0))}
+.brand{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 6px;margin-right:auto;border-radius:12px;color:var(--text);text-decoration:none}
+.brand-mark{width:30px;height:30px;flex:none}
+.wordmark{font-size:18px;font-weight:500;letter-spacing:-.025em}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);font-size:14px;text-decoration:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:border-color .15s,color .15s}
+.pill:hover{border-color:var(--border-strong);color:var(--text)}
+.pill.icon{width:40px;padding:0}
+.langs{display:inline-flex;align-items:center;height:40px;padding:3px;border-radius:12px;background:var(--surface);border:1px solid var(--border);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.langs button{height:32px;min-width:38px;padding:0 8px;border-radius:9px;font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+.langs button:hover{color:var(--text)}
+.langs button[aria-pressed="true"]{background:rgba(49,224,160,.12);color:var(--accent)}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-950);
+  background:linear-gradient(135deg,var(--green-200),var(--green-300));box-shadow:0 0 0 1px rgba(49,224,160,.35),0 10px 30px -10px rgba(49,224,160,.55);transition:transform .15s,box-shadow .2s}
+.cta:hover{box-shadow:0 0 0 1px rgba(49,224,160,.6),0 12px 36px -8px rgba(49,224,160,.7)}
+.cta:active{transform:scale(.97)}
+.cta-lg{height:48px;padding:0 22px;border-radius:14px;font-size:15px}
+
+/* ---------- palco ---------- */
+main{position:relative;z-index:2}
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:110px 20px 64px}
+.core{position:relative;display:flex;flex-direction:column;align-items:center;width:min(700px,100%)}
+.intro{position:relative;display:flex;flex-direction:column;align-items:center;width:100%}
+.halo{position:absolute;z-index:-1;inset:-100px -20% -34px;pointer-events:none;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(4,7,10,.84),rgba(4,7,10,.6) 52%,rgba(4,7,10,0) 100%);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  -webkit-mask-image:radial-gradient(closest-side,#000 58%,transparent 100%);mask-image:radial-gradient(closest-side,#000 58%,transparent 100%)}
+.eyebrow{margin:0 0 14px;font-family:var(--font-mono);font-size:13px;color:var(--text-muted);letter-spacing:.01em;text-align:center}
+.eyebrow .dot{display:inline-block;width:6px;height:6px;margin-right:9px;border-radius:50%;vertical-align:1px;background:var(--accent);box-shadow:0 0 10px 1px rgba(49,224,160,.7)}
+h1{width:100%;margin:0 0 30px;font-size:clamp(1.875rem,1.05rem + 2.1vw,2.875rem);font-weight:300;line-height:1.1;letter-spacing:-.04em;text-align:center}
+/* título rotativo: todas as linhas na mesma célula da grelha, o bloco não salta */
+.hl{display:grid}
+.hl-line{grid-area:1/1;align-self:center;visibility:hidden;text-wrap:balance}
+.hl-line.is-on{visibility:visible}
+.hl-w{display:inline-block;padding:.06em 0;will-change:transform,filter,opacity}
+.hl-accent{background:linear-gradient(100deg,var(--green-200) 5%,var(--green-300) 45%,var(--cyan-300) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* caixa do Orbit */
+.composer{width:100%;padding:18px 12px 12px 18px;border-radius:var(--composer-radius);background:linear-gradient(180deg,rgba(6,12,14,.5),rgba(6,12,14,.36));border:1px solid rgba(255,255,255,.11);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 40px 90px -36px rgba(0,0,0,.95);
+  -webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(.68);backdrop-filter:blur(4px) saturate(1.5) brightness(.68);transition:border-color .2s,box-shadow .2s}
+.composer:focus-within{border-color:rgba(49,224,160,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 4px rgba(49,224,160,.09),0 40px 90px -36px rgba(0,0,0,.95)}
+.composer.is-error{border-color:rgba(252,165,165,.8);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 4px rgba(252,165,165,.1)}
+.composer textarea{display:block;width:100%;min-height:54px;max-height:224px;padding:0 6px 0 2px;border:0;outline:0;resize:none;background:transparent;color:var(--text);font-size:17px;line-height:1.55;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+.composer textarea::placeholder{color:var(--text-muted);opacity:1}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.who{display:inline-flex;align-items:center;gap:8px;height:var(--control);padding:0 12px 0 8px;border-radius:12px;border:1px solid var(--border);font-size:14px;color:var(--text-2)}
+.who .orb{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d6fff0,#31e0a0 55%,#0b6b4b);box-shadow:0 0 12px -2px rgba(49,224,160,.8)}
+.tools-right{display:flex;align-items:center;gap:6px}
+.hint{margin:0 8px 0 0;font-family:var(--font-mono);font-size:12px;color:var(--text-faint);white-space:nowrap}
+.hint kbd{color:var(--text-muted)}
+.send{display:grid;place-items:center;width:var(--control);height:var(--control);border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text-muted);transition:background .2s,color .2s,border-color .2s,transform .15s}
+.send:hover{color:var(--text);border-color:var(--border-strong)}
+.composer[data-ready] .send{border-color:transparent;background:linear-gradient(135deg,var(--green-200),var(--green-300));color:var(--ink-950)}
+.send:active{transform:scale(.96)}
+
+/* sugestões */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border);background:rgba(6,10,14,.62);font-family:var(--font-mono);font-size:13px;color:var(--text-muted);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:color .15s,border-color .15s,background-color .15s}
+.chip:hover{color:var(--text);border-color:var(--border-strong);background:rgba(14,20,27,.8)}
+.chip .slash{color:var(--accent)}
+
+.status{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:9px 12px;min-height:34px;max-width:100%;margin-top:18px;padding:6px 14px;border-radius:14px;font-size:14px;line-height:1.5;color:var(--text-muted);text-align:left}
+.status .dot{flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 1px rgba(49,224,160,.6)}
+.status[data-tone="error"] .dot{background:var(--danger);box-shadow:0 0 10px 1px rgba(252,165,165,.5)}
+.status strong{color:var(--text);font-weight:500}
+.status .msg{flex:1 1 260px}
+.status a{color:var(--accent);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(49,224,160,.4);white-space:nowrap}
+.status:not(:empty){background:rgba(4,7,10,.8);box-shadow:0 0 0 1px rgba(255,255,255,.05);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.privacy{margin:14px 0 0;padding:4px 12px;border-radius:999px;background:rgba(4,7,10,.72);font-family:var(--font-mono);font-size:12px;color:var(--text-muted);text-align:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--font-mono);font-size:12px;color:var(--text-faint);text-decoration:none;text-shadow:0 0 8px #04070a}
+.scroll-cue:hover{color:var(--text)}
+
+/* ---------- Orbit: aprende · raciocina · age ---------- */
+.orbit{position:relative;display:flex;justify-content:center;padding:40px 20px 120px}
+.panel{width:min(1040px,100%);padding:clamp(24px,4vw,44px);border-radius:24px;background:rgba(5,9,12,.74);border:1px solid var(--border);box-shadow:0 40px 120px -40px rgba(0,0,0,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.panel .eyebrow{text-align:left}
+.panel h2{margin:0 0 14px;font-size:clamp(1.75rem,1.1rem + 2vw,2.75rem);font-weight:300;line-height:1.1;letter-spacing:-.035em;text-wrap:balance}
+.panel h2 .muted{color:var(--text-muted)}
+.lead{max-width:62ch;margin:0 0 30px;color:var(--text-2);font-size:17px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 30px;padding:0;list-style:none}
+.step{padding:20px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.025)}
+.step .num{display:block;margin-bottom:10px;font-family:var(--font-mono);font-size:12px;color:var(--accent)}
+.step h3{margin:0 0 6px;font-size:18px;font-weight:500;letter-spacing:-.015em}
+.step p{margin:0;font-size:15px;color:var(--text-muted)}
+
+/* ---------- o que fazemos ---------- */
+.services{position:relative;display:flex;justify-content:center;padding:0 20px 120px}
+.offer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 30px;padding:0;list-style:none}
+.card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.025)}
+.card .tag{align-self:flex-start;padding:3px 10px;border-radius:999px;border:1px solid rgba(49,224,160,.35);font-family:var(--font-mono);font-size:12px;color:var(--accent)}
+.card h3{margin:0;font-size:19px;font-weight:500;letter-spacing:-.015em}
+.card p{margin:0;font-size:15px;color:var(--text-muted)}
+.card ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--text-2)}
+.card li::before{content:"→ ";color:var(--accent)}
+.contact{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.contact .mail{font-family:var(--font-mono);font-size:14px;color:var(--text-2);user-select:all}
+
+/* ---------- rodapé legal ---------- */
+.foot{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:.35em 1em;padding:0 20px calc(22px + env(safe-area-inset-bottom,0px));font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;color:var(--text-faint);text-shadow:0 0 6px #04070a}
+.foot a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22)}
+.foot a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- responsivo ---------- */
+@media (max-width:48rem){
+  .hint{display:none}
+  .stage{padding:96px 16px 64px}
+  h1{margin-bottom:24px}
+  .halo{inset:-72px -10% -24px}
+  .steps,.offer{grid-template-columns:1fr}
+}
+@media (max-width:40rem){
+  .nav-services{display:none}
+}
+@media (max-width:30rem){
+  .wordmark{display:none}
+  .topbar{gap:8px}
+  .langs button{min-width:32px;padding:0 6px}
+  .cta{padding:0 12px}
+  .composer{padding:14px 8px 8px 14px;border-radius:20px}
+  .composer textarea{font-size:16px}
+  .chips{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .chip{width:100%;justify-content:center;text-align:center}
+}
+@media (max-width:23rem){
+  .chips{grid-template-columns:1fr}
+  .pill.icon{display:none}
+}
+
+/* ---------- preferências ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media (prefers-reduced-transparency:reduce){
+  .composer,.pill,.langs,.chip,.panel{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--surface-solid)}
+  .halo{-webkit-backdrop-filter:none;backdrop-filter:none;background:radial-gradient(closest-side,var(--bg),rgba(4,7,10,.92) 60%,rgba(4,7,10,0))}
+}
+@media (forced-colors:active){
+  .ocean,.halo{display:none}
+  .hl-accent{background:none;color:CanvasText}
+  .composer,.pill,.langs,.chip,.send,.cta,.panel,.step{border:1px solid CanvasText}
+  :focus-visible{outline:2px solid Highlight}
+}
+</style>
 </head>
 <body>
-  <header class="nav">
-    <a class="nav__logo" href="/" aria-label="FleetFlow home"><svg class="sorvine-mark" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="sorvine-logo"><stop offset="0" stop-color="#d6fff0" /><stop offset="1" stop-color="#31e0a0" /></radialGradient></defs><path d="M10.2 3.6A8.6 8.6 0 0 0 6.4 19.2" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-dasharray="0 4" /><path d="M13.8 20.4A8.6 8.6 0 0 0 17.6 4.8" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" /><circle cx="12" cy="12" r="2.9" fill="url(#sorvine-logo)" /></svg><span>FleetFlow</span></a>
+<a class="skip" href="#prompt" data-i18n="skip">Saltar para a caixa do Orbit</a>
 
-    <nav class="nav__menu" id="nav-menu" aria-label="Primary">
-      <ul class="nav__list">
-        <li><a class="nav__link" href="#top" aria-current="page" data-i18n="nav.home">Início</a></li>
-        <li><a class="nav__link" href="#platform" data-i18n="nav.platform">Plataforma</a></li>
-      </ul>
-    </nav>
+<!-- Ícones: Lucide (ISC, lucide.dev). Marca FleetFlow: a de sempre. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3l14 9-14 9z"/></symbol>
+</svg>
 
-    <div class="nav__end">
-      <div class="nav__item nav__lang">
-        <button class="nav__lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-lang" aria-label="Language: English">
-          <svg class="nav__globe" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z" /></g></svg>
-          <span class="nav__lang-label">PT</span>
-        </button>
-        <div class="nav__dropdown" id="menu-lang" role="menu" aria-label="Language">
-          <button class="nav__option" type="button" role="menuitemradio" aria-checked="true" data-lang="pt">Português</button>
-          <button class="nav__option" type="button" role="menuitemradio" aria-checked="false" data-lang="en">English</button>
-          <button class="nav__option" type="button" role="menuitemradio" aria-checked="false" data-lang="es">Español</button>
-        </div>
+<div class="ocean" id="ocean" aria-hidden="true"><canvas id="ocean-canvas"></canvas></div>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="FleetFlow">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0a1310" stroke="rgba(49,224,160,.35)"/><g stroke="#31e0a0" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9l5 5-5 5M13 9l5 5-5 5"/><path d="M19 9l5 5-5 5" stroke="#fb923c"/></g></svg>
+    <span class="wordmark">FleetFlow</span>
+  </a>
+  <a class="pill nav-services" href="#servicos" data-i18n="navServices">Serviços</a>
+  <button class="pill icon" type="button" id="motion" aria-pressed="false"><svg class="i i-sm" aria-hidden="true"><use href="#i-pause"/></svg><span class="sr-only" id="motion-label">Pausar movimento</span></button>
+  <div class="langs" role="group" aria-label="Idioma" data-i18n-aria="langs">
+    <button type="button" data-lang="pt" aria-pressed="true" lang="pt">PT</button>
+    <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+  </div>
+  <a class="cta" href="https://app.fleetflow.systems" data-i18n="login">Entrar</a>
+</header>
+
+<main id="main">
+  <section class="stage" aria-labelledby="headline">
+    <div class="core">
+      <div class="intro">
+        <div class="halo" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span><span id="greeting">Software &amp; agentes de IA</span></p>
+        <h1 id="headline"><span class="sr-only" id="headline-text">Software que move o mundo real</span><span class="hl" id="headline-visual" aria-hidden="true"><span class="hl-line is-on">Software que move o <span class="hl-accent">mundo real</span></span></span></h1>
       </div>
-      <a class="btn btn--outline nav__login" href="https://app.fleetflow.systems" data-i18n="nav.login">Entrar</a>
-      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
-        <span></span>
-      </button>
-    </div>
-  </header>
 
-  <canvas class="hands" data-particles="assets/points.bin" data-brain="assets/brain.bin" aria-hidden="true"></canvas>
-
-  <main>
-    <section class="hero" data-snap>
-      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Software &amp; agentes de IA</p>
-      <h1 class="hero__title">
-        <span class="hero__title-muted" data-i18n="hero.title_muted">Software que move</span>
-        <span class="hero__title-strong" data-i18n="hero.title_strong">o mundo real.</span>
-      </h1>
-      <p class="hero__lead" data-i18n="hero.lead">
-        Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />
-        A tecnologia que faz a tua empresa andar sozinha.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--outline" href="#product" data-i18n="btn.more">Saber mais</a>
-        <a class="btn btn--glow" href="https://app.fleetflow.systems">
-          <span data-i18n="btn.start">Entrar</span>
-          <span class="btn__icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          </span>
-        </a>
-      </div>
-      <div
-        class="hero__visual"
-        data-hands="from"
-        data-source="2200x768"
-        data-origin="1042,268"
-        role="img"
-        aria-label="Two hands made of glowing data points reaching toward each other"
-      ></div>
-      <a class="hero__scroll" href="#product" data-snap-next data-i18n="hero.scroll">Deslizar</a>
-    </section>
-
-    <section class="reach" id="product" aria-labelledby="reach-title" data-snap>
-      <div
-        class="reach__visual"
-        data-hands="to"
-        data-source="2400x1500"
-        data-origin="1200,720"
-        data-reach="28"
-        role="img"
-        aria-label="The same hands, human and machine, opening around the message between them"
-      ></div>
-      <div class="reach__copy">
-        <p class="reach__eyebrow" data-i18n="reach.eyebrow">Movido a IA</p>
-        <h2 class="reach__title" id="reach-title">
-          <span class="reach__title-muted" data-i18n="reach.title_muted">Tu decides,</span>
-          <span data-i18n="reach.title_strong">o Orbit executa.</span>
-        </h2>
-        <p class="reach__text" data-i18n="reach.text">Um agente que aprende com cada carga, viagem e cliente — e age em tempo real, para a tua equipa decidir só o que importa.</p>
-      </div>
-    </section>
-
-    <section class="hold" id="platform" aria-labelledby="hold-title" data-snap="3">
-      <span class="hold__snap" aria-hidden="true"></span>
-      <span class="hold__snap" aria-hidden="true"></span>
-      <div class="hold__stage">
-        <div
-          class="hold__visual"
-          data-hands="hold"
-          data-source="620x800"
-          data-origin="312,154"
-          data-sphere="312,154,104"
-          role="img"
-          aria-label="An open hand with a sphere of glowing data points floating above the palm"
-        ></div>
-        <div class="hold__intro hold__reveal">
-          <p class="hold__eyebrow" data-i18n="hold.eyebrow">O teu núcleo de IA</p>
-          <h2 class="hold__title" id="hold-title">
-            <span class="hold__title-muted" data-i18n="hold.title_muted">A tua operação</span>
-            <span data-i18n="hold.title_strong">na palma da mão.</span>
-          </h2>
-        </div>
-        <div class="hold__detail hold__reveal" data-steps>
-          <p class="hold__eyebrow">
-            <span class="hold__step is-active" data-i18n="step.learn">Aprende</span><span class="hold__dot" aria-hidden="true"> · </span><span class="hold__step" data-i18n="step.reason">Raciocina</span><span class="hold__dot" aria-hidden="true"> · </span><span class="hold__step" data-i18n="step.act">Age</span>
-          </p>
-          <div class="hold__texts">
-            <p class="hold__text is-active" data-i18n="hold.t1">Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.</p>
-            <p class="hold__text" data-i18n="hold.t2">Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.</p>
-            <p class="hold__text" data-i18n="hold.t3">Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.</p>
+      <form class="composer" id="composer" novalidate>
+        <label class="sr-only" for="prompt" data-i18n="promptLabel">Pergunta ao Orbit</label>
+        <textarea id="prompt" name="prompt" rows="2" maxlength="2000" placeholder="Pergunta ao Orbit…" autocomplete="off" spellcheck="true" aria-describedby="prompt-help"></textarea>
+        <p class="sr-only" id="prompt-help" data-i18n="promptHelp">Enter envia. Shift e Enter muda de linha.</p>
+        <div class="toolbar">
+          <span class="who"><span class="orb" aria-hidden="true"></span><span data-i18n="who">Orbit · agente de IA</span></span>
+          <div class="tools-right">
+            <p class="hint" aria-hidden="true"><kbd>↵</kbd> <span data-i18n="hintSend">enviar</span> · <kbd>⇧↵</kbd> <span data-i18n="hintLine">nova linha</span></p>
+            <button class="send" type="submit" id="send" aria-label="Enviar ao Orbit"><svg class="i" aria-hidden="true"><use href="#i-send"/></svg></button>
           </div>
-          <a class="btn btn--glow hold__cta" href="https://app.fleetflow.systems"><span data-i18n="btn.platform">Entrar na plataforma</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
         </div>
-      </div>
-    </section>
-  </main>
+      </form>
 
-  <script src="js/nav.js"></script>
-  <script src="js/nav-dust.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/steps.js"></script>
-  <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
-  <script src="js/snap.js"></script>
-  <script>
-  /* i18n FleetFlow — PT/EN/ES, ligado ao seletor existente (nav.js só troca o label) */
-  (function(){
-    const I18N = {
-      pt:{ "nav.home":"Início","nav.platform":"Plataforma","nav.login":"Entrar","btn.platform":"Entrar na plataforma",
-        "foot.capital":"Capital social","foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software & agentes de IA","hero.title_muted":"Software que move","hero.title_strong":"o mundo real.",
-        "hero.lead":"Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />A tecnologia que faz a tua empresa andar sozinha.",
-        "btn.more":"Saber mais","btn.start":"Entrar","hero.scroll":"Deslizar",
-        "reach.eyebrow":"Movido a IA","reach.title_muted":"Tu decides,","reach.title_strong":"o Orbit executa.",
-        "reach.text":"Um agente que aprende com cada carga, viagem e cliente — e age em tempo real, para a tua equipa decidir só o que importa.",
-        "hold.eyebrow":"O teu núcleo de IA","hold.title_muted":"A tua operação","hold.title_strong":"na palma da mão.",
-        "step.learn":"Aprende","step.reason":"Raciocina","step.act":"Age",
-        "hold.t1":"Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.",
-        "hold.t2":"Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.",
-        "hold.t3":"Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.",
-        _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
-      en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform",
-        "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software & AI agents","hero.title_muted":"Software that moves","hero.title_strong":"the real world.",
-        "hero.lead":"We build software and Orbit — an AI agent that runs operations, loads and workshop.<br />The technology that makes your company move on its own.",
-        "btn.more":"Learn more","btn.start":"Sign in","hero.scroll":"Scroll down",
-        "reach.eyebrow":"Powered by AI","reach.title_muted":"You decide,","reach.title_strong":"Orbit executes.",
-        "reach.text":"An agent that learns from every load, trip and customer — and acts in real time, so your team only decides what matters.",
-        "hold.eyebrow":"Your AI core","hold.title_muted":"Your operation","hold.title_strong":"in the palm of your hand.",
-        "step.learn":"Learn","step.reason":"Reason","step.act":"Act",
-        "hold.t1":"Every load, document and decision becomes context — Orbit understands your operation the way your team does.",
-        "hold.t2":"It weighs every signal against your goals, compares the options and shows its reasoning before anything moves.",
-        "hold.t3":"It carries each decision through in real time, across the tools you already use, and learns from every outcome.",
-        _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
-      es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma",
-        "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software y agentes de IA","hero.title_muted":"Software que mueve","hero.title_strong":"el mundo real.",
-        "hero.lead":"Creamos software y Orbit — un agente de IA que gestiona operaciones, cargas y taller.<br />La tecnología que hace avanzar a tu empresa sola.",
-        "btn.more":"Saber más","btn.start":"Acceder","hero.scroll":"Deslizar",
-        "reach.eyebrow":"Impulsado por IA","reach.title_muted":"Tú decides,","reach.title_strong":"Orbit ejecuta.",
-        "reach.text":"Un agente que aprende de cada carga, viaje y cliente — y actúa en tiempo real, para que tu equipo decida solo lo que importa.",
-        "hold.eyebrow":"Tu núcleo de IA","hold.title_muted":"Tu operación","hold.title_strong":"en la palma de la mano.",
-        "step.learn":"Aprende","step.reason":"Razona","step.act":"Actúa",
-        "hold.t1":"Cada carga, documento y decisión se vuelve contexto — Orbit entiende tu operación como tu equipo.",
-        "hold.t2":"Pondera cada señal frente a tus objetivos, compara las opciones y muestra su razonamiento antes de mover nada.",
-        "hold.t3":"Lleva cada decisión hasta el final en tiempo real, en las herramientas que ya usas, y aprende de cada resultado.",
-        _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
+      <ul class="chips" id="chips" aria-label="Sugestões"></ul>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <p class="privacy" data-i18n="privacy">O que escreves aqui não sai do teu browser.</p>
+    </div>
+    <a class="scroll-cue" href="#orbit" data-i18n="scroll">↓ como funciona</a>
+  </section>
+
+  <section class="orbit" id="orbit" aria-labelledby="orbit-title">
+    <div class="panel">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="orbit.eyebrow">Movido a IA</span></p>
+      <h2 id="orbit-title"><span class="muted" data-i18n="orbit.muted">Tu decides,</span> <span data-i18n="orbit.strong">o Orbit executa.</span></h2>
+      <p class="lead" data-i18n="orbit.lead">Software para transporte, oficina e qualquer negócio — com um agente que aprende com cada carga, viagem e cliente, e age em tempo real para a tua equipa decidir só o que importa.</p>
+      <ol class="steps">
+        <li class="step"><span class="num">01</span><h3 data-i18n="s1.t">Aprende</h3><p data-i18n="s1.p">Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.</p></li>
+        <li class="step"><span class="num">02</span><h3 data-i18n="s2.t">Raciocina</h3><p data-i18n="s2.p">Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.</p></li>
+        <li class="step"><span class="num">03</span><h3 data-i18n="s3.t">Age</h3><p data-i18n="s3.p">Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.</p></li>
+      </ol>
+      <a class="cta cta-lg" href="https://app.fleetflow.systems"><span data-i18n="platform">Entrar na plataforma</span><svg class="i i-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <section class="services" id="servicos" aria-labelledby="services-title">
+    <div class="panel">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="sv.eyebrow">O que fazemos</span></p>
+      <h2 id="services-title"><span class="muted" data-i18n="sv.muted">Software à medida</span> <span data-i18n="sv.strong">e sites de topo.</span></h2>
+      <p class="lead" data-i18n="sv.lead">A mesma equipa que construiu a FleetFlow faz o software e o site que a tua empresa precisa — desenhados para o teu negócio, rápidos, seguros e com IA quando faz sentido.</p>
+      <ul class="offer">
+        <li class="card"><span class="tag" data-i18n="c1.tag">sob medida</span><h3 data-i18n="c1.t">Software à medida</h3><p data-i18n="c1.p">Aplicações web e móveis feitas para a forma como a tua empresa trabalha — não o contrário.</p><ul><li data-i18n="c1.l1">Gestão, portais de clientes e apps de equipa</li><li data-i18n="c1.l2">Integrações com ERP, faturação e GPS</li><li data-i18n="c1.l3">Agentes de IA que tratam do repetitivo</li></ul></li>
+        <li class="card"><span class="tag" data-i18n="c2.tag">sites</span><h3 data-i18n="c2.t">Sites e landing pages</h3><p data-i18n="c2.p">Sites rápidos e marcantes, como este — com animação, várias línguas e pensados para trazer clientes.</p><ul><li data-i18n="c2.l1">Design próprio, telemóvel primeiro</li><li data-i18n="c2.l2">PT · EN · ES e o que mais precisares</li><li data-i18n="c2.l3">Alojamento, domínio e RGPD tratados</li></ul></li>
+        <li class="card"><span class="tag" data-i18n="c3.tag">plataforma</span><h3 data-i18n="c3.t">Plataforma FleetFlow</h3><p data-i18n="c3.p">Pronta a usar para transporte e oficina: planeamento de cargas, frota ao vivo, oficina e o Orbit.</p><ul><li data-i18n="c3.l1">Planeador, voltas e bolsa de cargas</li><li data-i18n="c3.l2">Oficina com app do mecânico</li><li data-i18n="c3.l3">Apps para motoristas e gestores</li></ul></li>
+      </ul>
+      <div class="contact">
+        <a class="cta cta-lg" href="mailto:fleetflow.one@gmail.com?subject=Projeto%20%C3%A0%20medida"><span data-i18n="sv.cta">Falar do meu projeto</span><svg class="i i-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <span class="mail">fleetflow.one@gmail.com</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="privacyLink">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies">Cookies</a></footer>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   Oceano: medusas procedimentais desenhadas num canvas pequeno fora do ecrã
+   e reamostradas para uma grelha de caracteres monoespaçados em ladrilhos.
+   (motor do template Kurage, cores FleetFlow)
+   ===================================================================== */
+const Ocean = (() => {
+  const host = document.getElementById('ocean');
+  const canvas = document.getElementById('ocean-canvas');
+  const ctx = canvas.getContext('2d');
+  const off = document.createElement('canvas');
+  const octx = off.getContext('2d', { willReadFrequently: true });
+  const SS = 2; // amostras por célula, por eixo
+
+  // cor A (verde FleetFlow) → cor B (ciano), ritmo e tamanho
+  const PAL = { a: [49, 224, 160], b: [92, 196, 240], tempo: 1, size: 1 };
+  const ACCENTS = ['#fb923c', '#9dffd0', '#fcd34d', '#6fd6f0'];
+  const RAMP = [['.', ','], ["'", '`'], [':', "'"], [';', ':'], ['o', ';'], ['t', 'o'], ['%', 't'], ['S', '%'], ['X', 'S'], ['8', 'X'], ['@', '8'], ['#', '@']];
+  const SNOW = ['.', '.', '.', '-', '-', "'", ',', '·'];
+  const FONT = getComputedStyle(document.documentElement).getPropertyValue('--font-mono').trim() || 'monospace';
+
+  let W = 0, H = 0, dpr = 1, cw = 10, ch = 15, cols = 0, rows = 0, ow = 0, oh = 0, fs = 11;
+  let jellies = [], snow = [], ripples = [];
+  let time = 0, last = 0, acc = 0, raf = 0;
+  let playing = true, visible = !document.hidden;
+  let gain = 1, typingUntil = 0, boostUntil = 0, flickerUntil = 0, dimUntil = 0;
+  const pointer = { x: -1e5, y: -1e5 };
+  const target = { x: 0, y: 0 };
+  const styles = new Map();
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  function hash(x, y, t) {
+    let h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(t, 1103515245);
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  }
+  function contraction(p) {
+    return p < .28 ? Math.sin(p / .28 * Math.PI / 2) : .5 + .5 * Math.cos((p - .28) / .72 * Math.PI);
+  }
+
+  /* ---- criaturas ---- */
+  function baseRadius() { return clamp(Math.min(W, H * 1.25) * .074, 46, 98); }
+
+  function makeJelly(x, y, z) {
+    const R0 = baseRadius() * (.62 + .55 * z) * (.88 + Math.random() * .24);
+    const j = {
+      x, y, z, R0, R: R0 * PAL.size, vx: 0, vy: 0,
+      theta: (Math.random() - .5) * .6, phase: Math.random(), c: 0, rush: false,
+      rate: .86 + Math.random() * .28, mix: Math.random(), wander: Math.random() * 100, tents: []
     };
-    const label = document.querySelector('.nav__lang-label');
-    function apply(l){
-      if(!I18N[l]) l='pt';
-      const d = I18N[l];
-      document.documentElement.lang = l;
-      document.title = d._title;
-      const md = document.querySelector('meta[name=description]'); if(md) md.content = d._desc;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=d[el.getAttribute('data-i18n')]; if(v!==undefined) el.innerHTML=v; });
-      if(label) label.textContent = l.toUpperCase();
-      document.querySelectorAll('#menu-lang [data-lang]').forEach(b=>b.setAttribute('aria-checked', String(b.dataset.lang===l)));
-      try{ localStorage.setItem('ff_lang', l); }catch(e){}
+    const nT = 9;
+    for (let i = 0; i < nT; i++) {
+      j.tents.push({ u: -.92 + 1.84 * i / (nT - 1), n: 15, seg: .25, w0: .075, w1: .022, sw: .6 + Math.random() * .8, seed: Math.random() * 6.28, arm: false, pts: [] });
     }
-    document.querySelectorAll('#menu-lang [data-lang]').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
-    let saved='pt'; try{ saved=localStorage.getItem('ff_lang')||(navigator.language||'pt').slice(0,2); }catch(e){}
-    apply(saved);
-  })();
-  </script>
+    for (const u of [-.3, -.1, .1, .3]) {
+      j.tents.push({ u, n: 10, seg: .2, w0: .17, w1: .05, sw: 1.1 + Math.random() * .5, seed: Math.random() * 6.28, arm: true, pts: [] });
+    }
+    resetTentacles(j);
+    return j;
+  }
+
+  function resetTentacles(j) {
+    const hx = Math.sin(j.theta), hy = -Math.cos(j.theta);
+    for (const t of j.tents) {
+      const a = anchor(j, t, 0);
+      t.pts = [];
+      for (let k = 0; k < t.n; k++) {
+        const x = a.x - hx * k * t.seg * j.R, y = a.y - hy * k * t.seg * j.R;
+        t.pts.push({ x, y, px: x, py: y });
+      }
+    }
+  }
+
+  function anchor(j, t, c) {
+    const rx = j.R * (1 - .17 * c), ry = j.R * .8 * (1 + .1 * c);
+    const lx = t.u * rx * (t.arm ? 1 : .95);
+    const ly = t.arm ? ry * .05 : -ry * .03 * (1 - Math.abs(t.u));
+    const cs = Math.cos(j.theta), sn = Math.sin(j.theta);
+    return { x: j.x + lx * cs - ly * sn, y: j.y + lx * sn + ly * cs };
+  }
+
+  const SLOTS = [[.2, .4, .82], [.8, .3, 1], [.4, .9, .92], [.66, .72, .58], [.07, .97, .62], [.92, .9, .5]];
+  const HUES = [.12, .9, .3, .78, .55, .04];
+  function desiredCount() { return W < 600 ? 3 : W < 1100 ? 4 : 5; }
+
+  function seedJellies() {
+    jellies = [];
+    const n = desiredCount();
+    for (let i = 0; i < n; i++) {
+      const s = SLOTS[i];
+      const j = makeJelly(s[0] * W, s[1] * H, s[2]);
+      j.mix = HUES[i];
+      jellies.push(j);
+    }
+    jellies.sort((a, b) => a.z - b.z);
+  }
+
+  function respawn(j) {
+    j.y = H + j.R * (1.2 + Math.random());
+    j.x = W * (.08 + Math.random() * .84);
+    j.vx = 0; j.vy = 0; j.theta = (Math.random() - .5) * .5;
+    j.mix = Math.random() < .5 ? Math.random() * .35 : .65 + Math.random() * .35;
+    resetTentacles(j);
+  }
+
+  function seedSnow() {
+    snow = [];
+    const n = Math.round(cols * rows / 80);
+    for (let i = 0; i < n; i++) {
+      const a = .14 + Math.random() * .3;
+      snow.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vy: 3 + Math.random() * 8, vx: (Math.random() - .5) * 3, seed: Math.random() * 6.28,
+        g: SNOW[(Math.random() * SNOW.length) | 0], run: Math.random() < .16 ? 2 + ((Math.random() * 3) | 0) : 1,
+        style: `rgba(150,205,185,${a.toFixed(3)})`
+      });
+    }
+  }
+
+  /* ---- simulação ---- */
+  function step(dt) {
+    time += dt;
+    const typing = time < typingUntil;
+    const boosting = time < boostUntil;
+    const gTarget = time < dimUntil ? .3 : (typing ? 1.1 : 1) * (boosting ? 1.25 : 1);
+    gain += (gTarget - gain) * Math.min(1, dt * (gTarget < gain ? 9 : 2.4));
+
+    const tempo = PAL.tempo * (typing ? 1.28 : 1);
+    for (const j of jellies) {
+      j.R += (j.R0 * PAL.size - j.R) * Math.min(1, dt * 1.4);
+      j.phase += dt * (1 / 2.6) * j.rate * tempo + (j.rush ? dt * 2.2 : 0);
+      if (j.phase >= 1) { j.phase -= 1; j.rush = false; }
+      const c = contraction(j.phase), dc = c - j.c;
+      j.c = c;
+      const hx = Math.sin(j.theta), hy = -Math.cos(j.theta);
+      if (dc > 0) {
+        const thrust = 62 * (.5 + .5 * j.z) * Math.sqrt(tempo);
+        j.vx += hx * dc * thrust; j.vy += hy * dc * thrust;
+      }
+      const drag = Math.exp(-dt * 1.15);
+      j.vx *= drag; j.vy *= drag;
+      j.vx += Math.sin(time * .07 + j.wander) * 1.6 * dt;
+      j.x += j.vx * dt; j.y += j.vy * dt;
+
+      let want = Math.sin(time * .11 + j.wander) * .5;
+      if (typing) want = clamp(Math.atan2(target.x - j.x, -(target.y - j.y)), -1.15, 1.15);
+      const pdx = j.x - pointer.x, pdy = j.y - pointer.y, pd = Math.hypot(pdx, pdy) || 1;
+      if (pd < j.R * 2.4) {
+        const push = (1 - pd / (j.R * 2.4)) * 42 * dt;
+        j.vx += pdx / pd * push; j.vy += pdy / pd * push;
+      }
+      j.theta += (want - j.theta) * Math.min(1, dt * (typing ? .9 : .32));
+
+      if (j.y < -j.R * 4.4) respawn(j);
+      else if (j.x < -j.R * 3.2) shiftJelly(j, W + j.R * 3, 0);
+      else if (j.x > W + j.R * 3.2) shiftJelly(j, -W - j.R * 3, 0);
+      else if (j.y > H + j.R * 6) shiftJelly(j, 0, -(H + j.R * 9));
+
+      // tentáculos: correntes que seguem o líder, com inércia
+      const cs = Math.cos(j.theta), sn = Math.sin(j.theta);
+      const trail = .42 + .25 * (1 - c);
+      const sway = time * 1.5 * PAL.tempo;
+      for (const t of j.tents) {
+        const p = t.pts, a = anchor(j, t, c), seg = t.seg * j.R;
+        p[0].x = a.x; p[0].y = a.y; p[0].px = a.x; p[0].py = a.y;
+        const flare = t.arm ? 0 : t.u * c * .7;
+        for (let k = 1; k < p.length; k++) {
+          const q = p[k], pr = p[k - 1], f = k / p.length;
+          const vx = (q.x - q.px) * .88, vy = (q.y - q.py) * .88;
+          q.px = q.x; q.py = q.y;
+          const s = Math.sin(sway - k * .42 + t.seed) * t.sw * (.25 + f) * .55 + flare * (1 - f);
+          q.x += vx - hx * trail + cs * s;
+          q.y += vy - hy * trail + sn * s;
+          const ex = q.x - pointer.x, ey = q.y - pointer.y, ed = ex * ex + ey * ey;
+          if (ed < 12100) { const d = Math.sqrt(ed) || 1, push = (1 - d / 110) * 2.6; q.x += ex / d * push; q.y += ey / d * push; }
+          const dx = q.x - pr.x, dy = q.y - pr.y, d = Math.hypot(dx, dy) || 1;
+          q.x = pr.x + dx / d * seg; q.y = pr.y + dy / d * seg;
+        }
+      }
+    }
+
+    for (const s of snow) {
+      s.y += s.vy * dt;
+      s.x += (s.vx + Math.sin(time * .3 + s.seed) * 2) * dt;
+      if (s.y > H + ch) { s.y = -ch; s.x = Math.random() * W; }
+      if (s.x < -cw * 8) s.x += W + cw * 8; else if (s.x > W + cw) s.x -= W + cw * 8;
+    }
+
+    for (let i = ripples.length - 1; i >= 0; i--) if (time - ripples[i].t0 > ripples[i].dur) ripples.splice(i, 1);
+  }
+
+  function shiftJelly(j, dx, dy) {
+    j.x += dx; j.y += dy;
+    for (const t of j.tents) for (const q of t.pts) { q.x += dx; q.px += dx; q.y += dy; q.py += dy; }
+  }
+
+  /* ---- desenho (campo de luz fora do ecrã) ---- */
+  // Canais: R = peso da cor A, B = peso da cor B, G = núcleo branco. Aditivo.
+  function col(m, k, w) {
+    return `rgb(${Math.min(255, (1 - m) * k * 255) | 0},${Math.min(255, w * 255) | 0},${Math.min(255, m * k * 255) | 0})`;
+  }
+
+  function drawField() {
+    octx.setTransform(1, 0, 0, 1, 0, 0);
+    octx.globalCompositeOperation = 'source-over';
+    octx.fillStyle = '#000';
+    octx.fillRect(0, 0, ow, oh);
+    octx.setTransform(SS / cw, 0, 0, SS / ch, 0, 0);
+    octx.globalCompositeOperation = 'lighter';
+    octx.lineCap = 'round';
+    octx.lineJoin = 'round';
+
+    for (const r of ripples) {
+      const t = (time - r.t0) / r.dur;
+      if (t < 0) continue;
+      const rad = (1 - Math.pow(1 - t, 3)) * r.max, fade = 1 - t;
+      octx.lineWidth = 6 + 12 * fade;
+      octx.strokeStyle = col(.5, .5 * fade, .55 * fade);
+      octx.beginPath();
+      octx.ellipse(r.x, r.y, rad, rad * .56, 0, 0, Math.PI * 2);
+      octx.stroke();
+    }
+
+    const boostT = time < boostUntil ? (boostUntil - time) / 1.8 : 0;
+    for (const j of jellies) {
+      const k = gain * (.54 + .56 * j.z) * (1 + boostT * .9 * j.c);
+      const m = j.mix;
+
+      for (const t of j.tents) {
+        const p = t.pts, n = p.length;
+        for (let s = 0; s < n - 1; s += 3) {
+          const f = s / (n - 1);
+          octx.lineWidth = lerp(t.w0, t.w1, f) * j.R;
+          octx.strokeStyle = col(m, k * (t.arm ? .5 : .46) * (1 - f * .82), t.arm ? .1 * k : 0);
+          octx.beginPath();
+          octx.moveTo(p[s].x, p[s].y);
+          for (let q = s + 1; q <= Math.min(n - 1, s + 3); q++) octx.lineTo(p[q].x, p[q].y);
+          octx.stroke();
+        }
+      }
+
+      const c = j.c, rx = j.R * (1 - .17 * c), ry = j.R * .8 * (1 + .1 * c);
+      octx.save();
+      octx.translate(j.x, j.y);
+      octx.rotate(j.theta);
+
+      octx.beginPath();
+      octx.moveTo(-rx, 0);
+      octx.bezierCurveTo(-rx, -ry * .58, -rx * .56, -ry, 0, -ry);
+      octx.bezierCurveTo(rx * .56, -ry, rx, -ry * .58, rx, 0);
+      octx.quadraticCurveTo(0, -ry * .2, -rx, 0);
+      octx.closePath();
+      const g = octx.createRadialGradient(0, -ry * .38, rx * .1, 0, -ry * .3, rx * 1.05);
+      g.addColorStop(0, col(m, k * .34, .1 * k));
+      g.addColorStop(.7, col(m, k * .42, .03 * k));
+      g.addColorStop(1, col(m, k * .66, .08 * k));
+      octx.fillStyle = g;
+      octx.fill();
+      octx.lineWidth = Math.max(5, j.R * .085);
+      octx.strokeStyle = col(m, k * .55, .2 * k);
+      octx.stroke();
+
+      // quatro gónadas: o trevo da medusa-da-lua
+      octx.lineWidth = Math.max(3, j.R * .05);
+      octx.strokeStyle = col(m, k * .14, .52 * k);
+      for (let i = 0; i < 4; i++) {
+        const ang = Math.PI / 4 + i * Math.PI / 2;
+        octx.beginPath();
+        octx.ellipse(Math.cos(ang) * rx * .26, -ry * .44 + Math.sin(ang) * ry * .2, rx * .14, ry * .12, ang, 0, Math.PI * 2);
+        octx.stroke();
+      }
+      // bolbos na borda
+      octx.fillStyle = col(m, k * .4, .36 * k);
+      for (let i = 0; i <= 8; i++) {
+        const u = -.95 + 1.9 * i / 8;
+        octx.beginPath();
+        octx.arc(u * rx, -ry * .03 * (1 - Math.abs(u)), Math.max(2.5, j.R * .034), 0, Math.PI * 2);
+        octx.fill();
+      }
+      octx.restore();
+    }
+  }
+
+  /* ---- desenho (grelha de caracteres) ---- */
+  function style(tb, lv, wb) {
+    const key = (tb * 12 + lv) * 3 + wb;
+    let s = styles.get(key);
+    if (s) return s;
+    const t = tb / 5, L = (lv + .5) / 12, w = [0, .3, .62][wb];
+    const base = [0, 1, 2].map(i => lerp(PAL.a[i], PAL.b[i], t));
+    // mosaico: cada célula acesa é um ladrilho tingido com um caracter; as mais quentes invertem
+    const hot = lv >= 10 && wb > 0;
+    const tileMix = hot ? .5 + w * .3 : 0;
+    const tile = base.map(v => lerp(v * .58, 236, tileMix) | 0);
+    const mixW = clamp(.12 + L * .5 + w * .34, 0, .94);
+    const glyph = hot ? [4, 12, 10] : base.map(v => lerp(v, 246, mixW) | 0);
+    s = {
+      tile: `rgba(${tile[0]},${tile[1]},${tile[2]},${(hot ? .9 : .1 + L * .5).toFixed(3)})`,
+      glyph: hot ? `rgb(${glyph.join(',')})` : `rgba(${glyph[0]},${glyph[1]},${glyph[2]},${(.4 + L * .6).toFixed(3)})`
+    };
+    styles.set(key, s);
+    return s;
+  }
+
+  function render() {
+    if (!W) return;
+    drawField();
+    const d = octx.getImageData(0, 0, ow, oh).data;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.font = `500 ${fs}px ${FONT}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const ty = ch / 2 + .5, tx = cw / 2;
+
+    for (const s of snow) {
+      const cx = Math.floor(s.x / cw), cy = Math.floor(s.y / ch);
+      ctx.fillStyle = s.style;
+      for (let r = 0; r < s.run; r++) ctx.fillText(s.run > 1 ? '-' : s.g, (cx + r * 2) * cw + tx, cy * ch + ty);
+    }
+
+    const tickRate = time < flickerUntil ? 10 : 1.4;
+    const row = ow * 4;
+    for (let cy = 0; cy < rows; cy++) {
+      for (let cx = 0; cx < cols; cx++) {
+        const i = (cy * SS * ow + cx * SS) * 4;
+        const a = (d[i] + d[i + 4] + d[i + row] + d[i + row + 4]) / 1020;
+        const w = (d[i + 1] + d[i + 5] + d[i + row + 1] + d[i + row + 5]) / 1020;
+        const b = (d[i + 2] + d[i + 6] + d[i + row + 2] + d[i + row + 6]) / 1020;
+        const L = Math.min(1, a + b + w * .55);
+        if (L < .055) continue;
+        const tb = Math.round(b / (a + b + 1e-4) * 5);
+        const lv = Math.min(11, (L * 12) | 0);
+        const wb = w < .12 ? 0 : w < .32 ? 1 : 2;
+        const st = style(tb, lv, wb);
+        const x = cx * cw, y = cy * ch;
+        if (lv >= 1) { ctx.fillStyle = st.tile; ctx.fillRect(x + 1, y + 1, cw - 2, ch - 2); }
+        const tick = Math.floor(time * tickRate + ((cx * 7 + cy * 13) & 15) / 16);
+        const h = hash(cx, cy, tick);
+        ctx.fillStyle = lv >= 4 && lv < 10 && h > .986 ? ACCENTS[(h * 1e4 | 0) & 3] : st.glyph;
+        ctx.fillText(RAMP[lv][h < .55 ? 0 : 1], x + tx, y + ty);
+      }
+    }
+  }
+
+  /* ---- ciclo ---- */
+  function loop(now) {
+    raf = requestAnimationFrame(loop);
+    if (!last) { last = now; return; }
+    const dt = (now - last) / 1000;
+    last = now;
+    acc += Math.min(dt, .1);
+    if (acc < 1 / 30) return;
+    const n = Math.max(1, Math.min(6, Math.round(acc * 60))), h = acc / n;
+    for (let i = 0; i < n; i++) step(h);
+    acc = 0;
+    render();
+  }
+  function sync() {
+    const should = playing && visible && W > 0;
+    if (should && !raf) { last = 0; raf = requestAnimationFrame(loop); }
+    else if (!should && raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+
+  function resize() {
+    const r = host.getBoundingClientRect();
+    const nW = Math.max(1, Math.round(r.width)), nH = Math.max(1, Math.round(r.height));
+    if (nW === W && nH === H) return;
+    const sx = W ? nW / W : 1, sy = H ? nH / H : 1, first = !W;
+    W = nW; H = nH;
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cw = W < 600 ? 8 : W < 1100 ? 9 : 10;
+    ch = Math.round(cw * 1.5);
+    fs = Math.round(ch * .74);
+    cols = Math.ceil(W / cw); rows = Math.ceil(H / ch);
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ow = cols * SS; oh = rows * SS;
+    off.width = ow; off.height = oh;
+    host.style.setProperty('--cw', cw + 'px');
+    host.style.setProperty('--ch', ch + 'px');
+    if (first) {
+      seedJellies();
+      for (let i = 0; i < 200; i++) step(1 / 60);
+    } else {
+      for (const j of jellies) shiftJelly(j, j.x * (sx - 1), j.y * (sy - 1));
+      const n = desiredCount();
+      while (jellies.length > n) jellies.pop();
+      while (jellies.length < n) { const j = makeJelly(W * Math.random(), H + 80, .5 + Math.random() * .4); respawn(j); jellies.unshift(j); }
+    }
+    seedSnow();
+    render();
+    sync();
+  }
+
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; sync(); });
+
+  return {
+    resize,
+    redraw() { styles.clear(); render(); },
+    setTarget(x, y) { target.x = x; target.y = y; },
+    setPointer(x, y) { pointer.x = x; pointer.y = y; },
+    setPlaying(v) { playing = v; sync(); if (!v) render(); },
+    isPlaying: () => playing,
+    typing() { typingUntil = time + 1.8; },
+    pulse() {
+      if (!playing) return;
+      boostUntil = time + 1.8; flickerUntil = time + 1.2;
+      for (const j of jellies) j.rush = true;
+      ripples.push({ x: target.x, y: target.y, t0: time, dur: 1.7, max: Math.max(W, H) * .62 });
+      ripples.push({ x: target.x, y: target.y, t0: time + .26, dur: 1.7, max: Math.max(W, H) * .5 });
+    },
+    dim() { if (playing) dimUntil = time + .5; }
+  };
+})();
+
+/* =====================================================================
+   Textos (PT/EN/ES)
+   ===================================================================== */
+const APP_URL = 'https://app.fleetflow.systems';
+const I18N = {
+  pt: {
+    _title: 'FleetFlow — Software e IA que movem o mundo real',
+    _desc: 'Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma.',
+    skip: 'Saltar para a caixa do Orbit', login: 'Entrar', langs: 'Idioma',
+    daypart: ['Bom dia', 'Boa tarde', 'Boa noite'], eyebrow: 'Software & agentes de IA',
+    lines: ['Software que move o *mundo real*', 'planear as cargas de *amanhã*', 'ver onde está cada *camião*', 'responder aos *clientes*', 'gerir a *oficina* sem papel', 'encher a *bolsa de cargas*', 'cortar os quilómetros *vazios*'],
+    promptLabel: 'Pergunta ao Orbit', placeholder: 'Pergunta ao Orbit…', promptHelp: 'Enter envia. Shift e Enter muda de linha.',
+    who: 'Orbit · agente de IA', hintSend: 'enviar', hintLine: 'nova linha', send: 'Enviar ao Orbit', chipsLabel: 'Sugestões',
+    chips: [
+      ['planear', 'cargas', 'Planeia as cargas de amanhã para a minha frota.'],
+      ['onde está', 'a frota', 'Mostra-me onde está cada camião agora.'],
+      ['oficina', 'pedido', 'Abre um pedido na oficina para a matrícula '],
+      ['retorno', 'sem vazio', 'Encontra uma carga de retorno para o camião que descarrega em ']
+    ],
+    privacy: 'O que escreves aqui não sai do teu browser.', scroll: '↓ como funciona',
+    emptyTitle: 'Escreve uma pergunta primeiro', emptyMsg: 'Ou escolhe uma sugestão em baixo.',
+    sentTitle: 'O Orbit responde dentro da plataforma', sentMsg: 'Entra para ele tratar disto com os dados da tua empresa.', sentLink: 'Entrar →',
+    motionPause: 'Pausar movimento', motionPlay: 'Retomar movimento',
+    'orbit.eyebrow': 'Movido a IA', 'orbit.muted': 'Tu decides,', 'orbit.strong': 'o Orbit executa.',
+    'orbit.lead': 'Software para transporte, oficina e qualquer negócio — com um agente que aprende com cada carga, viagem e cliente, e age em tempo real para a tua equipa decidir só o que importa.',
+    's1.t': 'Aprende', 's1.p': 'Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.',
+    's2.t': 'Raciocina', 's2.p': 'Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.',
+    's3.t': 'Age', 's3.p': 'Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.',
+    platform: 'Entrar na plataforma', capital: 'Capital social', terms: 'Termos', privacyLink: 'Privacidade',
+    'sv.eyebrow': 'O que fazemos', 'sv.muted': 'Software à medida', 'sv.strong': 'e sites de topo.',
+    'sv.lead': 'A mesma equipa que construiu a FleetFlow faz o software e o site que a tua empresa precisa — desenhados para o teu negócio, rápidos, seguros e com IA quando faz sentido.',
+    'c1.tag': 'sob medida', 'c1.t': 'Software à medida', 'c1.p': 'Aplicações web e móveis feitas para a forma como a tua empresa trabalha — não o contrário.',
+    'c1.l1': 'Gestão, portais de clientes e apps de equipa', 'c1.l2': 'Integrações com ERP, faturação e GPS', 'c1.l3': 'Agentes de IA que tratam do repetitivo',
+    'c2.tag': 'sites', 'c2.t': 'Sites e landing pages', 'c2.p': 'Sites rápidos e marcantes, como este — com animação, várias línguas e pensados para trazer clientes.',
+    'c2.l1': 'Design próprio, telemóvel primeiro', 'c2.l2': 'PT · EN · ES e o que mais precisares', 'c2.l3': 'Alojamento, domínio e RGPD tratados',
+    'c3.tag': 'plataforma', 'c3.t': 'Plataforma FleetFlow', 'c3.p': 'Pronta a usar para transporte e oficina: planeamento de cargas, frota ao vivo, oficina e o Orbit.',
+    'c3.l1': 'Planeador, voltas e bolsa de cargas', 'c3.l2': 'Oficina com app do mecânico', 'c3.l3': 'Apps para motoristas e gestores',
+    'sv.cta': 'Falar do meu projeto', navServices: 'Serviços'
+  },
+  en: {
+    _title: 'FleetFlow — Software and AI that move the real world',
+    _desc: 'Software for transport, workshop and any business, powered by the Orbit AI agent.',
+    skip: 'Skip to the Orbit box', login: 'Sign in', langs: 'Language',
+    daypart: ['Good morning', 'Good afternoon', 'Good evening'], eyebrow: 'Software & AI agents',
+    lines: ['Software that moves the *real world*', 'plan tomorrow’s *loads*', 'see where every *truck* is', 'answer your *customers*', 'run a paperless *workshop*', 'fill the *load board*', 'cut the *empty* miles'],
+    promptLabel: 'Ask Orbit', placeholder: 'Ask Orbit…', promptHelp: 'Enter sends. Shift and Enter adds a line.',
+    who: 'Orbit · AI agent', hintSend: 'send', hintLine: 'new line', send: 'Send to Orbit', chipsLabel: 'Suggestions',
+    chips: [
+      ['plan', 'loads', 'Plan tomorrow’s loads for my fleet.'],
+      ['where is', 'the fleet', 'Show me where every truck is right now.'],
+      ['workshop', 'request', 'Open a workshop request for the plate '],
+      ['backhaul', 'no empties', 'Find a return load for the truck unloading in ']
+    ],
+    privacy: 'What you type here never leaves your browser.', scroll: '↓ how it works',
+    emptyTitle: 'Write a question first', emptyMsg: 'Or pick a suggestion below.',
+    sentTitle: 'Orbit answers inside the platform', sentMsg: 'Sign in so it can handle this with your company’s data.', sentLink: 'Sign in →',
+    motionPause: 'Pause motion', motionPlay: 'Resume motion',
+    'orbit.eyebrow': 'Powered by AI', 'orbit.muted': 'You decide,', 'orbit.strong': 'Orbit executes.',
+    'orbit.lead': 'Software for transport, workshop and any business — with an agent that learns from every load, trip and customer, and acts in real time so your team only decides what matters.',
+    's1.t': 'Learn', 's1.p': 'Every load, document and decision becomes context — Orbit understands your operation the way your team does.',
+    's2.t': 'Reason', 's2.p': 'It weighs every signal against your goals, compares the options and shows its reasoning before anything moves.',
+    's3.t': 'Act', 's3.p': 'It carries each decision through in real time, across the tools you already use, and learns from every outcome.',
+    platform: 'Open the platform', capital: 'Share capital', terms: 'Terms', privacyLink: 'Privacy',
+    'sv.eyebrow': 'What we build', 'sv.muted': 'Custom software', 'sv.strong': 'and top-tier websites.',
+    'sv.lead': 'The team that built FleetFlow builds the software and the website your company needs — designed around your business, fast, secure and with AI where it makes sense.',
+    'c1.tag': 'tailor-made', 'c1.t': 'Custom software', 'c1.p': 'Web and mobile apps built around the way your company works — not the other way round.',
+    'c1.l1': 'Back-office, customer portals and team apps', 'c1.l2': 'Integrations with ERP, invoicing and GPS', 'c1.l3': 'AI agents that take care of the repetitive work',
+    'c2.tag': 'websites', 'c2.t': 'Websites and landing pages', 'c2.p': 'Fast, memorable websites like this one — animated, multilingual and built to bring in customers.',
+    'c2.l1': 'Original design, mobile first', 'c2.l2': 'PT · EN · ES and any language you need', 'c2.l3': 'Hosting, domain and GDPR taken care of',
+    'c3.tag': 'platform', 'c3.t': 'FleetFlow platform', 'c3.p': 'Ready to use for transport and workshop: load planning, live fleet, workshop and Orbit.',
+    'c3.l1': 'Planner, rounds and load board', 'c3.l2': 'Workshop with a mechanic app', 'c3.l3': 'Apps for drivers and managers',
+    'sv.cta': 'Talk about my project', navServices: 'Services'
+  },
+  es: {
+    _title: 'FleetFlow — Software e IA que mueven el mundo real',
+    _desc: 'Software para transporte, taller y cualquier negocio, con el agente de IA Orbit.',
+    skip: 'Saltar a la caja de Orbit', login: 'Acceder', langs: 'Idioma',
+    daypart: ['Buenos días', 'Buenas tardes', 'Buenas noches'], eyebrow: 'Software y agentes de IA',
+    lines: ['Software que mueve el *mundo real*', 'planificar las cargas de *mañana*', 'ver dónde está cada *camión*', 'responder a los *clientes*', 'gestionar el *taller* sin papel', 'llenar la *bolsa de cargas*', 'reducir los kilómetros *vacíos*'],
+    promptLabel: 'Pregunta a Orbit', placeholder: 'Pregunta a Orbit…', promptHelp: 'Enter envía. Shift y Enter añade una línea.',
+    who: 'Orbit · agente de IA', hintSend: 'enviar', hintLine: 'nueva línea', send: 'Enviar a Orbit', chipsLabel: 'Sugerencias',
+    chips: [
+      ['planificar', 'cargas', 'Planifica las cargas de mañana para mi flota.'],
+      ['dónde está', 'la flota', 'Muéstrame dónde está cada camión ahora.'],
+      ['taller', 'pedido', 'Abre un pedido en el taller para la matrícula '],
+      ['retorno', 'sin vacío', 'Encuentra una carga de retorno para el camión que descarga en ']
+    ],
+    privacy: 'Lo que escribes aquí no sale de tu navegador.', scroll: '↓ cómo funciona',
+    emptyTitle: 'Escribe una pregunta primero', emptyMsg: 'O elige una sugerencia abajo.',
+    sentTitle: 'Orbit responde dentro de la plataforma', sentMsg: 'Accede para que lo gestione con los datos de tu empresa.', sentLink: 'Acceder →',
+    motionPause: 'Pausar movimiento', motionPlay: 'Reanudar movimiento',
+    'orbit.eyebrow': 'Impulsado por IA', 'orbit.muted': 'Tú decides,', 'orbit.strong': 'Orbit ejecuta.',
+    'orbit.lead': 'Software para transporte, taller y cualquier negocio — con un agente que aprende de cada carga, viaje y cliente, y actúa en tiempo real para que tu equipo decida solo lo que importa.',
+    's1.t': 'Aprende', 's1.p': 'Cada carga, documento y decisión se vuelve contexto — Orbit entiende tu operación como tu equipo.',
+    's2.t': 'Razona', 's2.p': 'Pondera cada señal frente a tus objetivos, compara las opciones y muestra su razonamiento antes de mover nada.',
+    's3.t': 'Actúa', 's3.p': 'Lleva cada decisión hasta el final en tiempo real, en las herramientas que ya usas, y aprende de cada resultado.',
+    platform: 'Entrar en la plataforma', capital: 'Capital social', terms: 'Términos', privacyLink: 'Privacidad',
+    'sv.eyebrow': 'Lo que hacemos', 'sv.muted': 'Software a medida', 'sv.strong': 'y webs de primera.',
+    'sv.lead': 'El mismo equipo que construyó FleetFlow hace el software y la web que tu empresa necesita — diseñados para tu negocio, rápidos, seguros y con IA cuando tiene sentido.',
+    'c1.tag': 'a medida', 'c1.t': 'Software a medida', 'c1.p': 'Aplicaciones web y móviles hechas para la forma en que trabaja tu empresa — no al revés.',
+    'c1.l1': 'Gestión, portales de clientes y apps de equipo', 'c1.l2': 'Integraciones con ERP, facturación y GPS', 'c1.l3': 'Agentes de IA que se encargan de lo repetitivo',
+    'c2.tag': 'webs', 'c2.t': 'Webs y landing pages', 'c2.p': 'Webs rápidas y memorables, como esta — con animación, varios idiomas y pensadas para traer clientes.',
+    'c2.l1': 'Diseño propio, móvil primero', 'c2.l2': 'PT · EN · ES y lo que necesites', 'c2.l3': 'Alojamiento, dominio y RGPD resueltos',
+    'c3.tag': 'plataforma', 'c3.t': 'Plataforma FleetFlow', 'c3.p': 'Lista para usar en transporte y taller: planificación de cargas, flota en vivo, taller y Orbit.',
+    'c3.l1': 'Planificador, rutas y bolsa de cargas', 'c3.l2': 'Taller con app del mecánico', 'c3.l3': 'Apps para conductores y gestores',
+    'sv.cta': 'Hablar de mi proyecto', navServices: 'Servicios'
+  }
+};
+
+/* =====================================================================
+   Página
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const composer = $('#composer'), prompt = $('#prompt'), sendBtn = $('#send');
+const statusEl = $('#status'), chipsEl = $('#chips'), motionBtn = $('#motion');
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+let L = I18N.pt;
+
+/* ---- título rotativo ----
+   As palavras desfocam-se e a linha seguinte entra palavra a palavra. O nome acessível é a
+   primeira linha (a camada visual é aria-hidden); pára com o botão de movimento, com o
+   separador escondido ou enquanto há texto na caixa. *palavra* = cor de destaque. */
+const Headline = (() => {
+  const root = $('#headline-visual');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const HOLD_FIRST = 2800, HOLD = 2000;
+  const OUT = { dur: 380, stagger: 26, ease: 'cubic-bezier(.55,0,.75,.35)' };
+  const IN = { dur: 620, stagger: 46, ease: 'cubic-bezier(.16,1,.3,1)' };
+  let els = [], idx = 0, timer = 0, busy = false, playing = false, visible = !document.hidden;
+  const canRun = () => playing && visible && prompt.value.trim() === '';
+  const words = el => [...el.querySelectorAll('.hl-w')];
+
+  function build(lines) {
+    clearTimeout(timer); timer = 0;
+    root.getAnimations?.({ subtree: true }).forEach(a => a.cancel());
+    $('#headline-text').textContent = lines[0].replace(/\*/g, '');
+    els = lines.map((line, i) => {
+      const el = document.createElement('span');
+      el.className = 'hl-line' + (i === 0 ? ' is-on' : '');
+      line.split(/(\*[^*]+\*)/).filter(Boolean).forEach(part => {
+        const accent = part.startsWith('*');
+        part.replace(/\*/g, '').split(/(\s+)/).forEach(tok => {
+          if (!tok) return;
+          if (/^\s+$/.test(tok)) { el.append(' '); return; }
+          const w = document.createElement('span');
+          w.className = 'hl-w' + (accent ? ' hl-accent' : '');
+          w.textContent = tok;
+          el.append(w);
+        });
+      });
+      return el;
+    });
+    root.replaceChildren(...els);
+    idx = 0; busy = false;
+    schedule();
+  }
+  function animateOut(el) {
+    const soft = reduce.matches;
+    return Promise.all(words(el).map((w, i) => w.animate(soft
+      ? [{ opacity: 1 }, { opacity: 0 }]
+      : [{ opacity: 1, filter: 'blur(0px)', transform: 'translateY(0) scale(1)' },
+         { opacity: 0, filter: 'blur(12px)', transform: 'translateY(-.22em) scale(.97)' }],
+      { duration: soft ? 260 : OUT.dur, delay: soft ? 0 : i * OUT.stagger, easing: OUT.ease, fill: 'forwards' }).finished));
+  }
+  function animateIn(el) {
+    const soft = reduce.matches;
+    return Promise.all(words(el).map((w, i) => w.animate(soft
+      ? [{ opacity: 0 }, { opacity: 1 }]
+      : [{ opacity: 0, filter: 'blur(14px)', transform: 'translateY(.34em) scale(1.04)' },
+         { opacity: .7, filter: 'blur(4px)', offset: .45 },
+         { opacity: 1, filter: 'blur(0px)', transform: 'translateY(0) scale(1)' }],
+      { duration: soft ? 320 : IN.dur, delay: soft ? 0 : i * IN.stagger, easing: IN.ease, fill: 'backwards' }).finished));
+  }
+  async function next() {
+    timer = 0;
+    if (!canRun() || busy || els.length < 2) return;
+    busy = true;
+    const cur = els[idx], nIdx = (idx + 1) % els.length, nxt = els[nIdx];
+    try {
+      await animateOut(cur);
+      cur.classList.remove('is-on');
+      cur.getAnimations({ subtree: true }).forEach(a => a.cancel());
+      nxt.classList.add('is-on');
+      idx = nIdx;
+      await animateIn(nxt);
+    } catch (_) { /* animação cancelada */ }
+    busy = false;
+    schedule();
+  }
+  function schedule() {
+    clearTimeout(timer); timer = 0;
+    if (canRun()) timer = setTimeout(next, idx === 0 ? HOLD_FIRST : HOLD);
+  }
+  function sync() { if (!busy) schedule(); }
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; sync(); });
+  prompt.addEventListener('input', sync);
+  return { build, setPlaying(on) { playing = on; sync(); } };
+})();
+
+/* ---- sugestões ---- */
+function renderChips() {
+  chipsEl.textContent = '';
+  chipsEl.setAttribute('aria-label', L.chipsLabel);
+  for (const [cmd, rest, text] of L.chips) {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.dataset.prompt = text;
+    const slash = document.createElement('span');
+    slash.className = 'slash';
+    slash.setAttribute('aria-hidden', 'true');
+    slash.textContent = '/';
+    b.append(slash, `${cmd} ${rest}`);
+    li.append(b);
+    chipsEl.append(li);
+  }
+}
+chipsEl.addEventListener('click', e => {
+  const b = e.target.closest('.chip');
+  if (b) fillPrompt(b.dataset.prompt);
+});
+
+/* ---- estado ---- */
+function setStatus(tone, title, msg, link) {
+  statusEl.dataset.tone = tone;
+  statusEl.textContent = '';
+  const dot = document.createElement('span');
+  dot.className = 'dot';
+  dot.setAttribute('aria-hidden', 'true');
+  const body = document.createElement('span');
+  body.className = 'msg';
+  const strong = document.createElement('strong');
+  strong.textContent = title + '.';
+  body.append(strong, ' ' + msg);
+  statusEl.append(dot, body);
+  if (link) {
+    const a = document.createElement('a');
+    a.href = APP_URL;
+    a.textContent = link;
+    statusEl.append(a);
+  }
+}
+function clearStatus() { statusEl.textContent = ''; delete statusEl.dataset.tone; }
+
+/* ---- caixa do Orbit (nada é enviado: convida a entrar na plataforma) ---- */
+function autosize() {
+  prompt.style.height = 'auto';
+  prompt.style.height = Math.min(prompt.scrollHeight, 224) + 'px';
+}
+function updateReady() { composer.toggleAttribute('data-ready', prompt.value.trim().length > 0); }
+function clearInvalid() {
+  if (prompt.hasAttribute('aria-invalid')) {
+    prompt.removeAttribute('aria-invalid');
+    composer.classList.remove('is-error');
+    if (statusEl.dataset.tone === 'error') clearStatus();
+  }
+}
+function fillPrompt(text) {
+  prompt.value = text;
+  autosize(); updateReady(); clearInvalid();
+  prompt.focus();
+  const n = prompt.value.length;
+  prompt.setSelectionRange(n, n);
+  Ocean.typing();
+}
+prompt.addEventListener('input', () => { autosize(); updateReady(); clearInvalid(); Ocean.typing(); });
+const coarse = matchMedia('(pointer: coarse)');
+prompt.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return;
+  if (e.shiftKey || coarse.matches) return;
+  e.preventDefault();
+  composer.requestSubmit();
+});
+composer.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!prompt.value.trim()) {
+    prompt.setAttribute('aria-invalid', 'true');
+    composer.classList.add('is-error');
+    setStatus('error', L.emptyTitle, L.emptyMsg);
+    Ocean.dim();
+    prompt.focus();
+    return;
+  }
+  Ocean.pulse();
+  setStatus('ok', L.sentTitle, L.sentMsg, L.sentLink);
+});
+
+/* ---- movimento ---- */
+function setMotion(on, remember) {
+  Ocean.setPlaying(on);
+  Headline.setPlaying(on);
+  motionBtn.setAttribute('aria-pressed', String(!on));
+  motionBtn.querySelector('use').setAttribute('href', on ? '#i-pause' : '#i-play');
+  const label = on ? L.motionPause : L.motionPlay;
+  $('#motion-label').textContent = label;
+  motionBtn.title = label;
+  if (remember) store.set('ff:motion', on);
+}
+motionBtn.addEventListener('click', () => setMotion(!Ocean.isPlaying(), true));
+
+/* ---- idioma ---- */
+function greeting() {
+  const h = new Date().getHours();
+  return L.daypart[h >= 5 && h < 12 ? 0 : h >= 12 && h < 20 ? 1 : 2];
+}
+function applyLang(lang) {
+  if (!I18N[lang]) lang = 'pt';
+  L = I18N[lang];
+  document.documentElement.lang = lang;
+  document.title = L._title;
+  const md = $('meta[name=description]'); if (md) md.content = L._desc;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = L[el.dataset.i18n]; if (v !== undefined) el.textContent = v; });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => { const v = L[el.dataset.i18nAria]; if (v !== undefined) el.setAttribute('aria-label', v); });
+  document.querySelectorAll('.langs [data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  prompt.placeholder = L.placeholder;
+  sendBtn.setAttribute('aria-label', L.send);
+  $('#greeting').textContent = `${greeting()} · ${L.eyebrow}`;
+  const on = Ocean.isPlaying();
+  $('#motion-label').textContent = on ? L.motionPause : L.motionPlay;
+  motionBtn.title = $('#motion-label').textContent;
+  Headline.build(L.lines);
+  renderChips();
+  clearStatus();
+  try { localStorage.setItem('ff_lang', lang); } catch {}
+}
+document.querySelectorAll('.langs [data-lang]').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+/* ---- teclas ---- */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { clearStatus(); return; }
+  const el = document.activeElement;
+  if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '/') { e.preventDefault(); prompt.focus(); }
+});
+
+/* ---- ligação ao oceano ---- */
+let hostRect = null;
+function layoutChanged() {
+  Ocean.resize();
+  hostRect = $('#ocean').getBoundingClientRect();
+  const r = composer.getBoundingClientRect();
+  Ocean.setTarget(r.left - hostRect.left + r.width / 2, r.top - hostRect.top + r.height / 2);
+}
+new ResizeObserver(() => requestAnimationFrame(layoutChanged)).observe($('#ocean'));
+window.addEventListener('scroll', () => { if (hostRect) layoutChanged(); }, { passive: true });
+window.addEventListener('pointermove', e => {
+  if (!hostRect || e.pointerType === 'touch') return;
+  Ocean.setPointer(e.clientX - hostRect.left, e.clientY - hostRect.top);
+}, { passive: true });
+document.documentElement.addEventListener('pointerleave', () => Ocean.setPointer(-1e5, -1e5));
+
+/* ---- arranque ---- */
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const savedMotion = store.get('ff:motion', null);
+let savedLang = 'pt';
+try { savedLang = localStorage.getItem('ff_lang') || (navigator.language || 'pt').slice(0, 2); } catch {}
+applyLang(savedLang);
+setMotion(savedMotion === null ? !reduceMotion.matches : savedMotion, false);
+reduceMotion.addEventListener('change', () => { if (store.get('ff:motion', null) === null) setMotion(!reduceMotion.matches, false); });
+autosize();
+updateReady();
+layoutChanged();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { Ocean.redraw(); layoutChanged(); });
+})();
+</script>
 </body>
 </html>

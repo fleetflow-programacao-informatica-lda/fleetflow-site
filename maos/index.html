@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FleetFlow — Software e IA que movem o mundo real</title>
+  <meta name="description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." />
+  <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FleetFlow" />
+  <meta property="og:title" content="FleetFlow — Software que move o mundo real" />
+  <meta property="og:description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit." />
+  <meta property="og:url" content="https://fleetflow.one/" />
+  <meta property="og:image" content="https://fleetflow.one/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FleetFlow — Software que move o mundo real" />
+  <meta name="twitter:image" content="https://fleetflow.one/og.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cg stroke='%2331e0a0' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 9l5 5-5 5M13 9l5 5-5 5'/%3E%3Cpath d='M19 9l5 5-5 5' stroke='%23fb923c'/%3E%3C/g%3E%3C/svg%3E" />
+  <style>
+    .hold__cta{margin-top:24px;display:inline-flex}
+    #ff-foot{position:fixed;left:clamp(16px,4vw,40px);bottom:16px;z-index:40;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 32px);font-family:var(--font);font-size:11px;letter-spacing:.02em;color:var(--text-muted);opacity:.82;pointer-events:none}
+    #ff-foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22);pointer-events:auto}
+    #ff-foot a:hover{color:var(--primary);border-color:var(--primary)}
+    @media (max-width:760px){#ff-foot{font-size:9.5px;bottom:12px;left:12px;right:12px}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__logo" href="/" aria-label="FleetFlow home"><svg class="sorvine-mark" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="sorvine-logo"><stop offset="0" stop-color="#d6fff0" /><stop offset="1" stop-color="#31e0a0" /></radialGradient></defs><path d="M10.2 3.6A8.6 8.6 0 0 0 6.4 19.2" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-dasharray="0 4" /><path d="M13.8 20.4A8.6 8.6 0 0 0 17.6 4.8" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" /><circle cx="12" cy="12" r="2.9" fill="url(#sorvine-logo)" /></svg><span>FleetFlow</span></a>
+
+    <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#top" aria-current="page" data-i18n="nav.home">Início</a></li>
+        <li><a class="nav__link" href="#platform" data-i18n="nav.platform">Plataforma</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__end">
+      <div class="nav__item nav__lang">
+        <button class="nav__lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-lang" aria-label="Language: English">
+          <svg class="nav__globe" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z" /></g></svg>
+          <span class="nav__lang-label">PT</span>
+        </button>
+        <div class="nav__dropdown" id="menu-lang" role="menu" aria-label="Language">
+          <button class="nav__option" type="button" role="menuitemradio" aria-checked="true" data-lang="pt">Português</button>
+          <button class="nav__option" type="button" role="menuitemradio" aria-checked="false" data-lang="en">English</button>
+          <button class="nav__option" type="button" role="menuitemradio" aria-checked="false" data-lang="es">Español</button>
+        </div>
+      </div>
+      <a class="btn btn--outline nav__login" href="https://app.fleetflow.systems" data-i18n="nav.login">Entrar</a>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <canvas class="hands" data-particles="assets/points.bin" data-brain="assets/brain.bin" aria-hidden="true"></canvas>
+
+  <main>
+    <section class="hero" data-snap>
+      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Software &amp; agentes de IA</p>
+      <h1 class="hero__title">
+        <span class="hero__title-muted" data-i18n="hero.title_muted">Software que move</span>
+        <span class="hero__title-strong" data-i18n="hero.title_strong">o mundo real.</span>
+      </h1>
+      <p class="hero__lead" data-i18n="hero.lead">
+        Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />
+        A tecnologia que faz a tua empresa andar sozinha.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--outline" href="#product" data-i18n="btn.more">Saber mais</a>
+        <a class="btn btn--glow" href="https://app.fleetflow.systems">
+          <span data-i18n="btn.start">Entrar</span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+        </a>
+      </div>
+      <div
+        class="hero__visual"
+        data-hands="from"
+        data-source="2200x768"
+        data-origin="1042,268"
+        role="img"
+        aria-label="Two hands made of glowing data points reaching toward each other"
+      ></div>
+      <a class="hero__scroll" href="#product" data-snap-next data-i18n="hero.scroll">Deslizar</a>
+    </section>
+
+    <section class="reach" id="product" aria-labelledby="reach-title" data-snap>
+      <div
+        class="reach__visual"
+        data-hands="to"
+        data-source="2400x1500"
+        data-origin="1200,720"
+        data-reach="28"
+        role="img"
+        aria-label="The same hands, human and machine, opening around the message between them"
+      ></div>
+      <div class="reach__copy">
+        <p class="reach__eyebrow" data-i18n="reach.eyebrow">Movido a IA</p>
+        <h2 class="reach__title" id="reach-title">
+          <span class="reach__title-muted" data-i18n="reach.title_muted">Tu decides,</span>
+          <span data-i18n="reach.title_strong">o Orbit executa.</span>
+        </h2>
+        <p class="reach__text" data-i18n="reach.text">Um agente que aprende com cada carga, viagem e cliente — e age em tempo real, para a tua equipa decidir só o que importa.</p>
+      </div>
+    </section>
+
+    <section class="hold" id="platform" aria-labelledby="hold-title" data-snap="3">
+      <span class="hold__snap" aria-hidden="true"></span>
+      <span class="hold__snap" aria-hidden="true"></span>
+      <div class="hold__stage">
+        <div
+          class="hold__visual"
+          data-hands="hold"
+          data-source="620x800"
+          data-origin="312,154"
+          data-sphere="312,154,104"
+          role="img"
+          aria-label="An open hand with a sphere of glowing data points floating above the palm"
+        ></div>
+        <div class="hold__intro hold__reveal">
+          <p class="hold__eyebrow" data-i18n="hold.eyebrow">O teu núcleo de IA</p>
+          <h2 class="hold__title" id="hold-title">
+            <span class="hold__title-muted" data-i18n="hold.title_muted">A tua operação</span>
+            <span data-i18n="hold.title_strong">na palma da mão.</span>
+          </h2>
+        </div>
+        <div class="hold__detail hold__reveal" data-steps>
+          <p class="hold__eyebrow">
+            <span class="hold__step is-active" data-i18n="step.learn">Aprende</span><span class="hold__dot" aria-hidden="true"> · </span><span class="hold__step" data-i18n="step.reason">Raciocina</span><span class="hold__dot" aria-hidden="true"> · </span><span class="hold__step" data-i18n="step.act">Age</span>
+          </p>
+          <div class="hold__texts">
+            <p class="hold__text is-active" data-i18n="hold.t1">Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.</p>
+            <p class="hold__text" data-i18n="hold.t2">Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.</p>
+            <p class="hold__text" data-i18n="hold.t3">Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.</p>
+          </div>
+          <a class="btn btn--glow hold__cta" href="https://app.fleetflow.systems"><span data-i18n="btn.platform">Entrar na plataforma</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/nav.js"></script>
+  <script src="js/nav-dust.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/steps.js"></script>
+  <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
+  <script src="js/snap.js"></script>
+  <script>
+  /* i18n FleetFlow — PT/EN/ES, ligado ao seletor existente (nav.js só troca o label) */
+  (function(){
+    const I18N = {
+      pt:{ "nav.home":"Início","nav.platform":"Plataforma","nav.login":"Entrar","btn.platform":"Entrar na plataforma",
+        "foot.capital":"Capital social","foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies",
+        "hero.eyebrow":"Software & agentes de IA","hero.title_muted":"Software que move","hero.title_strong":"o mundo real.",
+        "hero.lead":"Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />A tecnologia que faz a tua empresa andar sozinha.",
+        "btn.more":"Saber mais","btn.start":"Entrar","hero.scroll":"Deslizar",
+        "reach.eyebrow":"Movido a IA","reach.title_muted":"Tu decides,","reach.title_strong":"o Orbit executa.",
+        "reach.text":"Um agente que aprende com cada carga, viagem e cliente — e age em tempo real, para a tua equipa decidir só o que importa.",
+        "hold.eyebrow":"O teu núcleo de IA","hold.title_muted":"A tua operação","hold.title_strong":"na palma da mão.",
+        "step.learn":"Aprende","step.reason":"Raciocina","step.act":"Age",
+        "hold.t1":"Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.",
+        "hold.t2":"Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.",
+        "hold.t3":"Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.",
+        _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
+      en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform",
+        "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
+        "hero.eyebrow":"Software & AI agents","hero.title_muted":"Software that moves","hero.title_strong":"the real world.",
+        "hero.lead":"We build software and Orbit — an AI agent that runs operations, loads and workshop.<br />The technology that makes your company move on its own.",
+        "btn.more":"Learn more","btn.start":"Sign in","hero.scroll":"Scroll down",
+        "reach.eyebrow":"Powered by AI","reach.title_muted":"You decide,","reach.title_strong":"Orbit executes.",
+        "reach.text":"An agent that learns from every load, trip and customer — and acts in real time, so your team only decides what matters.",
+        "hold.eyebrow":"Your AI core","hold.title_muted":"Your operation","hold.title_strong":"in the palm of your hand.",
+        "step.learn":"Learn","step.reason":"Reason","step.act":"Act",
+        "hold.t1":"Every load, document and decision becomes context — Orbit understands your operation the way your team does.",
+        "hold.t2":"It weighs every signal against your goals, compares the options and shows its reasoning before anything moves.",
+        "hold.t3":"It carries each decision through in real time, across the tools you already use, and learns from every outcome.",
+        _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
+      es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma",
+        "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
+        "hero.eyebrow":"Software y agentes de IA","hero.title_muted":"Software que mueve","hero.title_strong":"el mundo real.",
+        "hero.lead":"Creamos software y Orbit — un agente de IA que gestiona operaciones, cargas y taller.<br />La tecnología que hace avanzar a tu empresa sola.",
+        "btn.more":"Saber más","btn.start":"Acceder","hero.scroll":"Deslizar",
+        "reach.eyebrow":"Impulsado por IA","reach.title_muted":"Tú decides,","reach.title_strong":"Orbit ejecuta.",
+        "reach.text":"Un agente que aprende de cada carga, viaje y cliente — y actúa en tiempo real, para que tu equipo decida solo lo que importa.",
+        "hold.eyebrow":"Tu núcleo de IA","hold.title_muted":"Tu operación","hold.title_strong":"en la palma de la mano.",
+        "step.learn":"Aprende","step.reason":"Razona","step.act":"Actúa",
+        "hold.t1":"Cada carga, documento y decisión se vuelve contexto — Orbit entiende tu operación como tu equipo.",
+        "hold.t2":"Pondera cada señal frente a tus objetivos, compara las opciones y muestra su razonamiento antes de mover nada.",
+        "hold.t3":"Lleva cada decisión hasta el final en tiempo real, en las herramientas que ya usas, y aprende de cada resultado.",
+        _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
+    };
+    const label = document.querySelector('.nav__lang-label');
+    function apply(l){
+      if(!I18N[l]) l='pt';
+      const d = I18N[l];
+      document.documentElement.lang = l;
+      document.title = d._title;
+      const md = document.querySelector('meta[name=description]'); if(md) md.content = d._desc;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=d[el.getAttribute('data-i18n')]; if(v!==undefined) el.innerHTML=v; });
+      if(label) label.textContent = l.toUpperCase();
+      document.querySelectorAll('#menu-lang [data-lang]').forEach(b=>b.setAttribute('aria-checked', String(b.dataset.lang===l)));
+      try{ localStorage.setItem('ff_lang', l); }catch(e){}
+    }
+    document.querySelectorAll('#menu-lang [data-lang]').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
+    let saved='pt'; try{ saved=localStorage.getItem('ff_lang')||(navigator.language||'pt').slice(0,2); }catch(e){}
+    apply(saved);
+  })();
+  </script>
+</body>
+</html>
