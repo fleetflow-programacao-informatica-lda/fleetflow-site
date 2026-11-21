@@ -5,9 +5,8 @@ Site público da FleetFlow. Estático, sem build.
 ## Estrutura
 ```
 /
-├── index.html          ← EM USO — landing "medusas" (ASCII ao vivo em canvas, caixa do Orbit, serviços)
-├── fonts/ (geist) · og.png
-├── maos/               ← landing "mãos de IA" (partículas) — reversão
+├── index.html          ← EM USO — landing "mãos de IA" (canvas de partículas, Orbit)
+├── styles.css · js/ · assets/ (points.bin, brain.bin) · fonts/ (geist) · og.png
 ├── mundo-real/         ← versão vídeo (drone) anterior — reversão
 ├── v2/                 ← experiência 3D néon — reversão
 ├── v1/                 ← experiência 3D v1 — reversão
@@ -15,8 +14,8 @@ Site público da FleetFlow. Estático, sem build.
 └── landing/            ← landing clássica — reversão
 ```
 
-- **Raiz (`index.html`)** — landing escura com medusas desenhadas ao vivo em caracteres ASCII (reagem ao rato e a quem escreve), título rotativo com o que o Orbit faz, caixa "Pergunta ao Orbit" (não envia nada: convida a entrar na plataforma), Aprende · Raciocina · Age e **O que fazemos** (software à medida, sites, plataforma FleetFlow + contacto). Botões → `app.fleetflow.systems`. i18n PT/EN/ES, fonte local (RGPD), sem bibliotecas nem pedidos a terceiros, pausa de movimento + `prefers-reduced-motion`. Base: template Kurage Dashboard (HorizonX, licença comercial da conta — pode-se publicar o site, não revender o template), adaptado às cores e textos FleetFlow. Um só ficheiro, sem build. O mesmo motor das medusas está no fundo da página de entrada de app.fleetflow.systems.
-- **`maos/`** — landing "mãos de IA" (template Sorvine, partículas) que esteve no ar até 21/11/2026.
+- **Raiz (`index.html`)** — landing escura com motor de partículas em canvas (duas mãos que se formam, reagem ao rato e se transformam em 3 cenas de scroll, terminando num cérebro). Copy FleetFlow + agente de IA **Orbit**. Botões → `app.fleetflow.systems`. i18n PT/EN/ES, fontes locais (RGPD), rodapé legal. Base: template Sorvine (HorizonX), adaptado (azul→verde #31e0a0, textos nossos). HTML/CSS/JS puro, sem libs.
+- **`medusas/`** — landing das medusas ASCII (21/11), retirada a pedido do founder; mantida como reversão.
 - **`mundo-real/`**, **`v2/`**, **`v1/`**, **`landing/`** — versões anteriores, mantidas como reversão.
 
 ## Publicação (Netlify)
