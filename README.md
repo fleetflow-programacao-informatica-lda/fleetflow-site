@@ -5,30 +5,20 @@ Site público da FleetFlow. Estático, sem build.
 ## Estrutura
 ```
 /
-├── index.html          ← "Mundo Real" (EM USO) — filme real (Higgsfield) a fazer scrub com o scroll
-├── assets/             ← journey.mp4 (a viagem), poster.png, loader-truck.png
-├── fonts/              ← Space Grotesk + IBM Plex Mono locais (RGPD, sem Google)
-├── og.png              ← cartão social
-├── v2/                 ← Experiência 3D néon (partículas GPU) — reversão
-├── v1/                 ← Experiência 3D v1 — reversão
+├── index.html          ← EM USO — landing "mãos de IA" (canvas de partículas, Orbit)
+├── styles.css · js/ · assets/ (points.bin, brain.bin) · fonts/ (geist) · og.png
+├── mundo-real/         ← versão vídeo (drone) anterior — reversão
+├── v2/                 ← experiência 3D néon — reversão
+├── v1/                 ← experiência 3D v1 — reversão
 ├── brand/              ← logótipo oficial
-└── landing/            ← Landing clássica (PT/EN/ES, secções completas) — reversão
+└── landing/            ← landing clássica — reversão
 ```
 
-- **Raiz (`index.html`)** — experiência realista e cinematográfica: espaço → avião → campo → camião → restaurante → empresa de software, tudo num vídeo real (`assets/journey.mp4`) controlado pelo scroll. Loader com a frente de um camião cujos faróis acendem no fim. Conteúdo: Transporte (agente IA Orbit), Oficina, Software & Sites. i18n PT/EN/ES. Sem GPS/CMR no copy.
-- **`v2/`**, **`v1/`**, **`landing/`** — versões anteriores, mantidas como reversão.
-
-## Correr localmente
-```bash
-npx serve . -l 4321      # experiência 3D  → http://localhost:4321
-npx serve landing -l 4322  # landing detalhada → http://localhost:4322
-```
+- **Raiz (`index.html`)** — landing escura com motor de partículas em canvas (duas mãos que se formam, reagem ao rato e se transformam em 3 cenas de scroll, terminando num cérebro). Copy FleetFlow + agente de IA **Orbit**. Botões → `app.fleetflow.systems`. i18n PT/EN/ES, fontes locais (RGPD), rodapé legal. Base: template Sorvine (HorizonX), adaptado (azul→verde #31e0a0, textos nossos). HTML/CSS/JS puro, sem libs.
+- **`mundo-real/`**, **`v2/`**, **`v1/`**, **`landing/`** — versões anteriores, mantidas como reversão.
 
 ## Publicação (Netlify)
-Site estático. O `publish directory` é a **raiz** (serve a experiência 3D).
-Ligado ao Netlify → cada `git push` publica automaticamente em `fleetflow.one`.
-
-> A experiência 3D carrega o Three.js de CDN (esm.sh) — precisa de internet.
+Site estático, publish directory = **raiz**. Ligado ao GitHub (`fleetflow-programacao-informatica-lda/fleetflow-site`, **público**) → cada `git push` publica automaticamente em `fleetflow.one`. **Não** voltar a pôr o repo privado na org sem Netlify Pro.
 
 ## Domínio & email
 `fleetflow.one` (DNS gerido no Replit) · email via Mailgun. **Não** mexer nesses registos.

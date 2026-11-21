@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FleetFlow — Software que move o mundo real</title>
+<meta name="description" content="Software para transporte, oficina e qualquer negócio — e sites globais à medida. Feito em Portugal.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FleetFlow">
+<meta property="og:title" content="FleetFlow — Software que move o mundo real">
+<meta property="og:description" content="Software para transporte, oficina e qualquer negócio — e sites globais à medida.">
+<meta property="og:url" content="https://fleetflow.one/">
+<meta property="og:image" content="https://fleetflow.one/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FleetFlow — Software que move o mundo real">
+<meta name="twitter:description" content="Software para transporte, oficina e qualquer negócio — e sites globais à medida.">
+<meta name="twitter:image" content="https://fleetflow.one/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0d'/%3E%3Cg stroke='%2331e0a0' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 9l5 5-5 5M13 9l5 5-5 5'/%3E%3Cpath d='M19 9l5 5-5 5' stroke='%23fb923c'/%3E%3C/g%3E%3C/svg%3E">
+<!-- Fontes servidas daqui (RGPD: sem pedidos à Google) — Space Grotesk e IBM Plex Mono, OFL -->
+<style>
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/SpaceGrotesk-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/SpaceGrotesk-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/SpaceGrotesk-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/SpaceGrotesk-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<style>
+  :root{
+    --bg:#0a0c0d; --txt:#f3f6f4; --muted:#9aa8a2;
+    --green:#31e0a0; --mint:#9dffd0; --orange:#fb923c;
+    --line:rgba(255,255,255,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scrollbar-width:thin;scrollbar-color:rgba(49,224,160,.35) transparent}
+  body{background:var(--bg);color:var(--txt);font-family:"Space Grotesk",system-ui,sans-serif;overflow-x:hidden;cursor:none}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- fundo: vídeo que faz scrub com o scroll ---------- */
+  #bgwrap{position:fixed;inset:0;z-index:0;background:#05070a center/cover no-repeat;}
+  #bgwrap{background-image:url("assets/poster.png")}
+  #bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  /* scrims para legibilidade (nada de néon, só profundidade) */
+  .scrim{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(5,7,10,.55) 0%, rgba(5,7,10,.15) 22%, rgba(5,7,10,.15) 62%, rgba(5,7,10,.72) 100%),
+      radial-gradient(130% 90% at 50% 45%, transparent 55%, rgba(5,7,10,.55) 100%)}
+  .grain{position:fixed;inset:-100px;z-index:2;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:gr 8s steps(10) infinite}
+  @keyframes gr{0%{transform:translate(0,0)}50%{transform:translate(-50px,30px)}100%{transform:translate(30px,-40px)}}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,52px)}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .logo .f{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);backdrop-filter:blur(6px)}
+  .logo em{font-style:normal;color:var(--green)}
+  .nav-r{display:flex;align-items:center;gap:16px}
+  .lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(10,12,13,.35);backdrop-filter:blur(6px)}
+  .lang button{background:none;border:0;cursor:none;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--muted);padding:6px 11px;border-radius:999px;transition:.25s}
+  .lang button:hover{color:var(--mint)}
+  .lang button.on{background:rgba(49,224,160,.16);color:var(--green)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14.5px;transition:.28s cubic-bezier(.2,.7,.2,1);background:var(--green);color:#042016;border:1px solid var(--green)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(49,224,160,.3)}
+  .btn.ghost{background:rgba(10,12,13,.4);color:var(--txt);border-color:var(--line);backdrop-filter:blur(6px)}
+  .btn.ghost:hover{border-color:var(--green)}
+  .btn.sm{padding:9px 18px;font-size:13.5px}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+  /* ---------- conteúdo por cena ---------- */
+  .ui{position:fixed;inset:0;z-index:10;pointer-events:none}
+  .block{position:absolute;top:50%;left:clamp(20px,7vw,120px);width:min(620px,86vw);opacity:0;transform:translateY(-50%);will-change:transform,opacity}
+  .block.right{left:auto;right:clamp(20px,7vw,120px)}
+  .block.center{left:50%;text-align:center;width:min(780px,92vw);transform:translate(-50%,-50%)}
+  .block h1,.block h2{text-shadow:0 2px 34px rgba(0,0,0,.85)}
+  .block p{text-shadow:0 1px 18px rgba(0,0,0,.95)}
+  .block::before{content:"";position:absolute;inset:-66px -80px;z-index:-1;border-radius:46px;
+    background:radial-gradient(ellipse at 50% 45%, rgba(5,7,10,.82), rgba(5,7,10,.42) 55%, transparent 78%)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.22em;color:var(--green);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .block.center .eyebrow{justify-content:center}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--green);opacity:.7}
+  .block.center .eyebrow::before{display:none}
+  h1{font-size:clamp(42px,7vw,92px);line-height:.99;letter-spacing:-.035em;font-weight:700}
+  h2{font-size:clamp(32px,4.8vw,64px);line-height:1.02;letter-spacing:-.03em;font-weight:700}
+  h1 span,h2 span{color:var(--green)}
+  .block p{margin-top:22px;font-size:clamp(15.5px,1.35vw,18.5px);line-height:1.65;color:#cdd8d2;max-width:46ch}
+  .block.center p{margin-left:auto;margin-right:auto}
+  .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .stat-row{margin-top:26px;display:flex;gap:34px}
+  .stat b{display:block;font-size:24px;letter-spacing:-.02em;color:var(--mint)}
+  .stat i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---------- rail ---------- */
+  #rail{position:fixed;right:clamp(14px,2.2vw,30px);top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:18px;align-items:flex-end}
+  #rail .dot{display:flex;align-items:center;gap:10px;cursor:none;pointer-events:auto}
+  #rail .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;opacity:0;transform:translateX(6px);transition:.3s}
+  #rail .dot:hover .lbl{opacity:1;transform:none}
+  #rail b{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:.35s;display:block}
+  #rail .dot.on b{background:var(--green);box-shadow:0 0 14px rgba(49,224,160,.8);transform:scale(1.35)}
+  #rail .dot.on .lbl{opacity:1;transform:none;color:var(--green)}
+
+  #hint{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:15;text-align:center;transition:opacity .5s}
+  #hint .line{width:1px;height:42px;margin:10px auto 0;background:linear-gradient(var(--green),transparent);animation:hl 1.8s ease-in-out infinite;transform-origin:top}
+  @keyframes hl{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* ---------- loader: frente do camião + faróis a acender ---------- */
+  #pre{position:fixed;inset:0;z-index:60;background:#05070a;display:grid;place-items:center;transition:opacity .8s,visibility .8s;overflow:hidden}
+  #pre.done{opacity:0;visibility:hidden}
+  #pre .in{text-align:center;width:min(1100px,94vw)}
+  #pre .truck{position:relative;width:100%;line-height:0;margin:0 auto;animation:markIn .7s ease-out both}
+  #pre .truck img{width:100%;height:auto;display:block;filter:brightness(.9) contrast(1.05)}
+  #pre .hl{position:absolute;width:15%;height:16%;transform:translate(-50%,-50%);pointer-events:none;opacity:0;border-radius:50%;
+    background:radial-gradient(ellipse at center,rgba(255,250,225,.98) 0%,rgba(255,236,168,.6) 24%,rgba(150,210,255,.14) 48%,transparent 72%);
+    filter:blur(5px);mix-blend-mode:screen}
+  #pre .hl.l{left:33.3%;top:70.7%}
+  #pre .hl.r{left:65.5%;top:70.7%}
+  #pre .beam{position:absolute;top:71%;width:24%;height:58%;pointer-events:none;opacity:0;
+    background:linear-gradient(to bottom,rgba(255,244,205,.42),rgba(255,244,205,.06) 60%,transparent 82%);
+    mix-blend-mode:screen;filter:blur(9px);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
+  #pre .beam.l{left:33.3%;transform:translateX(-50%)}
+  #pre .beam.r{left:65.5%;transform:translateX(-50%)}
+  #pre.lit .hl{animation:hlOn .9s cubic-bezier(.2,.8,.2,1) forwards}
+  #pre.lit .hl.r{animation-delay:.06s}
+  #pre.lit .beam{animation:beamOn 1s .1s ease-out forwards}
+  @keyframes markIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+  @keyframes hlOn{0%{opacity:0;filter:blur(16px)}22%{opacity:1;filter:blur(3px)}38%{opacity:.55}60%{opacity:1}100%{opacity:1;filter:blur(5px)}}
+  @keyframes beamOn{0%{opacity:0}45%{opacity:.85}100%{opacity:.6}}
+  #pre .pct{margin-top:24px;font-size:clamp(38px,6vw,64px);font-weight:700;letter-spacing:-.04em;background:linear-gradient(90deg,var(--green),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+  #pre .bar{width:min(220px,52vw);height:2px;margin:12px auto 0;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden}
+  #pre .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--mint));box-shadow:0 0 12px rgba(49,224,160,.7);transition:width .15s linear}
+  #pre .mono{margin-top:12px}
+  @media (prefers-reduced-motion:reduce){#pre .truck{animation:none}#pre.lit .hl,#pre.lit .beam{animation:none;opacity:1}}
+
+  /* cursor */
+  #cur{position:fixed;z-index:70;width:8px;height:8px;border-radius:50%;background:var(--green);pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen}
+  #ring{position:fixed;z-index:70;width:34px;height:34px;border-radius:50%;border:1px solid rgba(49,224,160,.5);pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
+  body.link #ring{width:54px;height:54px;border-color:var(--orange)}
+  @media(hover:none){#cur,#ring{display:none}body{cursor:auto}.lang button,#rail .dot{cursor:pointer}}
+
+  #foot{position:fixed;bottom:20px;left:clamp(20px,4vw,52px);z-index:15;opacity:0;transition:opacity .6s;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 40px)}
+  #foot.on{opacity:.92}
+  #foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+  #foot a:hover,#foot a:focus-visible{color:var(--green);border-color:var(--green);outline:none}
+  .space{height:640vh}
+
+  /* ---------- TELEMÓVEL ---------- */
+  @media (max-width:640px){
+    nav{padding:12px 14px}
+    .logo{font-size:14px;gap:8px}
+    .logo .f{width:30px;height:30px}
+    .nav-r{gap:8px}
+    .lang{padding:2px}
+    .lang button{padding:5px 8px;font-size:10px;letter-spacing:.06em}
+    .btn.sm{padding:8px 13px;font-size:12px}
+    .block{left:20px;right:20px;width:auto;top:47%}
+    .block.right{left:20px;right:20px}
+    .block.center{left:50%;right:auto;width:92vw;top:42%}
+    .block::before{inset:-34px -24px;border-radius:32px}
+    h1{font-size:34px;line-height:1.03}
+    h2{font-size:27px}
+    .block p{font-size:15px;margin-top:16px;max-width:none}
+    .eyebrow{font-size:11px;margin-bottom:14px;letter-spacing:.18em}
+    .stat-row{gap:20px;margin-top:20px}
+    .stat b{font-size:20px}
+    .cta{justify-content:flex-start;gap:10px}
+    .block.center .cta{justify-content:center}
+    .btn{padding:11px 18px;font-size:14px}
+    #rail{display:none}
+    #hint{bottom:18px}
+    #foot{left:16px;right:16px;bottom:14px;gap:.3em .7em;font-size:9.5px;line-height:1.5}
+  }
+</style>
+</head>
+<body>
+
+<div id="pre"><div class="in">
+  <div class="truck">
+    <img src="assets/loader-truck.png" alt="">
+    <span class="beam l"></span><span class="beam r"></span>
+    <span class="hl l"></span><span class="hl r"></span>
+  </div>
+  <div class="pct" id="pct">0</div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="mono" data-i18n="pre">a arrancar o motor…</div>
+</div></div>
+
+<div id="bgwrap">
+  <canvas id="bg"></canvas>
+</div>
+<div class="scrim"></div>
+<div class="grain"></div>
+
+<nav>
+  <a class="logo" href="#"><span class="f"><svg viewBox="0 0 320 320" width="20" height="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="34"><path d="M62 92l68 68-68 68M130 92l68 68-68 68" stroke="#31e0a0"/><path d="M198 92l68 68-68 68" stroke="#fb923c" opacity=".85"/></svg></span><span>FleetFlow<em>.one</em></span></a>
+  <div class="nav-r">
+    <div class="lang" id="lang">
+      <button data-l="pt">PT</button><button data-l="en">EN</button><button data-l="es">ES</button>
+    </div>
+    <a class="btn ghost sm" href="https://app.fleetflow.systems" data-i18n="nav.login">Entrar</a>
+  </div>
+</nav>
+
+<div class="ui">
+  <div class="block" data-i="0">
+    <div class="eyebrow">FleetFlow</div>
+    <h1 data-i18n="hero.h1">Software que move<br><span>o mundo real.</span></h1>
+    <p data-i18n="hero.p">Para transporte, oficina ou o teu negócio — e sites globais à medida, como este.</p>
+  </div>
+
+  <div class="block right" data-i="1">
+    <div class="eyebrow" data-i18n="b1.eyebrow">01 / Transporte</div>
+    <h2 data-i18n="b1.h2">Um agente de IA<br><span>que gere tudo.</span></h2>
+    <p data-i18n="b1.p">O Orbit distribui cargas, organiza viagens e fala com clientes. Casa, grupo ou bolsa — ele prepara, tu decides.</p>
+    <div class="stat-row">
+      <div class="stat"><b>3</b><i data-i18n="b1.s1">destinos</i></div>
+      <div class="stat"><b>1</b><i data-i18n="b1.s2">decisão</i></div>
+      <div class="stat"><b>24/7</b><i data-i18n="b1.s3">a trabalhar</i></div>
+    </div>
+  </div>
+
+  <div class="block" data-i="2">
+    <div class="eyebrow" data-i18n="b2.eyebrow">02 / Oficina</div>
+    <h2 data-i18n="b2.h2">A oficina inteira,<br><span>num sistema.</span></h2>
+    <p data-i18n="b2.p">Reparações, inspeções, stock e o histórico de cada viatura — tudo organizado, para nada parar.</p>
+  </div>
+
+  <div class="block right" data-i="3">
+    <div class="eyebrow" data-i18n="b3.eyebrow">03 / Software &amp; Web</div>
+    <h2 data-i18n="b3.h2">Sites e software<br><span>à medida.</span></h2>
+    <p data-i18n="b3.p">De restaurantes a lojas e serviços — construímos a plataforma, a app e o site. Como este, do conceito ao lançamento.</p>
+  </div>
+
+  <div class="block center" data-i="4">
+    <div class="eyebrow">FleetFlow</div>
+    <h2 data-i18n="b4.h2">Vamos construir<br><span>o teu?</span></h2>
+    <p data-i18n="b4.p">Conta-nos o que a tua empresa precisa.</p>
+    <div class="cta">
+      <a class="btn" href="https://app.fleetflow.systems" data-i18n="cta.enter">Entrar na plataforma</a>
+      <a class="btn ghost" href="mailto:support@fleetflow.systems" data-i18n="cta.talk">Falar connosco</a>
+    </div>
+  </div>
+</div>
+
+<div id="rail"></div>
+<div id="hint"><span class="mono" data-i18n="hint">scroll</span><div class="line"></div></div>
+<div id="foot" class="mono"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></div>
+<div id="cur"></div><div id="ring"></div>
+
+<div class="space"></div>
+
+<script>
+/* ---------------- i18n ---------------- */
+const I18N={
+  pt:{
+    title:"FleetFlow — Software que move o mundo real",
+    desc:"Software para transporte, oficina e qualquer negócio — e sites globais à medida.",
+    "nav.login":"Entrar", pre:"a arrancar o motor…", hint:"scroll",
+    "hero.h1":"Software que move<br><span>o mundo real.</span>",
+    "hero.p":"Para transporte, oficina ou o teu negócio — e sites globais à medida, como este.",
+    "b1.eyebrow":"01 / Transporte",
+    "b1.h2":"Um agente de IA<br><span>que gere tudo.</span>",
+    "b1.p":"O Orbit distribui cargas, organiza viagens e fala com clientes. Casa, grupo ou bolsa — ele prepara, tu decides.",
+    "b1.s1":"destinos","b1.s2":"decisão","b1.s3":"a trabalhar",
+    "b2.eyebrow":"02 / Oficina",
+    "b2.h2":"A oficina inteira,<br><span>num sistema.</span>",
+    "b2.p":"Reparações, inspeções, stock e o histórico de cada viatura — tudo organizado, para nada parar.",
+    "b3.eyebrow":"03 / Software & Web",
+    "b3.h2":"Sites e software<br><span>à medida.</span>",
+    "b3.p":"De restaurantes a lojas e serviços — construímos a plataforma, a app e o site. Como este, do conceito ao lançamento.",
+    "b4.h2":"Vamos construir<br><span>o teu?</span>",
+    "b4.p":"Conta-nos o que a tua empresa precisa.",
+    "cta.enter":"Entrar na plataforma","cta.talk":"Falar connosco",
+    "foot.capital":"Capital social","foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies",
+    rail:["Mundo","Transporte","Oficina","Software","Começar"]
+  },
+  en:{
+    title:"FleetFlow — Software that moves the real world",
+    desc:"Software for transport, workshops and any business — and custom global websites.",
+    "nav.login":"Sign in", pre:"starting the engine…", hint:"scroll",
+    "hero.h1":"Software that moves<br><span>the real world.</span>",
+    "hero.p":"For transport, workshops or your business — and custom global websites, like this one.",
+    "b1.eyebrow":"01 / Transport",
+    "b1.h2":"An AI agent<br><span>that runs it all.</span>",
+    "b1.p":"Orbit assigns loads, plans trips and talks to customers. Own fleet, group or exchange — it prepares, you decide.",
+    "b1.s1":"destinations","b1.s2":"decision","b1.s3":"always on",
+    "b2.eyebrow":"02 / Workshop",
+    "b2.h2":"The whole workshop,<br><span>in one system.</span>",
+    "b2.p":"Repair orders, inspections, stock and every vehicle's history — all organized, so nothing stops.",
+    "b3.eyebrow":"03 / Software & Web",
+    "b3.h2":"Custom software<br><span>and websites.</span>",
+    "b3.p":"From restaurants to shops and services — we build the platform, the app and the site. Like this one, concept to launch.",
+    "b4.h2":"Shall we build<br><span>yours?</span>",
+    "b4.p":"Tell us what your company needs.",
+    "cta.enter":"Open the platform","cta.talk":"Talk to us",
+    "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
+    rail:["World","Transport","Workshop","Software","Start"]
+  },
+  es:{
+    title:"FleetFlow — Software que mueve el mundo real",
+    desc:"Software para transporte, taller y cualquier negocio — y webs globales a medida.",
+    "nav.login":"Acceder", pre:"arrancando el motor…", hint:"desliza",
+    "hero.h1":"Software que mueve<br><span>el mundo real.</span>",
+    "hero.p":"Para transporte, taller o tu negocio — y webs globales a medida, como esta.",
+    "b1.eyebrow":"01 / Transporte",
+    "b1.h2":"Un agente de IA<br><span>que lo gestiona todo.</span>",
+    "b1.p":"Orbit reparte cargas, organiza viajes y habla con clientes. Casa, grupo o bolsa — él prepara, tú decides.",
+    "b1.s1":"destinos","b1.s2":"decisión","b1.s3":"siempre activo",
+    "b2.eyebrow":"02 / Taller",
+    "b2.h2":"Todo el taller,<br><span>en un sistema.</span>",
+    "b2.p":"Órdenes de reparación, inspecciones, stock y el historial de cada vehículo — todo organizado, para que nada pare.",
+    "b3.eyebrow":"03 / Software & Web",
+    "b3.h2":"Software y webs<br><span>a medida.</span>",
+    "b3.p":"De restaurantes a tiendas y servicios — construimos la plataforma, la app y la web. Como esta, del concepto al lanzamiento.",
+    "b4.h2":"¿Construimos<br><span>el tuyo?</span>",
+    "b4.p":"Dinos qué necesita tu empresa.",
+    "cta.enter":"Abrir la plataforma","cta.talk":"Hablar con nosotros",
+    "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
+    rail:["Mundo","Transporte","Taller","Software","Empezar"]
+  }
+};
+
+const blocks=[...document.querySelectorAll(".block")];
+const rail=document.getElementById("rail");
+// centros de scroll de cada bloco, alinhados às cenas do vídeo (espaço→camião→restaurante→escritório)
+const CENTERS=[0.07, 0.50, 0.63, 0.77, 0.93];
+I18N.pt.rail.forEach((lb,i)=>{ const d=document.createElement("div"); d.className="dot";
+  d.innerHTML=`<span class="lbl">${lb}</span><b></b>`;
+  d.addEventListener("click",()=>scrollTo({top:(document.body.scrollHeight-innerHeight)*CENTERS[i],behavior:"smooth"}));
+  rail.appendChild(d); });
+const dots=[...rail.children];
+
+let LANG="pt";
+function setLang(l){
+  if(!I18N[l]) l="pt";
+  LANG=l; try{localStorage.setItem("ff_lang",l)}catch(e){}
+  document.documentElement.lang=l; document.title=I18N[l].title;
+  const md=document.querySelector('meta[name="description"]'); if(md) md.content=I18N[l].desc;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const v=I18N[l][el.dataset.i18n]; if(v!==undefined) el.innerHTML=v; });
+  dots.forEach((d,i)=>d.querySelector(".lbl").textContent=I18N[l].rail[i]);
+  document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+}
+document.querySelectorAll("#lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+let saved="pt"; try{saved=localStorage.getItem("ff_lang")||(navigator.language||"pt").slice(0,2)}catch(e){}
+setLang(saved);
+
+/* ---------------- scroll → filme (sequência de frames no canvas) ---------------- */
+/* Técnica estilo Apple: desenhar frames num canvas conforme o scroll — funciona em PC E telemóvel */
+const cv=document.getElementById("bg"), ctx=cv.getContext("2d");
+const FRAMES=180, PAD=3;
+const imgs=new Array(FRAMES); let fLoaded=0, firstReady=false;
+const framePath=i=>"assets/frames/f"+String(i+1).padStart(PAD,"0")+".jpg";
+for(let i=0;i<FRAMES;i++){ const im=new Image(); im.decoding="async";
+  im.onload=()=>{ fLoaded++; if(i===0){ firstReady=true; sizeCanvas(); } };
+  im.onerror=()=>{ fLoaded++; }; im.src=framePath(i); imgs[i]=im; }
+
+let curFrame=-1;
+function sizeCanvas(){ const dpr=Math.min(devicePixelRatio||1,2);
+  const w=cv.clientWidth||innerWidth, h=cv.clientHeight||innerHeight; if(!w||!h) return;
+  cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); curFrame=-1; drawFrame(targetFrame()); }
+function drawCover(im){ if(!im||!im.naturalWidth) return; const cW=cv.width,cH=cv.height,iw=im.naturalWidth,ih=im.naturalHeight,
+  s=Math.max(cW/iw,cH/ih),w=iw*s,h=ih*s; ctx.drawImage(im,(cW-w)/2,(cH-h)/2,w,h); }
+function nearest(i){ if(imgs[i]&&imgs[i].complete&&imgs[i].naturalWidth) return imgs[i];
+  for(let d=1;d<FRAMES;d++){ const a=i-d,b=i+d;
+    if(a>=0&&imgs[a]&&imgs[a].complete&&imgs[a].naturalWidth) return imgs[a];
+    if(b<FRAMES&&imgs[b]&&imgs[b].complete&&imgs[b].naturalWidth) return imgs[b]; } return null; }
+function drawFrame(i){ const im=nearest(i); if(im){ curFrame=i; drawCover(im); } }
+addEventListener("resize", sizeCanvas);
+
+const hint=document.getElementById("hint"), foot=document.getElementById("foot");
+let scrollN=0, curFf=0;
+function targetFrame(){ return Math.round(scrollN*(FRAMES-1)); }
+addEventListener("scroll",()=>{ const h=document.body.scrollHeight-innerHeight; scrollN=h>0?Math.min(1,Math.max(0,scrollY/h)):0; }, {passive:true});
+
+function frame(){
+  requestAnimationFrame(frame);
+  if(!cv.width && (cv.clientWidth||innerWidth)) sizeCanvas();   // dimensões tardias
+  curFf += (targetFrame()-curFf)*0.2;           // easing suave do scrub
+  const fi=Math.round(curFf);
+  if(fi!==curFrame) drawFrame(fi);
+  for(const b of blocks){
+    const i=+b.dataset.i, c=CENTERS[i];
+    const a=Math.max(0,Math.min(1,1-Math.abs(scrollN-c)*8));
+    const dy=(scrollN-c)*-520;
+    b.style.opacity=a;
+    b.style.transform = b.classList.contains("center") ? `translate(-50%, calc(-50% + ${dy}px))` : `translateY(calc(-50% + ${dy}px))`;
+    b.style.pointerEvents=(i===4 && a>.5)?"auto":"none";
+  }
+  let act=0,best=9; CENTERS.forEach((c,i)=>{const d=Math.abs(scrollN-c); if(d<best){best=d;act=i;}});
+  dots.forEach((d,i)=>d.classList.toggle("on",i===act));
+  hint.style.opacity=scrollN>.02?0:1;
+  foot.classList.toggle("on",scrollN>.88);
+}
+frame();
+addEventListener("resize",()=>{});
+
+/* ---------------- cursor ---------------- */
+const cur=document.getElementById("cur"), ring=document.getElementById("ring");
+let rx=innerWidth/2, ry=innerHeight/2, cx=rx, cy=ry;
+addEventListener("mousemove",e=>{ cx=e.clientX; cy=e.clientY; cur.style.left=cx+"px"; cur.style.top=cy+"px"; });
+(function ringLoop(){ requestAnimationFrame(ringLoop); rx+=(cx-rx)*.16; ry+=(cy-ry)*.16; ring.style.left=rx+"px"; ring.style.top=ry+"px"; })();
+document.querySelectorAll("a,.dot,.lang button").forEach(el=>{
+  el.addEventListener("mouseenter",()=>document.body.classList.add("link"));
+  el.addEventListener("mouseleave",()=>document.body.classList.remove("link"));
+});
+
+/* ---------------- loader ---------------- */
+const pre=document.getElementById("pre"), pct=document.getElementById("pct"),
+      barfill=document.getElementById("barfill");
+let pv=0; const start=performance.now();
+(function preLoop(){
+  const frac=fLoaded/FRAMES;
+  const target = firstReady ? (12 + frac*88) : 6;
+  pv += (target-pv)*.08;
+  const enough = firstReady && (fLoaded>=FRAMES*0.6 || performance.now()-start>7000);
+  if(enough) pv=Math.max(pv,99.6);
+  pct.textContent=Math.round(Math.min(100,pv));
+  if(barfill) barfill.style.width=Math.min(100,pv)+"%";
+  if(pv>99.2 && performance.now()-start>1600){
+    pct.textContent=100; if(barfill) barfill.style.width="100%";
+    pre.classList.add("lit");                       // faróis acendem
+    setTimeout(()=>pre.classList.add("done"),1150);
+    return;
+  }
+  requestAnimationFrame(preLoop);
+})();
+
+window.__realok=true;
+</script>
+</body>
+</html>
