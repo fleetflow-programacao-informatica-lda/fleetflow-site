@@ -8,6 +8,7 @@
   <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="tunel.css" />
+  <link rel="stylesheet" href="pedido.css" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FleetFlow" />
   <meta property="og:title" content="FleetFlow — Software que move o mundo real" />
@@ -179,7 +180,7 @@
       </div>
       <div class="trabalho__foot">
         <p class="trabalho__text" data-i18n="work.text">Avatares que falam pela tua empresa, sites que se mexem e software com agentes de IA — feitos à medida.</p>
-        <a class="btn btn--glow" href="mailto:fleetflow.one@gmail.com?subject=Or%C3%A7amento%20%E2%80%94%20avatares%2C%20sites%20e%20software"><span data-i18n="work.cta">Pedir orçamento</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
+        <a class="btn btn--glow" href="mailto:fleetflow.one@gmail.com?subject=Or%C3%A7amento%20%E2%80%94%20avatares%2C%20sites%20e%20software" data-pedido=""><span data-i18n="work.cta">Pedir orçamento</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
       </div>
     </section>
   </main>
@@ -190,7 +191,47 @@
   <script src="js/steps.js"></script>
   <script type="module" src="js/tunel.js"></script>
   <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
+
+  <!-- 22/11: "Pedir orçamento" — o pedido vai para a plataforma (POST /api/public/pedido-orcamento) e chega ao email da FleetFlow (js/pedido.js). -->
+  <dialog class="pedido" id="pedido" aria-labelledby="pedido-title">
+    <form class="pedido__form" novalidate>
+      <div class="pedido__top">
+        <div>
+          <h2 class="pedido__title" id="pedido-title" data-i18n="req.title">Pedir orçamento</h2>
+          <p class="pedido__lead" data-i18n="req.lead">Diz-nos o que precisas — respondemos por email.</p>
+        </div>
+        <button type="button" class="pedido__close" data-i18n-aria="req.close" aria-label="Fechar">×</button>
+      </div>
+      <fieldset>
+        <legend data-i18n="req.what">O que queres?</legend>
+        <div class="pedido__opts">
+            <label class="pedido__opt"><input type="radio" name="service" value="site" checked required><strong data-i18n="req.s.site"></strong><span data-i18n="req.s.site.d"></span></label>
+            <label class="pedido__opt"><input type="radio" name="service" value="avatar" required><strong data-i18n="req.s.avatar"></strong><span data-i18n="req.s.avatar.d"></span></label>
+            <label class="pedido__opt"><input type="radio" name="service" value="agent" required><strong data-i18n="req.s.agent"></strong><span data-i18n="req.s.agent.d"></span></label>
+            <label class="pedido__opt"><input type="radio" name="service" value="software" required><strong data-i18n="req.s.software"></strong><span data-i18n="req.s.software.d"></span></label>
+            <label class="pedido__opt pedido__opt--wide"><input type="radio" name="service" value="platform" required><strong data-i18n="req.s.platform"></strong><span data-i18n="req.s.platform.d"></span></label>
+        </div>
+      </fieldset>
+      <div class="pedido__grid">
+        <label class="pedido__field"><span class="pedido__label" data-i18n="req.name">Nome *</span><input type="text" name="name" autocomplete="name" required minlength="2" maxlength="120"></label>
+        <label class="pedido__field"><span class="pedido__label" data-i18n="req.company">Empresa</span><input type="text" name="company" autocomplete="organization" maxlength="160"></label>
+        <label class="pedido__field"><span class="pedido__label" data-i18n="req.email">Email *</span><input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+        <label class="pedido__field"><span class="pedido__label" data-i18n="req.phone">Telefone</span><input type="tel" name="phone" autocomplete="tel" maxlength="40"></label>
+        <label class="pedido__field pedido__field--wide" data-only="platform" hidden><span class="pedido__label" data-i18n="req.fleet">Quantos camiões tem a frota?</span><input type="text" name="fleetSize" inputmode="numeric" maxlength="20"></label>
+        <label class="pedido__field pedido__field--wide"><span class="pedido__label" data-i18n="req.message">Mensagem</span><textarea name="message" maxlength="2000"></textarea></label>
+        <label class="pedido__trap" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <p class="pedido__privacy" data-i18n="req.privacy">Usamos estes dados só para responder ao teu pedido.</p>
+      <div class="pedido__actions">
+        <button type="submit" class="btn btn--glow"><span data-i18n="req.send">Enviar pedido</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></button>
+        <p class="pedido__msg pedido__msg--ok" data-msg="ok" role="status" hidden data-i18n="req.ok">Pedido enviado. Respondemos em breve.</p>
+        <p class="pedido__msg pedido__msg--err" data-msg="invalid" role="alert" hidden data-i18n="req.invalid">Confirma o nome e o email.</p>
+        <p class="pedido__msg pedido__msg--err" data-msg="err" role="alert" hidden><span data-i18n="req.err">Não conseguimos enviar agora.</span> <a href="mailto:support@fleetflow.systems" data-i18n="req.errLink">Envia-nos por email — já vai preenchido.</a></p>
+      </div>
+    </form>
+  </dialog>
   <script src="js/snap.js"></script>
+  <script src="js/pedido.js"></script>
   <script>
   /* i18n FleetFlow — PT/EN/ES, ligado ao seletor existente (nav.js só troca o label) */
   (function(){
@@ -211,6 +252,7 @@
         "work.w1":"Avatares","work.w2":"Sites","work.w3":"Software","work.w4":"Agentes",
         "work.text":"Avatares que falam pela tua empresa, sites que se mexem e software com agentes de IA — feitos à medida.","work.cta":"Pedir orçamento",
         "work.aria":"Túnel de imagens do nosso trabalho. Arrasta, desliza para o lado ou usa as setas.","work.play":"Continuar animação","work.pause":"Pausar animação","work.imageOf":"Imagem {i} de {n}",
+        "req.title":"Pedir orçamento","req.lead":"Diz-nos o que precisas — respondemos por email.","req.close":"Fechar","req.what":"O que queres?","req.s.site":"Site","req.s.site.d":"Site ou landing page com movimento","req.s.avatar":"Avatar","req.s.avatar.d":"Um avatar que fala pela tua empresa","req.s.agent":"Agente de IA","req.s.agent.d":"Um agente que trabalha na tua operação","req.s.software":"Software à medida","req.s.software.d":"Uma ferramenta feita para o teu negócio","req.s.platform":"Plataforma FleetFlow com o Orbit","req.s.platform.d":"Para transportes: planeador, frota, motoristas e o agente Orbit","req.name":"Nome *","req.company":"Empresa","req.email":"Email *","req.phone":"Telefone","req.fleet":"Quantos camiões tem a frota?","req.message":"Mensagem","req.privacy":"Usamos estes dados só para responder ao teu pedido. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacidade</a>","req.send":"Enviar pedido","req.ok":"Pedido enviado. Respondemos em breve.","req.invalid":"Confirma o nome e o email.","req.err":"Não conseguimos enviar agora.","req.errLink":"Envia-nos por email — já vai preenchido.",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform",
         "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
@@ -228,6 +270,7 @@
         "work.w1":"Avatars","work.w2":"Websites","work.w3":"Software","work.w4":"Agents",
         "work.text":"Avatars that speak for your company, websites that move and software with AI agents — made to measure.","work.cta":"Get a quote",
         "work.aria":"Tunnel of images of our work. Drag, scroll sideways or use the arrow keys.","work.play":"Play animation","work.pause":"Pause animation","work.imageOf":"Image {i} of {n}",
+        "req.title":"Get a quote","req.lead":"Tell us what you need — we will reply by email.","req.close":"Close","req.what":"What do you need?","req.s.site":"Website","req.s.site.d":"A website or landing page with motion","req.s.avatar":"Avatar","req.s.avatar.d":"An avatar that speaks for your company","req.s.agent":"AI agent","req.s.agent.d":"An agent that works inside your operation","req.s.software":"Custom software","req.s.software.d":"A tool built for your business","req.s.platform":"FleetFlow platform with Orbit","req.s.platform.d":"For transport: planner, fleet, drivers and the Orbit agent","req.name":"Name *","req.company":"Company","req.email":"Email *","req.phone":"Phone","req.fleet":"How many trucks in the fleet?","req.message":"Message","req.privacy":"We only use this data to answer your request. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacy</a>","req.send":"Send request","req.ok":"Request sent. We will get back to you soon.","req.invalid":"Please check your name and email.","req.err":"We could not send it right now.","req.errLink":"Email us instead — it is already filled in.",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma",
         "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
@@ -245,6 +288,7 @@
         "work.w1":"Avatares","work.w2":"Webs","work.w3":"Software","work.w4":"Agentes",
         "work.text":"Avatares que hablan por tu empresa, webs que se mueven y software con agentes de IA — hechos a medida.","work.cta":"Pedir presupuesto",
         "work.aria":"Túnel de imágenes de nuestro trabajo. Arrastra, desliza hacia el lado o usa las flechas.","work.play":"Reanudar animación","work.pause":"Pausar animación","work.imageOf":"Imagen {i} de {n}",
+        "req.title":"Pedir presupuesto","req.lead":"Cuéntanos qué necesitas — te respondemos por email.","req.close":"Cerrar","req.what":"¿Qué necesitas?","req.s.site":"Web","req.s.site.d":"Una web o landing page con movimiento","req.s.avatar":"Avatar","req.s.avatar.d":"Un avatar que habla por tu empresa","req.s.agent":"Agente de IA","req.s.agent.d":"Un agente que trabaja en tu operación","req.s.software":"Software a medida","req.s.software.d":"Una herramienta hecha para tu negocio","req.s.platform":"Plataforma FleetFlow con Orbit","req.s.platform.d":"Para transporte: planificador, flota, conductores y el agente Orbit","req.name":"Nombre *","req.company":"Empresa","req.email":"Email *","req.phone":"Teléfono","req.fleet":"¿Cuántos camiones tiene la flota?","req.message":"Mensaje","req.privacy":"Usamos estos datos solo para responder a tu solicitud. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacidad</a>","req.send":"Enviar solicitud","req.ok":"Solicitud enviada. Te respondemos pronto.","req.invalid":"Revisa el nombre y el email.","req.err":"No hemos podido enviarla ahora.","req.errLink":"Escríbenos por email — ya va rellenado.",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };
     const label = document.querySelector('.nav__lang-label');
@@ -255,6 +299,7 @@
       document.title = d._title;
       const md = document.querySelector('meta[name=description]'); if(md) md.content = d._desc;
       document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=d[el.getAttribute('data-i18n')]; if(v!==undefined) el.innerHTML=v; });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el=>{ const v=d[el.getAttribute('data-i18n-aria')]; if(v!==undefined) el.setAttribute('aria-label', v); });
       const tf=document.querySelector('#trabalho .tf-root');
       if(tf){ tf.setAttribute('aria-label',d['work.aria']); tf.dataset.tfPlay=d['work.play']; tf.dataset.tfPause=d['work.pause']; tf.dataset.tfImageOf=d['work.imageOf']; const tg=tf.querySelector('.tf-toggle'); if(tg) tg.setAttribute('aria-label', tg.getAttribute('aria-pressed')==='true'?d['work.play']:d['work.pause']); }
       if(label) label.textContent = l.toUpperCase();
