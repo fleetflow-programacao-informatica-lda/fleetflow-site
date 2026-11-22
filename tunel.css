@@ -1,0 +1,27 @@
+/* Túnel do trabalho (21/11) — CSS do Tunnel Fold Slider da HorizonX (HorizonX Tools License), sem alterações de fundo. */
+.tf-host{width:100%;height:100%}
+.tf-frame{display:grid;place-items:center;width:100%;height:100%;overflow:hidden;background:transparent}
+.tf-root{--tf-pad:clamp(16px,3cqw,40px);--tf-band:clamp(36px,9cqh,84px);--tf-band-top:0px;--tf-band-bottom:0px;position:relative;width:min(100%,var(--tf-width));height:min(100%,var(--tf-height));background:var(--tf-bg);color:var(--tf-ink);overflow:hidden;outline:none;container-type:size;touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.tf-root[data-tf-words]{--tf-band-top:var(--tf-band);--tf-band-bottom:var(--tf-band)}
+.tf-root[data-tf-words][data-tf-corner-control]{--tf-band-bottom:max(var(--tf-band),136px)}
+.tf-root[data-draggable]{cursor:grab}
+.tf-root[data-dragging]{cursor:grabbing}
+.tf-root:focus-visible::after{content:'';position:absolute;inset:0;z-index:3;box-shadow:inset 0 0 0 2px var(--tf-ink);pointer-events:none}
+.tf-gl{position:absolute;left:0;right:0;top:var(--tf-band-top);bottom:var(--tf-band-bottom);z-index:1;overflow:hidden;pointer-events:none}
+.tf-canvas{display:block;width:100%;height:100%}
+.tf-word{position:absolute;z-index:2;max-width:calc(50% - var(--tf-pad) * 1.5);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 clamp(11px,1.15cqw,15px)/1 var(--font, Geist),-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--tf-ink);pointer-events:none}
+.tf-tl,.tf-tr{top:calc(var(--tf-band-top) / 2);transform:translateY(-50%)}
+.tf-bl,.tf-br{bottom:calc(var(--tf-band) / 2);transform:translateY(50%)}
+.tf-root[data-tf-corner-control] :is(.tf-bl,.tf-br){bottom:calc(var(--tf-band-bottom) - var(--tf-band) / 2)}
+.tf-tl,.tf-bl{left:var(--tf-pad)}
+.tf-tr,.tf-br{right:var(--tf-pad);text-align:right}
+.tf-root[data-tf-corner-control] .tf-tr{right:max(var(--tf-pad),68px)}
+.tf-word[hidden],.tf-toggle[hidden]{display:none}
+.tf-still{display:none;position:absolute;left:50%;top:50%;z-index:1;width:min(38cqh,38cqw);aspect-ratio:1;object-fit:cover;border-radius:6px;transform:translate(-50%,-50%)}
+.tf-root[data-tf-fallback] .tf-still{display:block}
+.tf-toggle{position:absolute;left:16px;top:16px;z-index:3;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--tf-bg);color:var(--tf-ink);cursor:pointer;clip-path:inset(50%);opacity:0}
+.tf-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.tf-toggle .tf-play,.tf-toggle[aria-pressed="true"] .tf-pause{display:none}
+.tf-toggle[aria-pressed="true"] .tf-play{display:block}
+.tf-toggle:focus-visible{clip-path:none;opacity:1;outline:2px solid var(--tf-ink);outline-offset:2px}
+.tf-sr,.tf-live{position:absolute;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}

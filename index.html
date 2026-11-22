@@ -7,6 +7,7 @@
   <meta name="description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." />
   <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tunel.css" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FleetFlow" />
   <meta property="og:title" content="FleetFlow — Software que move o mundo real" />
@@ -26,6 +27,16 @@
     #ff-foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22);pointer-events:auto}
     #ff-foot a:hover{color:var(--primary);border-color:var(--primary)}
     @media (max-width:760px){#ff-foot{font-size:9.5px;bottom:12px;left:12px;right:12px}}
+    /* Cabe num ecrã (a página encaixa por cenas: nada pode ficar abaixo do fundo); o rodapé fixo fica livre em baixo. */
+    .trabalho{position:relative;z-index:5;display:flex;flex-direction:column;gap:clamp(10px,2vh,22px);height:100vh;height:100dvh;min-height:560px;padding:clamp(76px,10vh,104px) 0 clamp(64px,8vh,76px);background:#000;box-sizing:border-box}
+    .trabalho__head,.trabalho__foot{flex:none;padding:0 clamp(16px,4vw,40px);text-align:center}
+    .trabalho__head .hold__eyebrow{margin-bottom:8px}
+    .trabalho__title{font-size:clamp(26px,3.4vw,44px)}
+    .trabalho__title span{display:block}
+    .trabalho__frame{flex:1 1 auto;min-height:0;height:auto}
+    .trabalho__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 22px}
+    .trabalho__text{margin:0;max-width:30em;color:var(--text-2,#a3a3a3);font-size:14px;line-height:1.5}
+    @media (max-width:760px){.trabalho{padding-bottom:96px}.trabalho__text{font-size:13px}}
   </style>
 </head>
 <body>
@@ -144,12 +155,40 @@
         </div>
       </div>
     </section>
+    <!-- 22/11: o que fazemos, num túnel de cartões (js/tunel.js — Tunnel Fold Slider da HorizonX, three.js do próprio site). -->
+    <section class="trabalho" id="trabalho" aria-labelledby="trabalho-title" data-snap>
+      <div class="trabalho__head">
+        <p class="hold__eyebrow" data-i18n="work.eyebrow">O que fazemos</p>
+        <h2 class="hold__title trabalho__title" id="trabalho-title">
+          <span class="hold__title-muted" data-i18n="work.title_muted">Avatares, sites e software</span>
+          <span data-i18n="work.title_strong">para pessoas e empresas.</span>
+        </h2>
+      </div>
+      <div class="tf-frame trabalho__frame" style="--tf-width:100%;--tf-height:100%;--tf-bg:#000000;--tf-ink:#e6e6e6;">
+        <div class="tf-root" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Túnel de imagens do nosso trabalho. Arrasta, desliza para o lado ou usa as setas." data-tf-words data-draggable data-tf-play="Continuar animação" data-tf-pause="Pausar animação" data-tf-image-of="Imagem {i} de {n}">
+          <div class="tf-gl" aria-hidden="true"></div>
+          <img class="tf-still" src="assets/trabalho/02-avatar-rececao.webp" alt="" draggable="false" decoding="async" loading="lazy">
+          <span class="tf-word tf-tl" aria-hidden="true" data-i18n="work.w1">Avatares</span>
+          <span class="tf-word tf-tr" aria-hidden="true" data-i18n="work.w2">Sites</span>
+          <span class="tf-word tf-bl" aria-hidden="true" data-i18n="work.w3">Software</span>
+          <span class="tf-word tf-br" aria-hidden="true" data-i18n="work.w4">Agentes</span>
+          <button type="button" class="tf-toggle" aria-pressed="false" aria-label="Pausar animação"><svg class="tf-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9"/></svg><svg class="tf-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5l8 4.5-8 4.5z"/></svg></button>
+          <ol class="tf-sr"><li>1 / 21</li><li>2 / 21</li><li>3 / 21</li><li>4 / 21</li><li>5 / 21</li><li>6 / 21</li><li>7 / 21</li><li>8 / 21</li><li>9 / 21</li><li>10 / 21</li><li>11 / 21</li><li>12 / 21</li><li>13 / 21</li><li>14 / 21</li><li>15 / 21</li><li>16 / 21</li><li>17 / 21</li><li>18 / 21</li><li>19 / 21</li><li>20 / 21</li><li>21 / 21</li></ol>
+          <p class="tf-live" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="trabalho__foot">
+        <p class="trabalho__text" data-i18n="work.text">Avatares que falam pela tua empresa, sites que se mexem e software com agentes de IA — feitos à medida.</p>
+        <a class="btn btn--glow" href="mailto:fleetflow.one@gmail.com?subject=Or%C3%A7amento%20%E2%80%94%20avatares%2C%20sites%20e%20software"><span data-i18n="work.cta">Pedir orçamento</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
+      </div>
+    </section>
   </main>
 
   <script src="js/nav.js"></script>
   <script src="js/nav-dust.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/steps.js"></script>
+  <script type="module" src="js/tunel.js"></script>
   <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
   <script src="js/snap.js"></script>
   <script>
@@ -168,6 +207,10 @@
         "hold.t1":"Cada carga, documento e decisão vira contexto — o Orbit entende a tua operação como a tua equipa entende.",
         "hold.t2":"Pesa cada sinal contra os teus objetivos, compara as opções e mostra o porquê antes de mexer em nada.",
         "hold.t3":"Leva cada decisão até ao fim em tempo real, nas ferramentas que já usas, e aprende com cada resultado.",
+        "work.eyebrow":"O que fazemos","work.title_muted":"Avatares, sites e software","work.title_strong":"para pessoas e empresas.",
+        "work.w1":"Avatares","work.w2":"Sites","work.w3":"Software","work.w4":"Agentes",
+        "work.text":"Avatares que falam pela tua empresa, sites que se mexem e software com agentes de IA — feitos à medida.","work.cta":"Pedir orçamento",
+        "work.aria":"Túnel de imagens do nosso trabalho. Arrasta, desliza para o lado ou usa as setas.","work.play":"Continuar animação","work.pause":"Pausar animação","work.imageOf":"Imagem {i} de {n}",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform",
         "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
@@ -181,6 +224,10 @@
         "hold.t1":"Every load, document and decision becomes context — Orbit understands your operation the way your team does.",
         "hold.t2":"It weighs every signal against your goals, compares the options and shows its reasoning before anything moves.",
         "hold.t3":"It carries each decision through in real time, across the tools you already use, and learns from every outcome.",
+        "work.eyebrow":"What we do","work.title_muted":"Avatars, websites and software","work.title_strong":"for people and companies.",
+        "work.w1":"Avatars","work.w2":"Websites","work.w3":"Software","work.w4":"Agents",
+        "work.text":"Avatars that speak for your company, websites that move and software with AI agents — made to measure.","work.cta":"Get a quote",
+        "work.aria":"Tunnel of images of our work. Drag, scroll sideways or use the arrow keys.","work.play":"Play animation","work.pause":"Pause animation","work.imageOf":"Image {i} of {n}",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma",
         "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
@@ -194,6 +241,10 @@
         "hold.t1":"Cada carga, documento y decisión se vuelve contexto — Orbit entiende tu operación como tu equipo.",
         "hold.t2":"Pondera cada señal frente a tus objetivos, compara las opciones y muestra su razonamiento antes de mover nada.",
         "hold.t3":"Lleva cada decisión hasta el final en tiempo real, en las herramientas que ya usas, y aprende de cada resultado.",
+        "work.eyebrow":"Lo que hacemos","work.title_muted":"Avatares, webs y software","work.title_strong":"para personas y empresas.",
+        "work.w1":"Avatares","work.w2":"Webs","work.w3":"Software","work.w4":"Agentes",
+        "work.text":"Avatares que hablan por tu empresa, webs que se mueven y software con agentes de IA — hechos a medida.","work.cta":"Pedir presupuesto",
+        "work.aria":"Túnel de imágenes de nuestro trabajo. Arrastra, desliza hacia el lado o usa las flechas.","work.play":"Reanudar animación","work.pause":"Pausar animación","work.imageOf":"Imagen {i} de {n}",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };
     const label = document.querySelector('.nav__lang-label');
@@ -204,6 +255,8 @@
       document.title = d._title;
       const md = document.querySelector('meta[name=description]'); if(md) md.content = d._desc;
       document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=d[el.getAttribute('data-i18n')]; if(v!==undefined) el.innerHTML=v; });
+      const tf=document.querySelector('#trabalho .tf-root');
+      if(tf){ tf.setAttribute('aria-label',d['work.aria']); tf.dataset.tfPlay=d['work.play']; tf.dataset.tfPause=d['work.pause']; tf.dataset.tfImageOf=d['work.imageOf']; const tg=tf.querySelector('.tf-toggle'); if(tg) tg.setAttribute('aria-label', tg.getAttribute('aria-pressed')==='true'?d['work.play']:d['work.pause']); }
       if(label) label.textContent = l.toUpperCase();
       document.querySelectorAll('#menu-lang [data-lang]').forEach(b=>b.setAttribute('aria-checked', String(b.dataset.lang===l)));
       try{ localStorage.setItem('ff_lang', l); }catch(e){}
