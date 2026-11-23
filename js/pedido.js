@@ -39,6 +39,7 @@
     showMsg(null);
     if (!dialog.open) dialog.showModal();
   }
+  window.FFPedido.open = open; // o assistente abre a janela já com o serviço escolhido
 
   document.querySelectorAll('[data-pedido]').forEach((el) =>
     el.addEventListener('click', (e) => {

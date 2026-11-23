@@ -44,16 +44,40 @@
   const scratch = document.createElement('canvas');
   const sctx = scratch.getContext('2d', { willReadFrequently: true });
 
-  // Icons are drawn from images of their SVG, prepared once.
+  // Icons are drawn from images of their SVG, prepared once per theme.
   const icons = new Map();
-  for (const svg of nav.querySelectorAll('svg')) {
-    const clone = svg.cloneNode(true);
-    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    clone.setAttribute('color', getComputedStyle(svg).color);
-    const img = new Image();
-    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(clone))}`;
-    icons.set(svg, img);
+  function makeIcons() {
+    for (const svg of nav.querySelectorAll('svg')) {
+      const clone = svg.cloneNode(true);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      clone.setAttribute('color', getComputedStyle(svg).color);
+      const img = new Image();
+      img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(clone))}`;
+      icons.set(svg, img);
+    }
   }
+  makeIcons();
+
+  // Theme (styles.css, switched by js/tema.js): on the light page the ink is
+  // dark, so "lit" means dark pixels and the dust is drawn in dark tones.
+  let light = true;
+  let dustRgb = '236,244,255';
+  let accentRgb = '141,184,255';
+  function readTheme() {
+    const cs = getComputedStyle(document.documentElement);
+    const rgb = (name, fallback) => {
+      const v = cs.getPropertyValue(name).match(/[\d.]+/g);
+      return v && v.length >= 3 ? v.slice(0, 3).join(',') : fallback;
+    };
+    light = document.documentElement.getAttribute('data-theme') !== 'dark';
+    dustRgb = rgb('--dust-rgb', '236,244,255');
+    accentRgb = rgb('--dust-accent-rgb', '141,184,255');
+  }
+  readTheme();
+  new MutationObserver(() => {
+    readTheme();
+    makeIcons();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   let dpr = 1;
   let width = 0;
@@ -164,7 +188,9 @@
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const a = (data[i + 3] / 255) * (Math.max(data[i], data[i + 1], data[i + 2]) / 255);
+        const a = light
+          ? (data[i + 3] / 255) * (1 - Math.min(data[i], data[i + 1], data[i + 2]) / 255)
+          : (data[i + 3] / 255) * (Math.max(data[i], data[i + 1], data[i + 2]) / 255);
         if (a > 0.12) lit.push(x, y, a, data[i + 2] > data[i] + 50 ? 1 : 0);
       }
     }
@@ -226,7 +252,7 @@
       const list = buckets[b];
       if (!list.length) continue;
       const level = ((b % ALPHA_LEVELS) + 0.5) / ALPHA_LEVELS;
-      ctx.fillStyle = b >= ALPHA_LEVELS ? `rgba(141,184,255,${level})` : `rgba(236,244,255,${level})`;
+      ctx.fillStyle = `rgba(${b >= ALPHA_LEVELS ? accentRgb : dustRgb},${level})`;
       for (let k = 0; k < list.length; k += 2) ctx.fillRect(list[k] - DOT / 2, list[k + 1] - DOT / 2, DOT, DOT);
     }
   }

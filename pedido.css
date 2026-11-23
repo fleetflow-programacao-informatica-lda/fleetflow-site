@@ -1,38 +1,38 @@
 /* "Pedir orçamento" (22/11) — janela com o formulário; o pedido vai para a plataforma e chega ao email da FleetFlow. */
-.pedido{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:0;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#0a0d0c;color:var(--text,#fff);font-family:var(--font);box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.pedido::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pedido{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:0;border:1px solid var(--line-strong);border-radius:22px;background:var(--surface);color:var(--text);font-family:var(--font);box-shadow:var(--pop-shadow)}
+.pedido::backdrop{background:var(--backdrop);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .pedido__form{display:flex;flex-direction:column;gap:16px;padding:clamp(20px,4vw,30px);overflow:auto;max-height:calc(100dvh - 34px);box-sizing:border-box}
 .pedido__top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .pedido__title{margin:0;font-size:24px;font-weight:600;letter-spacing:-.02em}
-.pedido__lead{margin:4px 0 0;color:#a3a3a3;font-size:14px;line-height:1.45}
-.pedido__close{flex:none;display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer}
-.pedido__close:hover{border-color:rgba(255,255,255,.4)}
+.pedido__lead{margin:4px 0 0;color:var(--text-2);font-size:14px;line-height:1.45}
+.pedido__close{flex:none;display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--field-line);border-radius:50%;background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer}
+.pedido__close:hover{border-color:var(--ctl-line-hover);background:var(--hover-bg)}
 .pedido fieldset{margin:0;padding:0;border:0}
-.pedido legend,.pedido__label{display:block;margin-bottom:8px;color:#d4d4d4;font-size:13px;font-weight:500}
+.pedido legend,.pedido__label{display:block;margin-bottom:8px;color:var(--text-label);font-size:13px;font-weight:500}
 .pedido__opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
-.pedido__opt{position:relative;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;cursor:pointer;transition:border-color .15s,background-color .15s}
-.pedido__opt:hover{border-color:rgba(255,255,255,.3)}
+.pedido__opt{position:relative;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--field-line);border-radius:14px;cursor:pointer;transition:border-color .15s,background-color .15s}
+.pedido__opt:hover{border-color:var(--ctl-line-hover)}
 .pedido__opt input{position:absolute;opacity:0;pointer-events:none}
 .pedido__opt strong{font-size:14px;font-weight:600}
-.pedido__opt span{color:#a3a3a3;font-size:12px;line-height:1.35}
-.pedido__opt:has(input:checked){border-color:var(--primary,#31e0a0);background:rgba(49,224,160,.08)}
+.pedido__opt span{color:var(--text-2);font-size:12px;line-height:1.35}
+.pedido__opt:has(input:checked){border-color:var(--primary);background:var(--tint);box-shadow:inset 0 0 0 1px var(--primary)}
 .pedido__opt:has(input:focus-visible){outline:2px solid var(--primary,#31e0a0);outline-offset:2px}
 .pedido__opt--wide{grid-column:1/-1}
 .pedido__grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pedido__field{display:flex;flex-direction:column}
 .pedido__field--wide{grid-column:1/-1}
-.pedido input[type=text],.pedido input[type=email],.pedido input[type=tel],.pedido textarea{width:100%;box-sizing:border-box;padding:11px 13px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:#050706;color:#fff;font:inherit;font-size:15px}
+.pedido input[type=text],.pedido input[type=email],.pedido input[type=tel],.pedido textarea{width:100%;box-sizing:border-box;padding:11px 13px;border:1px solid var(--field-line);border-radius:12px;background:var(--surface-input);color:var(--text);font:inherit;font-size:15px}
 .pedido textarea{min-height:96px;resize:vertical}
-.pedido input:focus,.pedido textarea:focus{outline:none;border-color:var(--primary,#31e0a0)}
+.pedido input:focus,.pedido textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--tint-strong)}
 .pedido__trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
-.pedido__privacy{margin:0;color:#8a8a8a;font-size:12px;line-height:1.45}
+.pedido__privacy{margin:0;color:var(--text-muted);font-size:12px;line-height:1.45}
 .pedido__privacy a{color:inherit}
 .pedido__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
 .pedido__actions .btn{cursor:pointer}
 .pedido__actions .btn[disabled]{opacity:.6;cursor:progress}
 .pedido__msg{margin:0;font-size:14px;line-height:1.45}
-.pedido__msg--ok{color:var(--primary-soft,#9dffd0)}
-.pedido__msg--err{color:#fca5a5}
+.pedido__msg--ok{color:var(--primary-soft)}
+.pedido__msg--err{color:var(--danger)}
 .pedido__msg a{color:inherit}
 @media (max-width:520px){.pedido__grid{grid-template-columns:1fr}}
 .pedido__form.is-sent :is(fieldset,.pedido__grid,.pedido__privacy,button[type=submit]){display:none}

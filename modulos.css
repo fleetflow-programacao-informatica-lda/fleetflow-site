@@ -1,39 +1,39 @@
 /* "O que faz a FleetFlow" (#modulos) e "Ligações" (#ligacoes), 23/11 — duas cenas de texto por cima das partículas
    (fundo preto, como o túnel). Uma cena mais alta do que o ecrã ganha paragens extra no js/snap.js. */
-.info{position:relative;z-index:5;display:flex;flex-direction:column;justify-content:center;min-height:100vh;min-height:100svh;padding:clamp(80px,10vh,112px) clamp(16px,4vw,40px) clamp(76px,9vh,96px);background:#000;box-sizing:border-box}
+.info{position:relative;z-index:5;display:flex;flex-direction:column;justify-content:center;min-height:100vh;min-height:100svh;padding:clamp(80px,10vh,112px) clamp(16px,4vw,40px) clamp(76px,9vh,96px);background:var(--section-bg);box-sizing:border-box}
 .info__inner{width:100%;max-width:1180px;margin:0 auto}
 .info__head{max-width:760px;margin:0 auto clamp(20px,3.4vh,40px);text-align:center}
 .info__head .hold__eyebrow{margin-bottom:10px}
 .info .hold__title{font-size:clamp(28px,3.3vw,44px)}
 .info .hold__title span{white-space:normal;text-wrap:balance}
-.info__lead{max-width:36em;margin:14px auto 0;color:var(--text-soft,#c4c4c4);font-size:clamp(14px,1.1vw,16px);line-height:1.55;letter-spacing:-.01em;text-wrap:balance}
+.info__lead{max-width:36em;margin:14px auto 0;color:var(--text-soft);font-size:clamp(14px,1.1vw,16px);line-height:1.55;letter-spacing:-.01em;text-wrap:balance}
 .info .btn{font:inherit;font-size:var(--btn-font,14.5px);cursor:pointer}
 
 /* Módulos */
 .mods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
-.mod{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:border-color .18s ease}
-.mod:hover{border-color:rgba(49,224,160,.32)}
-.mod__icon{display:grid;place-items:center;width:38px;height:38px;margin-bottom:4px;border-radius:11px;background:rgba(49,224,160,.1);color:var(--primary,#31e0a0)}
+.mod{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px solid var(--card-line);border-radius:18px;background:var(--card-bg);box-shadow:var(--card-shadow);transition:border-color .18s ease}
+.mod:hover{border-color:var(--card-line-hover)}
+.mod__icon{display:grid;place-items:center;width:38px;height:38px;margin-bottom:4px;border-radius:11px;background:var(--icon-bg);color:var(--icon-ink)}
 .mod__icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .mod__title{margin:0;font-size:16px;font-weight:600;letter-spacing:-.015em}
-.mod__text{margin:0;color:#a3a3a3;font-size:14px;line-height:1.5}
+.mod__text{margin:0;color:var(--text-2);font-size:14px;line-height:1.5}
 .info__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-top:clamp(22px,4vh,36px)}
 
 /* Ligações */
 .links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.links__group{padding:20px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012))}
+.links__group{padding:20px;border:1px solid var(--card-line);border-radius:18px;background:var(--card-bg);box-shadow:var(--card-shadow)}
 .links__group--wide{grid-column:1/-1}
-.links__title{margin:0;color:var(--primary-soft,#9dffd0);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.links__note{margin:6px 0 10px;color:#8a8a8a;font-size:13.5px;line-height:1.45}
+.links__title{margin:0;color:var(--primary-soft);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.links__note{margin:6px 0 10px;color:var(--text-muted);font-size:13.5px;line-height:1.45}
 .links__list{display:grid;column-gap:24px;margin:0;padding:0;list-style:none}
 .links__group--wide .links__list{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
-.links__list li{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07);font-size:15px;font-weight:500}
+.links__list li{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;padding:8px 0;border-top:1px solid var(--line);font-size:15px;font-weight:500}
 .badge{flex:none;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
 .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.badge--ok{border:1px solid rgba(49,224,160,.28);background:rgba(49,224,160,.1);color:#9dffd0}
-.badge--val{border:1px solid rgba(251,146,60,.32);background:rgba(251,146,60,.1);color:#fdba74}
+.badge--ok{border:1px solid var(--ok-line);background:var(--ok-bg);color:var(--ok-text)}
+.badge--val{border:1px solid var(--val-line);background:var(--val-bg);color:var(--val-text)}
 .links__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:20px}
-.links__legal{margin:0;color:#8a8a8a;font-size:12.5px;line-height:1.45}
+.links__legal{margin:0;color:var(--text-muted);font-size:12.5px;line-height:1.45}
 
 @media (max-width:1100px){.mods{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){
@@ -46,3 +46,36 @@
 }
 @media (max-width:420px){.info .btn{white-space:normal;height:auto;min-height:var(--btn-h,44px);padding-top:6px;padding-bottom:6px;text-align:left}}
 @media (prefers-reduced-motion:reduce){.mod{transition:none}}
+/* "Também fazemos" (#servicos): os cartões dos módulos com um link no fundo que abre o pedido de orçamento. */
+.srv__card{gap:10px}
+.srv__card .mod__text{flex:1}
+.srv__cta{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:4px;padding:6px 0;color:var(--primary-soft);font-size:14px;font-weight:600;letter-spacing:-.01em;text-decoration:none;border-radius:6px}
+.srv__cta svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s ease}
+.srv__cta:hover svg{transform:translateX(3px)}
+.srv__cta:hover span{text-decoration:underline;text-underline-offset:3px}
+.srv__cta:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+@media (max-width:640px){.srv__card .srv__cta{grid-column:1/-1}}
+
+/* Ligações (#ligacoes): a órbita de quadrados (js/ligacoes-orbit.js — Pulse Orbit da HorizonX) ao lado das listas.
+   Tudo dentro de .lo-orbit, para não tocar em mais nada da página. */
+.lo-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:12px;align-items:stretch}
+.lo-orbit{position:relative;min-height:440px;border:1px solid var(--card-line);border-radius:18px;background:var(--orbit-bg);box-shadow:var(--card-shadow);overflow:hidden}
+.lo-orbit .po-root{--po-radius:6px;position:absolute;inset:0;color:var(--orbit-fg);overflow:hidden;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;font-family:var(--font)}
+.lo-orbit .po-root[data-draggable]{cursor:grab}
+.lo-orbit .po-root[data-dragging]{cursor:grabbing}
+.lo-orbit .po-root:focus-visible{outline:2px solid var(--primary);outline-offset:-4px;border-radius:18px}
+.lo-orbit .po-scene{position:absolute;left:0;top:0;width:840px;height:840px;transform-origin:0 0}
+.lo-orbit .po-orbit{position:absolute;inset:0;pointer-events:none}
+.lo-orbit .po-card{position:absolute;left:0;top:0;width:194px;height:194px;border-radius:var(--po-radius);clip-path:inset(1px round var(--po-radius));transform-origin:0 0;will-change:transform;pointer-events:none}
+.lo-orbit .po-card svg{display:block;width:100%;height:100%}
+.lo-orbit .po-info{position:absolute;inset:0;z-index:5000;pointer-events:none}
+.lo-orbit .po-corner{position:absolute;margin:0;max-width:calc(50% - 28px);font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.04em;text-wrap:balance}
+.lo-orbit .po-corner-0{top:16px;left:18px;color:var(--text);font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.lo-orbit .po-corner-1{top:16px;right:18px;text-align:right}
+.lo-orbit .po-corner-2{bottom:16px;left:18px}
+.lo-orbit .po-corner-3{bottom:16px;right:18px;text-align:right}
+@media (max-width:1100px){
+  .lo-layout{grid-template-columns:minmax(0,1fr)}
+  .lo-orbit{min-height:0;height:clamp(300px,62vw,440px)}
+}
+@media (max-width:640px){.lo-orbit .po-corner{font-size:11px}}

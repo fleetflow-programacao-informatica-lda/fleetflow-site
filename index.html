@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FleetFlow — Software e IA que movem o mundo real</title>
   <meta name="description" content="Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." />
+  <!-- 23/11: tema claro por definição; o escuro fica guardado em ff.theme (a mesma chave da app) e é posto antes de pintar (js/tema.js). -->
+  <script>try{if(localStorage.getItem('ff.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
   <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="tunel.css" />
@@ -26,19 +28,19 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cg stroke='%2331e0a0' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 9l5 5-5 5M13 9l5 5-5 5'/%3E%3Cpath d='M19 9l5 5-5 5' stroke='%23fb923c'/%3E%3C/g%3E%3C/svg%3E" />
   <style>
     .hold__cta{margin-top:24px;display:inline-flex}
-    #ff-foot{position:fixed;left:clamp(16px,4vw,40px);bottom:16px;z-index:40;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 32px);font-family:var(--font);font-size:11px;letter-spacing:.02em;color:var(--text-muted);opacity:.82;pointer-events:none}
-    #ff-foot a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22);pointer-events:auto}
-    #ff-foot a:hover{color:var(--primary);border-color:var(--primary)}
-    @media (max-width:760px){#ff-foot{font-size:9.5px;bottom:12px;left:12px;right:12px}}
+    #ff-foot{position:fixed;left:clamp(16px,4vw,40px);bottom:16px;z-index:40;display:flex;flex-wrap:wrap;gap:.35em 1em;align-items:center;max-width:calc(100vw - 32px);font-family:var(--font);font-size:11px;letter-spacing:.02em;color:var(--text-muted);opacity:var(--foot-opacity);pointer-events:none}
+    #ff-foot a{color:inherit;text-decoration:none;border-bottom:1px solid var(--foot-line);pointer-events:auto}
+    #ff-foot a:hover{color:var(--primary-soft);border-color:var(--primary-soft)}
+    @media (max-width:760px){#ff-foot{font-size:9.5px;bottom:8px;left:8px;right:8px;padding:5px 8px;border-radius:10px;background:var(--foot-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}}
     /* Cabe num ecrã (a página encaixa por cenas: nada pode ficar abaixo do fundo); o rodapé fixo fica livre em baixo. */
-    .trabalho{position:relative;z-index:5;display:flex;flex-direction:column;gap:clamp(10px,2vh,22px);height:100vh;height:100dvh;min-height:560px;padding:clamp(76px,10vh,104px) 0 clamp(64px,8vh,76px);background:#000;box-sizing:border-box}
+    .trabalho{position:relative;z-index:5;display:flex;flex-direction:column;gap:clamp(10px,2vh,22px);height:100vh;height:100dvh;min-height:560px;padding:clamp(76px,10vh,104px) 0 clamp(64px,8vh,76px);background:var(--section-bg);box-sizing:border-box}
     .trabalho__head,.trabalho__foot{flex:none;padding:0 clamp(16px,4vw,40px);text-align:center}
     .trabalho__head .hold__eyebrow{margin-bottom:8px}
     .trabalho__title{font-size:clamp(26px,3.4vw,44px)}
     .trabalho__title span{display:block}
     .trabalho__frame{flex:1 1 auto;min-height:0;height:auto}
     .trabalho__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 22px}
-    .trabalho__text{margin:0;max-width:30em;color:var(--text-2,#a3a3a3);font-size:14px;line-height:1.5}
+    .trabalho__text{margin:0;max-width:30em;color:var(--text-2);font-size:14px;line-height:1.5}
     @media (max-width:760px){.trabalho{padding-bottom:96px}.trabalho__text{font-size:13px}}
   </style>
 </head>
@@ -52,10 +54,15 @@
         <li><a class="nav__link" href="#platform" data-i18n="nav.platform">Plataforma</a></li>
         <li><a class="nav__link" href="#modulos" data-i18n="nav.modules">O que faz</a></li>
         <li><a class="nav__link" href="#ligacoes" data-i18n="nav.links">Ligações</a></li>
+        <li><a class="nav__link" href="#servicos" data-i18n="nav.services">Serviços</a></li>
       </ul>
     </nav>
 
     <div class="nav__end">
+      <button class="nav__theme" type="button" data-theme-toggle aria-label="Mudar para modo escuro" title="Mudar para modo escuro">
+        <svg class="nav__theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg>
+        <svg class="nav__theme-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.8" /><path d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5 7 7M17 17l1.5 1.5M5.5 18.5 7 17M17 7l1.5-1.5" /></g></svg>
+      </button>
       <div class="nav__item nav__lang">
         <button class="nav__lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-lang" aria-label="Language: English">
           <svg class="nav__globe" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z" /></g></svg>
@@ -78,24 +85,24 @@
 
   <main>
     <section class="hero" data-snap>
-      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Software &amp; agentes de IA</p>
+      <p class="hero__eyebrow" data-i18n="hero.eyebrow">TMS para transportadoras</p>
       <h1 class="hero__title">
-        <span class="hero__title-muted" data-i18n="hero.title_muted">Software que move</span>
-        <span class="hero__title-strong" data-i18n="hero.title_strong">o mundo real.</span>
+        <span class="hero__title-muted" data-i18n="hero.title_muted">O TMS completo para a tua transportadora,</span>
+        <span class="hero__title-strong" data-i18n="hero.title_strong">tudo integrado.</span>
       </h1>
       <p class="hero__lead" data-i18n="hero.lead">
-        Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />
-        A tecnologia que faz a tua empresa andar sozinha.
+        Planeador, cargas e e-CMR, app do motorista, oficina e bolsa de cargas numa só plataforma.<br />
+        Ligada à tua faturação e ao teu GPS, com o agente de IA Orbit.
       </p>
+      <!-- 23/11: as duas portas de entrada logo no topo (o "Entrar" fica na barra; "Saber mais" é o "Deslizar" em baixo). -->
       <div class="hero__actions">
-        <a class="btn btn--outline" href="#product" data-i18n="btn.more">Saber mais</a>
-        <a class="btn btn--outline" href="https://app.fleetflow.systems/api/auth/demo-login?kind=full" data-i18n="btn.demo">Ver demonstração</a>
-        <a class="btn btn--glow" href="https://app.fleetflow.systems">
-          <span data-i18n="btn.start">Entrar</span>
+        <a class="btn btn--glow" href="https://app.fleetflow.systems/api/auth/demo-login?kind=full">
+          <span data-i18n="btn.demo">Ver demonstração</span>
           <span class="btn__icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </span>
         </a>
+        <a class="btn btn--outline" href="https://app.fleetflow.systems/login" data-i18n="btn.signup">Criar conta</a>
       </div>
       <div
         class="hero__visual"
@@ -200,6 +207,19 @@
           </h2>
           <p class="info__lead" data-i18n="lig.lead">A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.</p>
         </div>
+        <!-- 23/11: órbita de quadrados (Pulse Orbit da HorizonX, licença Pro; quadrados nossos, js/ligacoes-orbit.js) ao lado das listas com os estados reais. -->
+        <div class="lo-layout">
+        <div class="lo-orbit">
+          <div class="po-root" tabindex="0" role="region" data-i18n-aria="lig.o.aria" aria-label="Roda com os programas a que a FleetFlow se liga. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam." data-draggable>
+            <div class="po-scene"><div class="po-orbit" aria-hidden="true"></div></div>
+            <div class="po-info" aria-hidden="true">
+              <p class="po-corner po-corner-0" data-i18n="lig.o.tl">Ligações</p>
+              <p class="po-corner po-corner-1" data-i18n="lig.o.tr">GPS · Faturação · Pagamentos</p>
+              <p class="po-corner po-corner-2" data-i18n="lig.o.bl">Arrasta para explorar</p>
+              <p class="po-corner po-corner-3" data-i18n="lig.o.br">Toca para pausar</p>
+            </div>
+          </div>
+        </div>
         <div class="links">
           <section class="links__group links__group--wide" aria-labelledby="lig-gps">
             <h3 class="links__title" id="lig-gps" data-i18n="lig.gps">GPS e telemática</h3>
@@ -231,10 +251,30 @@
             </ul>
           </section>
         </div>
+        </div>
         <div class="links__foot">
           <p class="links__legal" data-i18n="lig.legal">Os nomes pertencem aos respetivos donos; não implica parceria.</p>
           <a class="btn btn--glow" href="mailto:support@fleetflow.systems?subject=Liga%C3%A7%C3%A3o%20a%20um%20programa" data-pedido="platform"><span data-i18n="lig.cta">Não encontras o teu programa? Fala connosco</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
         </div>
+      </div>
+    </section>
+    <!-- 23/11: o que a mesma equipa também faz; cada cartão abre o "Pedir orçamento" com o serviço certo (js/pedido.js). -->
+    <section class="info" id="servicos" aria-labelledby="servicos-title" data-snap>
+      <div class="info__inner">
+        <div class="info__head">
+          <p class="hold__eyebrow" data-i18n="srv.eyebrow">Também fazemos</p>
+          <h2 class="hold__title" id="servicos-title">
+            <span class="hold__title-muted" data-i18n="srv.title_muted">Além do TMS,</span>
+            <span data-i18n="srv.title_strong">software e sites à medida.</span>
+          </h2>
+          <p class="info__lead" data-i18n="srv.lead">A equipa que faz a FleetFlow também faz software de oficina, sites topo de gama e programas feitos para o teu negócio — e liga-os aos programas que já usas.</p>
+        </div>
+        <ul class="mods srv">
+          <li class="mod srv__card"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="15.5" cy="8.5" r="4" /><path d="M12.6 11.4 4.5 19.5M17 8.5h-3" /></svg></span><h3 class="mod__title" data-i18n="srv.ws.t">Software de oficina</h3><p class="mod__text" data-i18n="srv.ws.d">Gestão da oficina e do stock: trabalhos por viatura, marcações, revisões e pneus com avisos, peças sempre contadas e a app da oficina para os mecânicos. Também existe só para oficinas.</p><a class="srv__cta" href="mailto:support@fleetflow.systems?subject=Software%20de%20oficina" data-pedido="platform"><span data-i18n="srv.ws.cta">Pedir proposta</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a></li>
+          <li class="mod srv__card"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="13" rx="2" /><path d="M8 20.5h8M10.5 8.5l4 2.5-4 2.5z" /></svg></span><h3 class="mod__title" data-i18n="srv.site.t">Sites topo de gama com movimento</h3><p class="mod__text" data-i18n="srv.site.d">Sites animados e em 3D, como este: rápidos, em várias línguas e feitos à medida da tua marca.</p><a class="srv__cta" href="mailto:support@fleetflow.systems?subject=Site" data-pedido="site"><span data-i18n="srv.site.cta">Pedir orçamento</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a></li>
+          <li class="mod srv__card"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 8 4.5 12l4 4M15.5 8l4 4-4 4M13.5 5.5l-3 13" /></svg></span><h3 class="mod__title" data-i18n="srv.sw.t">Software por medida</h3><p class="mod__text" data-i18n="srv.sw.d">Ferramentas internas, portais para clientes e agentes de IA que trabalham na tua operação, feitos para o teu negócio.</p><a class="srv__cta" href="mailto:support@fleetflow.systems?subject=Software%20por%20medida" data-pedido="software"><span data-i18n="srv.sw.cta">Pedir orçamento</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a></li>
+          <li class="mod srv__card"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 7.5V3.5M15 7.5V3.5M6.5 7.5h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5v4" /></svg></span><h3 class="mod__title" data-i18n="srv.int.t">Integrações</h3><p class="mod__text" data-i18n="srv.int.d">Ligamos a FleetFlow à faturação (InvoiceXpress, Moloni e PHC GO, em validação) e ao GPS (Cartrack disponível; outros em validação). Usas outro programa? Diz-nos qual.</p><a class="srv__cta" href="mailto:support@fleetflow.systems?subject=Integra%C3%A7%C3%B5es" data-pedido="platform"><span data-i18n="srv.int.cta">Falar de integrações</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a></li>
+        </ul>
       </div>
     </section>
     <!-- 22/11: o que fazemos, num túnel de cartões (js/tunel.js — Tunnel Fold Slider da HorizonX, three.js do próprio site). -->
@@ -246,7 +286,7 @@
           <span data-i18n="work.title_strong">para pessoas e empresas.</span>
         </h2>
       </div>
-      <div class="tf-frame trabalho__frame" style="--tf-width:100%;--tf-height:100%;--tf-bg:#000000;--tf-ink:#e6e6e6;">
+      <div class="tf-frame trabalho__frame" style="--tf-width:100%;--tf-height:100%;--tf-bg:var(--section-bg);--tf-ink:var(--tunnel-ink);">
         <div class="tf-root" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Túnel de imagens do nosso trabalho. Arrasta, desliza para o lado ou usa as setas." data-tf-words data-draggable data-tf-play="Continuar animação" data-tf-pause="Pausar animação" data-tf-image-of="Imagem {i} de {n}">
           <div class="tf-gl" aria-hidden="true"></div>
           <img class="tf-still" src="assets/trabalho/02-avatar-rececao.webp" alt="" draggable="false" decoding="async" loading="lazy">
@@ -267,10 +307,12 @@
   </main>
 
   <script src="js/nav.js"></script>
+  <script src="js/tema.js"></script>
   <script src="js/nav-dust.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/steps.js"></script>
   <script type="module" src="js/tunel.js"></script>
+  <script src="js/ligacoes-orbit.js"></script>
   <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
 
   <!-- 22/11: "Pedir orçamento" — o pedido vai para a plataforma (POST /api/public/pedido-orcamento) e chega ao email da FleetFlow (js/pedido.js). -->
@@ -319,8 +361,8 @@
     const I18N = {
       pt:{ "nav.home":"Início","nav.platform":"Plataforma","nav.login":"Entrar","btn.platform":"Entrar na plataforma","btn.demo":"Ver demonstração",
         "foot.capital":"Capital social","foot.terms":"Termos","foot.privacy":"Privacidade","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software & agentes de IA","hero.title_muted":"Software que move","hero.title_strong":"o mundo real.",
-        "hero.lead":"Criamos software e o Orbit — um agente de IA que gere operações, cargas e oficina.<br />A tecnologia que faz a tua empresa andar sozinha.",
+        "hero.eyebrow":"TMS para transportadoras","hero.title_muted":"O TMS completo para a tua transportadora,","hero.title_strong":"tudo integrado.",
+        "hero.lead":"Planeador, cargas e e-CMR, app do motorista, oficina e bolsa de cargas numa só plataforma. <br />Ligada à tua faturação e ao teu GPS, com o agente de IA Orbit.",
         "btn.more":"Saber mais","btn.start":"Entrar","hero.scroll":"Deslizar",
         "reach.eyebrow":"Movido a IA","reach.title_muted":"Tu decides,","reach.title_strong":"o Orbit executa.",
         "reach.text":"Um agente que aprende com cada carga, viagem e cliente — e age em tempo real, para a tua equipa decidir só o que importa.",
@@ -347,12 +389,13 @@
         "mod.ask":"Quanto custa para a minha frota?","mod.signup":"Criar conta",
         "lig.eyebrow":"Ligações","lig.title_muted":"Liga-se ao que","lig.title_strong":"já usas.","lig.lead":"A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.",
         "lig.gps":"GPS e telemática","lig.gps.note":"Ou só o GPS do telemóvel, pela app do motorista — sem instalar nada no camião.","lig.inv":"Faturação","lig.inv.note":"Envia rascunhos; uma pessoa confirma antes de emitir.","lig.pay":"Pagamentos","lig.pay.note":"Pagamento seguro das subscrições.",
-        "lig.ok":"Disponível","lig.val":"Em validação","lig.legal":"Os nomes pertencem aos respetivos donos; não implica parceria.","lig.cta":"Não encontras o teu programa? Fala connosco",
+        "lig.ok":"Disponível",
+        "btn.signup":"Criar conta","nav.services":"Serviços","lig.o.tl":"Ligações","lig.o.tr":"GPS · Faturação · Pagamentos","lig.o.bl":"Arrasta para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Roda com os programas a que a FleetFlow se liga. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam.","srv.eyebrow":"Também fazemos","srv.title_muted":"Além do TMS,","srv.title_strong":"software e sites à medida.","srv.lead":"A equipa que faz a FleetFlow também faz software de oficina, sites topo de gama e programas feitos para o teu negócio — e liga-os aos programas que já usas.","srv.ws.t":"Software de oficina","srv.ws.d":"Gestão da oficina e do stock: trabalhos por viatura, marcações, revisões e pneus com avisos, peças sempre contadas e a app da oficina para os mecânicos. Também existe só para oficinas.","srv.ws.cta":"Pedir proposta","srv.site.t":"Sites topo de gama com movimento","srv.site.d":"Sites animados e em 3D, como este: rápidos, em várias línguas e feitos à medida da tua marca.","srv.site.cta":"Pedir orçamento","srv.sw.t":"Software por medida","srv.sw.d":"Ferramentas internas, portais para clientes e agentes de IA que trabalham na tua operação, feitos para o teu negócio.","srv.sw.cta":"Pedir orçamento","srv.int.t":"Integrações","srv.int.d":"Ligamos a FleetFlow à faturação (InvoiceXpress, Moloni e PHC GO, em validação) e ao GPS (Cartrack disponível; outros em validação). Usas outro programa? Diz-nos qual.","srv.int.cta":"Falar de integrações","lig.val":"Em validação","lig.legal":"Os nomes pertencem aos respetivos donos; não implica parceria.","lig.cta":"Não encontras o teu programa? Fala connosco",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform","btn.demo":"See the demo",
         "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software & AI agents","hero.title_muted":"Software that moves","hero.title_strong":"the real world.",
-        "hero.lead":"We build software and Orbit — an AI agent that runs operations, loads and workshop.<br />The technology that makes your company move on its own.",
+        "hero.eyebrow":"TMS for transport companies","hero.title_muted":"The complete TMS for your transport company,","hero.title_strong":"all integrated.",
+        "hero.lead":"Planner, loads and e-CMR, driver app, workshop and load exchange in one platform. <br />Connected to your invoicing and your GPS, with the Orbit AI agent.",
         "btn.more":"Learn more","btn.start":"Sign in","hero.scroll":"Scroll down",
         "reach.eyebrow":"Powered by AI","reach.title_muted":"You decide,","reach.title_strong":"Orbit executes.",
         "reach.text":"An agent that learns from every load, trip and customer — and acts in real time, so your team only decides what matters.",
@@ -379,12 +422,13 @@
         "mod.ask":"How much for my fleet?","mod.signup":"Create account",
         "lig.eyebrow":"Integrations","lig.title_muted":"Connects to what","lig.title_strong":"you already use.","lig.lead":"FleetFlow talks to the GPS and software your company already has. The statuses are real: “In validation” means it is still being tested.",
         "lig.gps":"GPS and telematics","lig.gps.note":"Or just the phone's GPS, through the driver app — nothing to install in the truck.","lig.inv":"Invoicing","lig.inv.note":"Sends drafts; a person confirms before anything is issued.","lig.pay":"Payments","lig.pay.note":"Secure subscription payments.",
-        "lig.ok":"Available","lig.val":"In validation","lig.legal":"Names belong to their respective owners; no partnership is implied.","lig.cta":"Can't find your software? Talk to us",
+        "lig.ok":"Available",
+        "btn.signup":"Create account","nav.services":"Services","lig.o.tl":"Integrations","lig.o.tr":"GPS · Invoicing · Payments","lig.o.bl":"Drag to explore","lig.o.br":"Tap to pause","lig.o.aria":"Wheel of the software FleetFlow connects to. Drag sideways to turn it; Enter or Space pauses; the left and right arrow keys step.","srv.eyebrow":"We also build","srv.title_muted":"Beyond the TMS,","srv.title_strong":"custom software and websites.","srv.lead":"The team behind FleetFlow also builds workshop software, top-end websites and software made for your business — and connects them to the programs you already use.","srv.ws.t":"Workshop software","srv.ws.d":"Workshop and stock management: jobs per vehicle, appointments, services and tyres with reminders, parts always counted and the workshop app for mechanics. Also available for workshops on their own.","srv.ws.cta":"Ask for a proposal","srv.site.t":"Top-end websites with motion","srv.site.d":"Animated and 3D websites, like this one: fast, multilingual and made to fit your brand.","srv.site.cta":"Get a quote","srv.sw.t":"Custom software","srv.sw.d":"Internal tools, customer portals and AI agents that work inside your operation, built for your business.","srv.sw.cta":"Get a quote","srv.int.t":"Integrations","srv.int.d":"We connect FleetFlow to invoicing (InvoiceXpress, Moloni and PHC GO, in validation) and to GPS (Cartrack available; others in validation). Using other software? Tell us which.","srv.int.cta":"Talk about integrations","lig.val":"In validation","lig.legal":"Names belong to their respective owners; no partnership is implied.","lig.cta":"Can't find your software? Talk to us",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma","btn.demo":"Ver la demostración",
         "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
-        "hero.eyebrow":"Software y agentes de IA","hero.title_muted":"Software que mueve","hero.title_strong":"el mundo real.",
-        "hero.lead":"Creamos software y Orbit — un agente de IA que gestiona operaciones, cargas y taller.<br />La tecnología que hace avanzar a tu empresa sola.",
+        "hero.eyebrow":"TMS para empresas de transporte","hero.title_muted":"El TMS completo para tu empresa de transporte,","hero.title_strong":"todo integrado.",
+        "hero.lead":"Planificador, cargas y e-CMR, app del conductor, taller y bolsa de cargas en una sola plataforma. <br />Conectada a tu facturación y a tu GPS, con el agente de IA Orbit.",
         "btn.more":"Saber más","btn.start":"Acceder","hero.scroll":"Deslizar",
         "reach.eyebrow":"Impulsado por IA","reach.title_muted":"Tú decides,","reach.title_strong":"Orbit ejecuta.",
         "reach.text":"Un agente que aprende de cada carga, viaje y cliente — y actúa en tiempo real, para que tu equipo decida solo lo que importa.",
@@ -411,7 +455,8 @@
         "mod.ask":"¿Cuánto cuesta para mi flota?","mod.signup":"Crear cuenta",
         "lig.eyebrow":"Conexiones","lig.title_muted":"Se conecta a lo que","lig.title_strong":"ya usas.","lig.lead":"FleetFlow habla con el GPS y los programas que tu empresa ya tiene. Los estados son reales: “En validación” significa que aún se está probando.",
         "lig.gps":"GPS y telemática","lig.gps.note":"O solo el GPS del móvil, con la app del conductor — sin instalar nada en el camión.","lig.inv":"Facturación","lig.inv.note":"Envía borradores; una persona confirma antes de emitir.","lig.pay":"Pagos","lig.pay.note":"Pago seguro de las suscripciones.",
-        "lig.ok":"Disponible","lig.val":"En validación","lig.legal":"Los nombres pertenecen a sus respectivos dueños; no implica colaboración.","lig.cta":"¿No encuentras tu programa? Habla con nosotros",
+        "lig.ok":"Disponible",
+        "btn.signup":"Crear cuenta","nav.services":"Servicios","lig.o.tl":"Conexiones","lig.o.tr":"GPS · Facturación · Pagos","lig.o.bl":"Arrastra para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Rueda con los programas a los que FleetFlow se conecta. Arrastra hacia los lados para girarla; Enter o Espacio pausa; las flechas izquierda y derecha avanzan.","srv.eyebrow":"También hacemos","srv.title_muted":"Además del TMS,","srv.title_strong":"software y webs a medida.","srv.lead":"El equipo que hace FleetFlow también hace software de taller, webs de gama alta y programas hechos para tu negocio — y los conecta con los programas que ya usas.","srv.ws.t":"Software de taller","srv.ws.d":"Gestión del taller y del stock: trabajos por vehículo, citas, revisiones y neumáticos con avisos, piezas siempre contadas y la app del taller para los mecánicos. También existe solo para talleres.","srv.ws.cta":"Pedir propuesta","srv.site.t":"Webs de gama alta con movimiento","srv.site.d":"Webs animadas y en 3D, como esta: rápidas, en varios idiomas y hechas a la medida de tu marca.","srv.site.cta":"Pedir presupuesto","srv.sw.t":"Software a medida","srv.sw.d":"Herramientas internas, portales para clientes y agentes de IA que trabajan en tu operación, hechos para tu negocio.","srv.sw.cta":"Pedir presupuesto","srv.int.t":"Integraciones","srv.int.d":"Conectamos FleetFlow con la facturación (InvoiceXpress, Moloni y PHC GO, en validación) y con el GPS (Cartrack disponible; otros en validación). ¿Usas otro programa? Dinos cuál.","srv.int.cta":"Hablar de integraciones","lig.val":"En validación","lig.legal":"Los nombres pertenecen a sus respectivos dueños; no implica colaboración.","lig.cta":"¿No encuentras tu programa? Habla con nosotros",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };
     const label = document.querySelector('.nav__lang-label');

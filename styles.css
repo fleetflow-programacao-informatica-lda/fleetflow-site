@@ -6,18 +6,135 @@
   font-display: swap;
 }
 
+/* ---------- Theme ----------
+   Light is the default; [data-theme="dark"] on <html> brings back the dark
+   look. The choice is saved as ff.theme (the app uses the same key) and set
+   before first paint by the tiny script in <head>; js/tema.js runs the
+   toggle in the nav. Text colours pass WCAG AA in both themes.
+   --primary is for rings, borders and icons; --primary-soft is the green
+   used as text; --accent is the brand fill (dots, glows), never text. */
 :root {
-  --bg: #000;
-  --text: #fff;
-  --text-muted: #8a8a8a;
-  --text-soft: #c4c4c4;
+  color-scheme: light;
+  --bg: #faf9f6;
+  --text: #0d0f0e;
+  --text-soft: #3d4441;
+  --text-2: #4a524e;
+  --text-label: #2b302d;
+  --text-muted: #5f6763;
+  --text-faint: #6a716d;
   --surface-light: #fcfcfc;
   --ink: #111;
-  --primary: #31e0a0;
-  --primary-soft: #9dffd0;
-  --text-dim: rgba(255, 255, 255, 0.62);
-  --glass-line: rgba(255, 255, 255, 0.07);
-  --glass-edge: rgba(255, 255, 255, 0.2);
+  --primary: #0f9d6e;
+  --primary-soft: #0b7a55;
+  --accent: #31e0a0;
+  --danger: #b42318;
+  --danger-line: #d92d20;
+  --text-dim: rgba(13, 15, 14, 0.62);
+  --glass-line: rgba(13, 15, 14, 0.08);
+  --glass-edge: rgba(13, 15, 14, 0.16);
+
+  /* Surfaces and lines */
+  --section-bg: var(--bg);
+  --surface: #fff;
+  --surface-input: #fff;
+  --card-bg: #fff;
+  --card-line: rgba(13, 15, 14, 0.09);
+  --card-line-hover: rgba(15, 157, 110, 0.45);
+  --card-shadow: 0 1px 2px rgba(16, 24, 20, 0.04), 0 8px 24px -16px rgba(16, 24, 20, 0.14);
+  --line: rgba(13, 15, 14, 0.08);
+  --line-strong: rgba(13, 15, 14, 0.14);
+  --field-line: rgba(13, 15, 14, 0.18);
+  --hover-bg: rgba(13, 15, 14, 0.045);
+  --hover-bg-soft: rgba(13, 15, 14, 0.03);
+  --pop-shadow: 0 32px 80px -24px rgba(16, 24, 20, 0.28), 0 2px 8px rgba(16, 24, 20, 0.06);
+  --backdrop: rgba(18, 24, 21, 0.4);
+  --tint: rgba(15, 157, 110, 0.08);
+  --tint-strong: rgba(15, 157, 110, 0.12);
+  --icon-bg: rgba(15, 157, 110, 0.1);
+  --icon-ink: #0b7a55;
+
+  /* Nav */
+  --logo-ink: #0d0f0e;
+  --nav-link: #565e5a;
+  --nav-pill-bg: rgba(255, 255, 255, 0.86);
+  --nav-pill-line: rgba(13, 15, 14, 0.08);
+  --nav-pill-shadow: 0 1px 2px rgba(16, 24, 20, 0.04), 0 10px 30px -14px rgba(16, 24, 20, 0.2);
+  --menu-bg: rgba(255, 255, 255, 0.98);
+  --menu-shadow: 0 24px 60px -20px rgba(16, 24, 20, 0.28), 0 2px 6px rgba(16, 24, 20, 0.05);
+  --ctl-line: rgba(13, 15, 14, 0.16);
+  --ctl-line-hover: rgba(13, 15, 14, 0.32);
+  --ctl-text: #2b302d;
+  --ctl-bg: rgba(255, 255, 255, 0.7);
+  --foot-line: rgba(13, 15, 14, 0.25);
+  --foot-opacity: 1;
+  --foot-bg: rgba(250, 249, 246, 0.88);
+
+  /* Buttons: a near-black primary with a green arrow disc */
+  --outline-line: rgba(13, 15, 14, 0.18);
+  --outline-line-hover: rgba(13, 15, 14, 0.36);
+  --outline-bg: rgba(255, 255, 255, 0.72);
+  --outline-bg-hover: #fff;
+  --cta-bg: #0d0f0e;
+  --cta-bg-hover: #1f2522;
+  --cta-line: #0d0f0e;
+  --cta-text: #fff;
+  --cta-shadow: 0 1px 2px rgba(16, 24, 20, 0.12), 0 8px 20px -10px rgba(16, 24, 20, 0.45);
+  --cta-shadow-hover: 0 1px 2px rgba(16, 24, 20, 0.14), 0 12px 26px -10px rgba(16, 24, 20, 0.5);
+  --cta-icon-bg: #31e0a0;
+  --cta-icon-text: #04120c;
+  --cta-icon-shadow: none;
+
+  /* Scenes */
+  --rule-glow: none;
+  --step-glow: none;
+  --step-dim: 0.6;
+  --tunnel-ink: #3d4441;
+  --orbit-bg: #f1efe9;
+  --orbit-fg: #4a524e;
+
+  /* Sales assistant (assistente.css) */
+  --launch-bg: rgba(255, 255, 255, 0.96);
+  --launch-line: rgba(13, 15, 14, 0.12);
+  --launch-line-hover: rgba(15, 157, 110, 0.55);
+  --launch-shadow: 0 1px 2px rgba(16, 24, 20, 0.06), 0 14px 36px -14px rgba(16, 24, 20, 0.32);
+  --launch-shadow-hover: 0 1px 2px rgba(16, 24, 20, 0.06), 0 16px 40px -14px rgba(16, 24, 20, 0.38), 0 0 0 4px rgba(49, 224, 160, 0.14);
+  --launch-ring: #fff;
+  --bubble-bg: #f3f3ef;
+  --bubble-line: rgba(13, 15, 14, 0.06);
+  --bubble-text: #1f2422;
+  --bubble-user-bg: #e6f5ee;
+  --bubble-user-line: rgba(15, 157, 110, 0.28);
+  --bubble-user-text: #0d2a1f;
+  --chip-line: rgba(15, 157, 110, 0.4);
+  --chip-line-hover: rgba(15, 157, 110, 0.75);
+  --chip-text: #0b6a4a;
+  --chip-hover-bg: rgba(15, 157, 110, 0.08);
+  --send-bg: #0d0f0e;
+  --send-bg-hover: #1f2522;
+  --send-text: #fff;
+  --mark-bg: #f3f3ef;
+
+  /* Badges */
+  --ok-bg: rgba(15, 157, 110, 0.09);
+  --ok-line: rgba(15, 157, 110, 0.3);
+  --ok-text: #0b7a55;
+  --val-bg: rgba(234, 88, 12, 0.07);
+  --val-line: rgba(234, 88, 12, 0.3);
+  --val-text: #a3470c;
+
+  /* Particle canvas (js/particles.js): dot colour as "r,g,b", how strongly
+     dots add up, and the light at the fingertips and in the sphere. On a
+     light page the dots are a deep green and the glows a soft mint tint. */
+  --particle-rgb: 10, 84, 64;
+  --particle-strength: 0.9;
+  --glow-mode: source-over;
+  --glow-core: 49, 224, 160;
+  --glow-mid: 15, 157, 110;
+  --glow-strength: 0.34;
+  /* Navbar dust (js/nav-dust.js) */
+  --dust-rgb: 13, 15, 14;
+  --dust-accent-rgb: 15, 157, 110;
+
   --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Geist runs a little wide: phones narrow the hero title by this much so
      it keeps its two lines. */
@@ -34,6 +151,117 @@
   /* One size for every pill button, in the nav and in the hero. */
   --btn-h: 44px;
   --btn-font: 14.5px;
+}
+
+/* The original dark look, colour for colour. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #000;
+  --text: #fff;
+  --text-soft: #c4c4c4;
+  --text-2: #a3a3a3;
+  --text-label: #d4d4d4;
+  --text-muted: #8a8a8a;
+  --text-faint: #6f6f6f;
+  --primary: #31e0a0;
+  --primary-soft: #9dffd0;
+  --danger: #fca5a5;
+  --danger-line: #f87171;
+  --text-dim: rgba(255, 255, 255, 0.62);
+  --glass-line: rgba(255, 255, 255, 0.07);
+  --glass-edge: rgba(255, 255, 255, 0.2);
+
+  --section-bg: #000;
+  --surface: #0a0d0c;
+  --surface-input: #050706;
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+  --card-line: rgba(255, 255, 255, 0.08);
+  --card-line-hover: rgba(49, 224, 160, 0.32);
+  --card-shadow: none;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --field-line: rgba(255, 255, 255, 0.14);
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  --hover-bg-soft: rgba(255, 255, 255, 0.03);
+  --pop-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  --backdrop: rgba(0, 0, 0, 0.72);
+  --tint: rgba(49, 224, 160, 0.08);
+  --tint-strong: rgba(49, 224, 160, 0.13);
+  --icon-bg: rgba(49, 224, 160, 0.1);
+  --icon-ink: #31e0a0;
+
+  --logo-ink: #fff;
+  --nav-link: rgba(255, 255, 255, 0.66);
+  --nav-pill-bg: linear-gradient(180deg, rgba(28, 28, 30, 0.92), rgba(16, 16, 18, 0.92));
+  --nav-pill-line: rgba(255, 255, 255, 0.07);
+  --nav-pill-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 14px 36px -14px rgba(0, 0, 0, 0.9);
+  --menu-bg: rgba(16, 16, 18, 0.97);
+  --menu-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --ctl-line: rgba(255, 255, 255, 0.16);
+  --ctl-line-hover: rgba(255, 255, 255, 0.34);
+  --ctl-text: rgba(255, 255, 255, 0.82);
+  --ctl-bg: transparent;
+  --foot-line: rgba(255, 255, 255, 0.22);
+  --foot-opacity: 0.82;
+  --foot-bg: rgba(0, 0, 0, 0.72);
+
+  --outline-line: rgba(255, 255, 255, 0.22);
+  --outline-line-hover: rgba(255, 255, 255, 0.42);
+  --outline-bg: rgba(255, 255, 255, 0.015);
+  --outline-bg-hover: rgba(255, 255, 255, 0.06);
+  --cta-bg: linear-gradient(180deg, #ffffff 0%, #ececec 55%, #d6d6d6 100%);
+  --cta-bg-hover: var(--cta-bg);
+  --cta-line: #fff;
+  --cta-text: #1b1b1b;
+  --cta-shadow: 0 0 18px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+  --cta-shadow-hover: 0 0 26px 2px rgba(255, 255, 255, 0.42), inset 0 -3px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+  --cta-icon-bg: #111;
+  --cta-icon-text: #fff;
+  --cta-icon-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  --rule-glow: 0 0 8px rgba(49, 224, 160, 0.8);
+  --step-glow: 0 0 12px rgba(49, 224, 160, 0.55);
+  --step-dim: 0.36;
+  --tunnel-ink: #e6e6e6;
+  --orbit-bg: #0b0d0c;
+  --orbit-fg: #a3a3a3;
+
+  --launch-bg: linear-gradient(180deg, rgba(28, 28, 30, 0.96), rgba(12, 14, 13, 0.96));
+  --launch-line: rgba(255, 255, 255, 0.14);
+  --launch-line-hover: rgba(49, 224, 160, 0.5);
+  --launch-shadow: 0 14px 40px -12px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --launch-shadow-hover: 0 14px 40px -12px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 24px rgba(49, 224, 160, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --launch-ring: #121413;
+  --bubble-bg: rgba(255, 255, 255, 0.05);
+  --bubble-line: rgba(255, 255, 255, 0.07);
+  --bubble-text: #e6e6e6;
+  --bubble-user-bg: rgba(49, 224, 160, 0.13);
+  --bubble-user-line: rgba(49, 224, 160, 0.3);
+  --bubble-user-text: #eafff6;
+  --chip-line: rgba(49, 224, 160, 0.34);
+  --chip-line-hover: rgba(49, 224, 160, 0.7);
+  --chip-text: #d9fff0;
+  --chip-hover-bg: rgba(49, 224, 160, 0.1);
+  --send-bg: #31e0a0;
+  --send-bg-hover: #9dffd0;
+  --send-text: #04120c;
+  --mark-bg: #050706;
+
+  --ok-bg: rgba(49, 224, 160, 0.1);
+  --ok-line: rgba(49, 224, 160, 0.28);
+  --ok-text: #9dffd0;
+  --val-bg: rgba(251, 146, 60, 0.1);
+  --val-line: rgba(251, 146, 60, 0.32);
+  --val-text: #fdba74;
+
+  --particle-rgb: 236, 244, 255;
+  --particle-strength: 1;
+  --glow-mode: lighter;
+  --glow-core: 235, 243, 255;
+  --glow-mid: 120, 170, 255;
+  --glow-strength: 1;
+  --dust-rgb: 236, 244, 255;
+  --dust-accent-rgb: 141, 184, 255;
 }
 
 *,
@@ -117,7 +345,7 @@ a {
   flex: none;
   width: 28px;
   height: 28px;
-  color: #fff;
+  color: var(--logo-ink);
 }
 
 /* One dark pill holding the links and the app CTA. */
@@ -126,13 +354,10 @@ a {
   align-items: center;
   gap: 8px;
   padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--nav-pill-line);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(28, 28, 30, 0.92), rgba(16, 16, 18, 0.92));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 0 1px rgba(0, 0, 0, 0.6),
-    0 14px 36px -14px rgba(0, 0, 0, 0.9);
+  background: var(--nav-pill-bg);
+  box-shadow: var(--nav-pill-shadow);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
@@ -160,7 +385,7 @@ a {
   border: 0;
   border-radius: 999px;
   background: none;
-  color: rgba(255, 255, 255, 0.66);
+  color: var(--nav-link);
   font: inherit;
   font-size: 14px;
   font-weight: 500;
@@ -184,10 +409,10 @@ a {
   gap: 7px;
   height: var(--btn-h);
   padding: 0 18px 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--ctl-line);
   border-radius: 999px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.82);
+  background: var(--ctl-bg);
+  color: var(--ctl-text);
   font: inherit;
   font-size: var(--btn-font);
   font-weight: 500;
@@ -197,10 +422,12 @@ a {
 }
 
 .nav__lang-toggle:hover,
-.nav__lang-toggle[aria-expanded="true"] {
-  border-color: rgba(255, 255, 255, 0.34);
+.nav__lang-toggle[aria-expanded="true"],
+.nav__theme:hover,
+.nav__burger:hover {
+  border-color: var(--ctl-line-hover);
   color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--hover-bg);
 }
 
 .nav__globe {
@@ -220,8 +447,8 @@ a {
   border-radius: 16px;
   /* Nearly opaque: backdrop-filter does not work inside .nav__menu, which
      already has one, so the page would show through. */
-  background: rgba(16, 16, 18, 0.97);
-  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px) scale(0.98);
@@ -253,7 +480,7 @@ a {
 }
 
 .nav__option:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--hover-bg);
 }
 
 .nav__option[aria-checked="true"] {
@@ -283,11 +510,42 @@ a {
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--ctl-line);
   border-radius: 999px;
-  background: transparent;
+  background: var(--ctl-bg);
   color: var(--text);
   cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+/* Light / dark switch: a moon in the light theme, a sun in the dark one. */
+.nav__theme {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--btn-h);
+  height: var(--btn-h);
+  padding: 0;
+  border: 1px solid var(--ctl-line);
+  border-radius: 999px;
+  background: var(--ctl-bg);
+  color: var(--ctl-text);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.nav__theme svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav__theme-sun,
+:root[data-theme="dark"] .nav__theme-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .nav__theme-sun {
+  display: block;
 }
 
 .nav__burger span,
@@ -360,36 +618,32 @@ a {
   transform: scale(0.98);
 }
 
-/* Secondary: hairline outline on black. */
+/* Secondary: hairline outline (on white in light, on black in dark). */
 .btn--outline {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--outline-line);
+  background: var(--outline-bg);
   color: var(--text);
 }
 
 .btn--outline:hover {
-  border-color: rgba(255, 255, 255, 0.42);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--outline-line-hover);
+  background: var(--outline-bg-hover);
 }
 
-/* Primary: lit white pill with a soft halo and a black arrow disc. */
+/* Primary: a near-black pill with a green arrow disc in light; the lit
+   white pill with a black disc in dark. */
 .btn--glow {
   gap: 14px;
   padding: 0 5px 0 24px;
-  border: 1px solid #fff;
-  background: linear-gradient(180deg, #ffffff 0%, #ececec 55%, #d6d6d6 100%);
-  color: #1b1b1b;
-  box-shadow:
-    0 0 18px rgba(255, 255, 255, 0.3),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 #fff;
+  border: 1px solid var(--cta-line);
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  box-shadow: var(--cta-shadow);
 }
 
 .btn--glow:hover {
-  box-shadow:
-    0 0 26px 2px rgba(255, 255, 255, 0.42),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 #fff;
+  background: var(--cta-bg-hover);
+  box-shadow: var(--cta-shadow-hover);
 }
 
 .btn__icon {
@@ -398,9 +652,9 @@ a {
   width: calc(var(--btn-h) - 10px);
   height: calc(var(--btn-h) - 10px);
   border-radius: 50%;
-  background: #111;
-  color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background: var(--cta-icon-bg);
+  color: var(--cta-icon-text);
+  box-shadow: var(--cta-icon-shadow);
 }
 
 .btn__icon svg {
@@ -722,7 +976,7 @@ main {
   align-self: end;
   justify-self: end;
   padding: 2px 0 2px calc(26 * var(--u));
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid var(--line-strong);
 }
 
 /* The segment slides down the rule as the steps advance. */
@@ -734,7 +988,7 @@ main {
   width: 1px;
   height: calc(34 * var(--u));
   background: var(--primary-soft);
-  box-shadow: 0 0 8px rgba(49, 224, 160, 0.8);
+  box-shadow: var(--rule-glow);
   transition: top 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -745,13 +999,13 @@ main {
 /* The current step's word lights up; the others wait dimmed. */
 .hold__step,
 .hold__dot {
-  opacity: 0.36;
+  opacity: var(--step-dim);
   transition: opacity 500ms ease, text-shadow 500ms ease;
 }
 
 .hold__step.is-active {
   opacity: 1;
-  text-shadow: 0 0 12px rgba(49, 224, 160, 0.55);
+  text-shadow: var(--step-glow);
 }
 
 /* All descriptions share one cell, so the block keeps the height of the
@@ -813,7 +1067,8 @@ main {
     gap: 6px;
     padding: 8px;
     border-radius: 22px;
-    background: rgba(16, 16, 18, 0.97);
+    background: var(--menu-bg);
+    box-shadow: var(--menu-shadow);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -841,7 +1096,7 @@ main {
 
   .nav__link:hover,
   .nav__link[aria-expanded="true"] {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--hover-bg);
   }
 
   .nav__menu .nav__dropdown {
@@ -850,7 +1105,7 @@ main {
     width: auto;
     margin-top: 4px;
     border: 0;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--hover-bg-soft);
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -1060,5 +1315,91 @@ main {
   .hold__snap {
     scroll-snap-align: start;
     scroll-snap-stop: always;
+  }
+}
+
+/* Phones: the nav holds the logo, the theme and language switches, "Entrar"
+   and the menu button, so everything tightens a little to fit 360px. */
+@media (max-width: 420px) {
+  :root {
+    --gutter-start: 16px;
+    --gutter-end: 16px;
+  }
+
+  .nav__end {
+    gap: 6px;
+  }
+
+  .nav__logo {
+    gap: 7px;
+    font-size: 21px;
+  }
+
+  .sorvine-mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav__theme,
+  .nav__lang-toggle,
+  .nav__burger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav__login {
+    height: 40px;
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav__end {
+    gap: 4px;
+  }
+
+  .nav__logo {
+    font-size: 19px;
+  }
+
+  .nav__theme,
+  .nav__lang-toggle,
+  .nav__burger {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav__login {
+    height: 38px;
+    padding: 0 11px;
+    font-size: 14px;
+  }
+}
+
+/* Narrow desktops and tablets in landscape: five links, the theme switch and
+   the language menu share one row, so the links tighten and the language
+   button keeps only its globe (its label says the language). */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .nav__link {
+    padding: 0 11px;
+    font-size: 13.5px;
+  }
+
+  .nav__end {
+    gap: 8px;
+  }
+
+  .nav__lang-toggle {
+    justify-content: center;
+    width: var(--btn-h);
+    padding: 0;
+  }
+
+  .nav__lang-label {
+    display: none;
+  }
+
+  .nav__login {
+    padding: 0 18px;
   }
 }

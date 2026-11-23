@@ -55,8 +55,17 @@
 
   const POINTER_RADIUS = 210;
   const DUST_COUNT = 140;
-  // Particle colour (cool white); only the alpha channel is accumulated.
-  const TINT = 0x00fff4ec; // little-endian ABGR: r=236 g=244 b=255, a=0
+  // Particle colour; only the alpha channel is accumulated. Little-endian
+  // ABGR with a=0. Cool white on the dark theme; the light theme reads a
+  // deep green from CSS (--particle-rgb, styles.css), see readTheme.
+  let TINT = 0x00fff4ec; // r=236 g=244 b=255
+  // Theme colours (styles.css): how strongly dots add up, and the glow at the
+  // fingertips and in the sphere (additive light on dark, a soft tint on light).
+  let ink = 1;
+  let glowMode = 'lighter';
+  let glowCore = '235,243,255';
+  let glowMid = '120,170,255';
+  let glowStrength = 1;
   // Intro: points start in a loose cloud and gather into the hands.
   const GATHER_DELAY = 900;
   const GATHER_MS = 2200;
@@ -217,6 +226,38 @@
         kernels.push(k);
       }
     }
+  }
+
+  function readTheme() {
+    const cs = getComputedStyle(document.documentElement);
+    const rgb = (name, fallback) => {
+      const v = cs.getPropertyValue(name).match(/[\d.]+/g);
+      return v && v.length >= 3 ? v.slice(0, 3).map((n) => Math.round(+n)) : fallback;
+    };
+    const num = (name, fallback) => {
+      const v = parseFloat(cs.getPropertyValue(name));
+      return Number.isFinite(v) ? v : fallback;
+    };
+    const [r, g, b] = rgb('--particle-rgb', [236, 244, 255]);
+    TINT = ((b << 16) | (g << 8) | r) >>> 0;
+    ink = num('--particle-strength', 1);
+    glowMode = cs.getPropertyValue('--glow-mode').trim() === 'source-over' ? 'source-over' : 'lighter';
+    glowCore = rgb('--glow-core', [235, 243, 255]).join(',');
+    glowMid = rgb('--glow-mid', [120, 170, 255]).join(',');
+    glowStrength = num('--glow-strength', 1);
+  }
+
+  // Theme switch (js/tema.js): recolour every pixel and upload the whole
+  // canvas once, which also wipes the old glows.
+  function retheme() {
+    readTheme();
+    if (!pixels) return;
+    pixels.fill(TINT);
+    prevLeft = 0;
+    prevTop = 0;
+    prevRight = canvas.width - 1;
+    prevBottom = canvas.height - 1;
+    if (!running) tick(performance.now(), 1);
   }
 
   function resize() {
@@ -890,6 +931,7 @@
     if (iy + r > boxBottom) boxBottom = iy + r;
     const k = kernels[(((y - iy) * 4) | 0) * 4 + (((x - ix) * 4) | 0)];
     const size = r * 2 + 1;
+    intensity *= ink;
     let ki = 0;
     for (let row = iy - r; row <= iy + r; row++) {
       let a = ((row * w + ix - r) << 2) + 3;
@@ -1033,10 +1075,11 @@
     const y = cssY * dpr;
     const r = Math.round(cssR * dpr);
     const glow = ctx.createRadialGradient(x, y, 0, x, y, r);
-    glow.addColorStop(0, `rgba(235,243,255,${0.85 * strength})`);
-    glow.addColorStop(mid, `rgba(120,170,255,${0.45 * strength})`);
-    glow.addColorStop(1, 'rgba(49,224,160,0)');
-    ctx.globalCompositeOperation = 'lighter';
+    const s = strength * glowStrength;
+    glow.addColorStop(0, `rgba(${glowCore},${0.85 * s})`);
+    glow.addColorStop(mid, `rgba(${glowMid},${0.45 * s})`);
+    glow.addColorStop(1, `rgba(${glowMid},0)`);
+    ctx.globalCompositeOperation = glowMode;
     ctx.fillStyle = glow;
     ctx.fillRect(x - r, y - r, r * 2, r * 2);
     ctx.globalCompositeOperation = 'source-over';
@@ -1138,6 +1181,7 @@
   document.addEventListener('visibilitychange', play);
   reducedMotion.addEventListener('change', play);
   new ResizeObserver(resize).observe(canvas);
+  new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   // Generous margins: the hands travel past their boxes while moving.
   const observer = new IntersectionObserver(
     (entries) => {
@@ -1154,6 +1198,7 @@
   observer.observe(to);
   observer.observe(hold);
 
+  readTheme();
   resize();
   const load = (url) =>
     fetch(url).then((res) => {

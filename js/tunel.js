@@ -881,6 +881,11 @@ function buildTunnelFoldSlider(root, config) {
     /** @type {null | { target: any, material: any, scene: any, camera: any, size: any }} */
     let post = null;
     let bgDirty = true;
+    // Light / dark switch (js/tema.js): the stage colour changes with it.
+    new MutationObserver(() => {
+      bgDirty = true;
+      invalidate();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     function ensurePost() {
       if (!post) {
         const material = new THREE.ShaderMaterial({
