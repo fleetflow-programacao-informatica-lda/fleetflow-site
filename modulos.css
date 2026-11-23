@@ -1,0 +1,48 @@
+/* "O que faz a FleetFlow" (#modulos) e "Ligações" (#ligacoes), 23/11 — duas cenas de texto por cima das partículas
+   (fundo preto, como o túnel). Uma cena mais alta do que o ecrã ganha paragens extra no js/snap.js. */
+.info{position:relative;z-index:5;display:flex;flex-direction:column;justify-content:center;min-height:100vh;min-height:100svh;padding:clamp(80px,10vh,112px) clamp(16px,4vw,40px) clamp(76px,9vh,96px);background:#000;box-sizing:border-box}
+.info__inner{width:100%;max-width:1180px;margin:0 auto}
+.info__head{max-width:760px;margin:0 auto clamp(20px,3.4vh,40px);text-align:center}
+.info__head .hold__eyebrow{margin-bottom:10px}
+.info .hold__title{font-size:clamp(28px,3.3vw,44px)}
+.info .hold__title span{white-space:normal;text-wrap:balance}
+.info__lead{max-width:36em;margin:14px auto 0;color:var(--text-soft,#c4c4c4);font-size:clamp(14px,1.1vw,16px);line-height:1.55;letter-spacing:-.01em;text-wrap:balance}
+.info .btn{font:inherit;font-size:var(--btn-font,14.5px);cursor:pointer}
+
+/* Módulos */
+.mods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.mod{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:border-color .18s ease}
+.mod:hover{border-color:rgba(49,224,160,.32)}
+.mod__icon{display:grid;place-items:center;width:38px;height:38px;margin-bottom:4px;border-radius:11px;background:rgba(49,224,160,.1);color:var(--primary,#31e0a0)}
+.mod__icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mod__title{margin:0;font-size:16px;font-weight:600;letter-spacing:-.015em}
+.mod__text{margin:0;color:#a3a3a3;font-size:14px;line-height:1.5}
+.info__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-top:clamp(22px,4vh,36px)}
+
+/* Ligações */
+.links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.links__group{padding:20px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012))}
+.links__group--wide{grid-column:1/-1}
+.links__title{margin:0;color:var(--primary-soft,#9dffd0);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.links__note{margin:6px 0 10px;color:#8a8a8a;font-size:13.5px;line-height:1.45}
+.links__list{display:grid;column-gap:24px;margin:0;padding:0;list-style:none}
+.links__group--wide .links__list{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.links__list li{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07);font-size:15px;font-weight:500}
+.badge{flex:none;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge--ok{border:1px solid rgba(49,224,160,.28);background:rgba(49,224,160,.1);color:#9dffd0}
+.badge--val{border:1px solid rgba(251,146,60,.32);background:rgba(251,146,60,.1);color:#fdba74}
+.links__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:20px}
+.links__legal{margin:0;color:#8a8a8a;font-size:12.5px;line-height:1.45}
+
+@media (max-width:1100px){.mods{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .mods,.links{grid-template-columns:minmax(0,1fr)}
+  .mod,.links__group{padding:16px}
+  .mod{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 12px}
+  .mod__icon{margin:0}
+  .mod__text{grid-column:1/-1}
+  .links__foot{justify-content:center;text-align:center}
+}
+@media (max-width:420px){.info .btn{white-space:normal;height:auto;min-height:var(--btn-h,44px);padding-top:6px;padding-bottom:6px;text-align:left}}
+@media (prefers-reduced-motion:reduce){.mod{transition:none}}

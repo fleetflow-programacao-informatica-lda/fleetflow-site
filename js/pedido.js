@@ -6,6 +6,20 @@
   const ENDPOINT = 'https://app.fleetflow.systems/api/public/pedido-orcamento';
   const FALLBACK_EMAIL = 'support@fleetflow.systems';
 
+  // O envio e o email de recurso servem também o assistente do site (js/assistente.js, via window.FFPedido).
+  // text/plain e sem cookies: pedido simples para outro domínio (a plataforma só deixa este site ler a resposta).
+  const send = (p) =>
+    fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(p),
+    });
+  const mailto = (subject, lines) =>
+    `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+  window.FFPedido = { send, mailto };
+
   const dialog = document.getElementById('pedido');
   if (!dialog || typeof dialog.showModal !== 'function') return; // browser muito antigo: os botões continuam a ser links de email
 
@@ -53,8 +67,7 @@
 
   function mailtoFor(p) {
     const service = form.querySelector('input[name="service"]:checked')?.closest('label')?.querySelector('strong')?.textContent || p.service;
-    const body = [service, p.name, p.company, p.email, p.phone, p.fleetSize, '', p.message].filter((v, i) => v || i === 6).join('\n');
-    return `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(service)}&body=${encodeURIComponent(body)}`;
+    return mailto(service, [service, p.name, p.company, p.email, p.phone, p.fleetSize, '', p.message].filter((v, i) => v || i === 6));
   }
 
   form.addEventListener('submit', async (e) => {
@@ -64,14 +77,7 @@
     submit.disabled = true;
     showMsg(null);
     try {
-      // text/plain e sem cookies: pedido simples para outro domínio (a plataforma só deixa este site ler a resposta).
-      const r = await fetch(ENDPOINT, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-        body: JSON.stringify(p),
-      });
+      const r = await send(p);
       if (r.ok) {
         // Enviado: o formulário dá lugar à confirmação (no telemóvel a mensagem ficava fora do ecrã).
         form.reset();

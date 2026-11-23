@@ -2,9 +2,12 @@
 // resting point (the hero, the reach scene, then each step of the hold
 // scene), so the screen always lands exactly on a scene. Resting points come
 // from [data-snap]: a section's top, or for data-snap="n" n points spread
-// over the scroll its pinned stage takes. Touch screens snap natively
-// (styles.css); anything else that leaves the page between two points (the
-// scrollbar, a link) settles to the nearest one when it stops.
+// over the scroll its pinned stage takes; a plain [data-snap] section taller
+// than the screen gets as many points as it needs to show all of it. Touch
+// screens snap natively (styles.css); anything else that leaves the page
+// between two points (the scrollbar, a link) settles to the nearest one when
+// it stops. Inside an open window (the quote request, the assistant,
+// [data-snap-ignore]) the wheel and the keys belong to that window.
 (() => {
   'use strict';
 
@@ -14,6 +17,8 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   // A wheel event this long after the previous one starts a new gesture.
   const GESTURE_GAP = 180;
+  // Windows that scroll on their own.
+  const OWN_SCROLL = 'dialog[open], [data-snap-ignore]';
   let animating = false;
   let animEnd = 0;
   let lastWheel = 0;
@@ -26,8 +31,9 @@
     const list = [];
     for (const section of sections) {
       const rect = section.getBoundingClientRect();
-      const count = parseInt(section.dataset.snap, 10) || 1;
       const range = Math.max(0, rect.height - window.innerHeight);
+      // A few px over (its bottom padding) is not worth an extra stop.
+      const count = parseInt(section.dataset.snap, 10) || 1 + Math.ceil(Math.max(0, range - 64) / (window.innerHeight * 0.8));
       for (let k = 0; k < count; k++) list.push(y + rect.top + (count > 1 ? (range * k) / (count - 1) : 0));
     }
     return [...new Set(list.map((v) => Math.round(Math.min(max, Math.max(0, v)))))].sort((a, b) => a - b);
@@ -79,6 +85,7 @@
     (event) => {
       if (event.ctrlKey || touch.matches || Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
       if (document.querySelector('.nav--open')) return;
+      if (event.target.closest && event.target.closest(OWN_SCROLL)) return;
       event.preventDefault();
       if (!event.deltaY) return;
       const now = performance.now();
@@ -101,7 +108,7 @@
   window.addEventListener('keydown', (event) => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
     const target = event.target;
-    if (target.closest && target.closest('input, textarea, select, [contenteditable]')) return;
+    if (target.closest && target.closest(`input, textarea, select, [contenteditable], ${OWN_SCROLL}`)) return;
     const space = event.key === ' ';
     if (space && target.closest && target.closest('a, button, [role="button"]')) return;
     let direction = 0;

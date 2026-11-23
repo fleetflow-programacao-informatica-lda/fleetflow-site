@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="tunel.css" />
   <link rel="stylesheet" href="pedido.css" />
+  <link rel="stylesheet" href="modulos.css" />
+  <link rel="stylesheet" href="assistente.css" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FleetFlow" />
   <meta property="og:title" content="FleetFlow — Software que move o mundo real" />
@@ -48,6 +50,8 @@
       <ul class="nav__list">
         <li><a class="nav__link" href="#top" aria-current="page" data-i18n="nav.home">Início</a></li>
         <li><a class="nav__link" href="#platform" data-i18n="nav.platform">Plataforma</a></li>
+        <li><a class="nav__link" href="#modulos" data-i18n="nav.modules">O que faz</a></li>
+        <li><a class="nav__link" href="#ligacoes" data-i18n="nav.links">Ligações</a></li>
       </ul>
     </nav>
 
@@ -157,6 +161,82 @@
         </div>
       </div>
     </section>
+    <!-- 23/11: o que faz a plataforma, em linguagem de quem gere camiões (modulos.css). -->
+    <section class="info" id="modulos" aria-labelledby="modulos-title" data-snap>
+      <div class="info__inner">
+        <div class="info__head">
+          <p class="hold__eyebrow" data-i18n="mod.eyebrow">O que faz a FleetFlow</p>
+          <h2 class="hold__title" id="modulos-title">
+            <span class="hold__title-muted" data-i18n="mod.title_muted">Tudo o que a tua operação precisa,</span>
+            <span data-i18n="mod.title_strong">numa só plataforma.</span>
+          </h2>
+          <p class="info__lead" data-i18n="mod.lead">Feita dentro de uma empresa de transportes, para quem gere camiões, motoristas e cargas todos os dias.</p>
+        </div>
+        <ul class="mods">
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M3.5 9.5h17M8 3v4M16 3v4M7.5 13.5h4M7.5 16.5h7" /></svg></span><h3 class="mod__title" data-i18n="mod.planner.t">Planeador</h3><p class="mod__text" data-i18n="mod.planner.d">Planeia o dia ou a semana numa só vista. As cargas ficam ordenadas de norte a sul e separadas em Nacional, Ibérico e Internacional.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z" /><path d="M14 3.5V8h4.5M9 13.5l2 2 4-4" /></svg></span><h3 class="mod__title" data-i18n="mod.loads.t">Cargas e e-CMR</h3><p class="mod__text" data-i18n="mod.loads.d">Cada carga com cliente, locais, horas e camião. O CMR digital sai dos dados da carga — não se escreve nada duas vezes.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M10.5 18.5h3" /></svg></span><h3 class="mod__title" data-i18n="mod.apps.t">App do motorista e do gestor</h3><p class="mod__text" data-i18n="mod.apps.d">O motorista vê o trabalho do dia no telemóvel, Android ou iPhone, sem equipamento extra. O gestor acompanha tudo e fala com a equipa.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h14l-3.5-3.5M20 16H6l3.5 3.5" /></svg></span><h3 class="mod__title" data-i18n="mod.exchange.t">Bolsa de cargas e rede</h3><p class="mod__text" data-i18n="mod.exchange.d">Passa a empresas parceiras as cargas que não consegues fazer e recebe as delas. Uma rede entre transportadores, na mesma plataforma.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="15.5" cy="8.5" r="4" /><path d="M12.6 11.4 4.5 19.5M17 8.5h-3" /></svg></span><h3 class="mod__title" data-i18n="mod.workshop.t">Oficina e stock</h3><p class="mod__text" data-i18n="mod.workshop.d">Trabalhos por viatura, revisões, pneus e quilómetros com avisos, e as peças em stock sempre contadas.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" /><ellipse cx="12" cy="12" rx="9.2" ry="4.2" transform="rotate(-28 12 12)" /></svg></span><h3 class="mod__title" data-i18n="mod.orbit.t">Orbit, o agente</h3><p class="mod__text" data-i18n="mod.orbit.d">Propõe o plano, responde a perguntas sobre a operação e prepara o trabalho. Tu aprovas antes de ele agir.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.5-2 1.5-1.5-1.2-1.5 1.2-2-1.5L6 20.5z" /><path d="M9 8.5h6M9 12h6M9 15.5h3.5" /></svg></span><h3 class="mod__title" data-i18n="mod.invoice.t">Faturação ligada</h3><p class="mod__text" data-i18n="mod.invoice.d">As cargas feitas viram um rascunho de fatura no programa que a empresa já usa. Uma pessoa confirma — nada é emitido sozinho.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 6.6A6 6 0 1 0 17 17.4" /><path d="M5 10.5h8.5M5 13.5h8.5" /></svg></span><h3 class="mod__title" data-i18n="mod.price.t">Preços públicos</h3><p class="mod__text" data-i18n="mod.price.d">Desde 150 €/mês + IVA, mensal ou anual. Crias a conta online em minutos e escolhes o plano pelo tamanho da frota.</p></li>
+        </ul>
+        <div class="info__actions">
+          <button type="button" class="btn btn--glow" data-assistente="price"><span data-i18n="mod.ask">Quanto custa para a minha frota?</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></button>
+          <a class="btn btn--outline" href="https://app.fleetflow.systems/api/auth/demo-login?kind=full" data-i18n="btn.demo">Ver demonstração</a>
+          <a class="btn btn--outline" href="https://app.fleetflow.systems" data-i18n="mod.signup">Criar conta</a>
+        </div>
+      </div>
+    </section>
+    <!-- 23/11: ligações — só nomes, sem logótipos de terceiros. "Disponível" = há código de sincronização a correr. -->
+    <section class="info" id="ligacoes" aria-labelledby="ligacoes-title" data-snap>
+      <div class="info__inner">
+        <div class="info__head">
+          <p class="hold__eyebrow" data-i18n="lig.eyebrow">Ligações</p>
+          <h2 class="hold__title" id="ligacoes-title">
+            <span class="hold__title-muted" data-i18n="lig.title_muted">Liga-se ao que</span>
+            <span data-i18n="lig.title_strong">já usas.</span>
+          </h2>
+          <p class="info__lead" data-i18n="lig.lead">A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.</p>
+        </div>
+        <div class="links">
+          <section class="links__group links__group--wide" aria-labelledby="lig-gps">
+            <h3 class="links__title" id="lig-gps" data-i18n="lig.gps">GPS e telemática</h3>
+            <p class="links__note" data-i18n="lig.gps.note">Ou só o GPS do telemóvel, pela app do motorista — sem instalar nada no camião.</p>
+            <ul class="links__list">
+              <li>Cartrack <span class="badge badge--ok" data-i18n="lig.ok">Disponível</span></li>
+              <li>Frotcom <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Webfleet <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Geotab <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Verizon Connect <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Samsara <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Visirun <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+            </ul>
+          </section>
+          <section class="links__group" aria-labelledby="lig-inv">
+            <h3 class="links__title" id="lig-inv" data-i18n="lig.inv">Faturação</h3>
+            <p class="links__note" data-i18n="lig.inv.note">Envia rascunhos; uma pessoa confirma antes de emitir.</p>
+            <ul class="links__list">
+              <li>InvoiceXpress <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>Moloni <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+              <li>PHC GO <span class="badge badge--val" data-i18n="lig.val">Em validação</span></li>
+            </ul>
+          </section>
+          <section class="links__group" aria-labelledby="lig-pay">
+            <h3 class="links__title" id="lig-pay" data-i18n="lig.pay">Pagamentos</h3>
+            <p class="links__note" data-i18n="lig.pay.note">Pagamento seguro das subscrições.</p>
+            <ul class="links__list">
+              <li>Stripe <span class="badge badge--ok" data-i18n="lig.ok">Disponível</span></li>
+            </ul>
+          </section>
+        </div>
+        <div class="links__foot">
+          <p class="links__legal" data-i18n="lig.legal">Os nomes pertencem aos respetivos donos; não implica parceria.</p>
+          <a class="btn btn--glow" href="mailto:support@fleetflow.systems?subject=Liga%C3%A7%C3%A3o%20a%20um%20programa" data-pedido="platform"><span data-i18n="lig.cta">Não encontras o teu programa? Fala connosco</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></a>
+        </div>
+      </div>
+    </section>
     <!-- 22/11: o que fazemos, num túnel de cartões (js/tunel.js — Tunnel Fold Slider da HorizonX, three.js do próprio site). -->
     <section class="trabalho" id="trabalho" aria-labelledby="trabalho-title" data-snap>
       <div class="trabalho__head">
@@ -254,6 +334,20 @@
         "work.text":"Avatares que falam pela tua empresa, sites que se mexem e software com agentes de IA — feitos à medida.","work.cta":"Pedir orçamento",
         "work.aria":"Túnel de imagens do nosso trabalho. Arrasta, desliza para o lado ou usa as setas.","work.play":"Continuar animação","work.pause":"Pausar animação","work.imageOf":"Imagem {i} de {n}",
         "req.title":"Pedir orçamento","req.lead":"Diz-nos o que precisas — respondemos por email.","req.close":"Fechar","req.what":"O que queres?","req.s.site":"Site","req.s.site.d":"Site ou landing page com movimento","req.s.avatar":"Avatar","req.s.avatar.d":"Um avatar que fala pela tua empresa","req.s.agent":"Agente de IA","req.s.agent.d":"Um agente que trabalha na tua operação","req.s.software":"Software à medida","req.s.software.d":"Uma ferramenta feita para o teu negócio","req.s.platform":"Plataforma FleetFlow com o Orbit","req.s.platform.d":"Para transportes: planeador, frota, motoristas e o agente Orbit","req.name":"Nome *","req.company":"Empresa","req.email":"Email *","req.phone":"Telefone","req.fleet":"Quantos camiões tem a frota?","req.message":"Mensagem","req.privacy":"Usamos estes dados só para responder ao teu pedido. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacidade</a>","req.send":"Enviar pedido","req.ok":"Pedido enviado. Respondemos em breve.","req.invalid":"Confirma o nome e o email.","req.err":"Não conseguimos enviar agora.","req.errLink":"Envia-nos por email — já vai preenchido.",
+        "nav.modules":"O que faz","nav.links":"Ligações",
+        "mod.eyebrow":"O que faz a FleetFlow","mod.title_muted":"Tudo o que a tua operação precisa,","mod.title_strong":"numa só plataforma.","mod.lead":"Feita dentro de uma empresa de transportes, para quem gere camiões, motoristas e cargas todos os dias.",
+        "mod.planner.t":"Planeador","mod.planner.d":"Planeia o dia ou a semana numa só vista. As cargas ficam ordenadas de norte a sul e separadas em Nacional, Ibérico e Internacional.",
+        "mod.loads.t":"Cargas e e-CMR","mod.loads.d":"Cada carga com cliente, locais, horas e camião. O CMR digital sai dos dados da carga — não se escreve nada duas vezes.",
+        "mod.apps.t":"App do motorista e do gestor","mod.apps.d":"O motorista vê o trabalho do dia no telemóvel, Android ou iPhone, sem equipamento extra. O gestor acompanha tudo e fala com a equipa.",
+        "mod.exchange.t":"Bolsa de cargas e rede","mod.exchange.d":"Passa a empresas parceiras as cargas que não consegues fazer e recebe as delas. Uma rede entre transportadores, na mesma plataforma.",
+        "mod.workshop.t":"Oficina e stock","mod.workshop.d":"Trabalhos por viatura, revisões, pneus e quilómetros com avisos, e as peças em stock sempre contadas.",
+        "mod.orbit.t":"Orbit, o agente","mod.orbit.d":"Propõe o plano, responde a perguntas sobre a operação e prepara o trabalho. Tu aprovas antes de ele agir.",
+        "mod.invoice.t":"Faturação ligada","mod.invoice.d":"As cargas feitas viram um rascunho de fatura no programa que a empresa já usa. Uma pessoa confirma — nada é emitido sozinho.",
+        "mod.price.t":"Preços públicos","mod.price.d":"Desde 150 €/mês + IVA, mensal ou anual. Crias a conta online em minutos e escolhes o plano pelo tamanho da frota.",
+        "mod.ask":"Quanto custa para a minha frota?","mod.signup":"Criar conta",
+        "lig.eyebrow":"Ligações","lig.title_muted":"Liga-se ao que","lig.title_strong":"já usas.","lig.lead":"A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.",
+        "lig.gps":"GPS e telemática","lig.gps.note":"Ou só o GPS do telemóvel, pela app do motorista — sem instalar nada no camião.","lig.inv":"Faturação","lig.inv.note":"Envia rascunhos; uma pessoa confirma antes de emitir.","lig.pay":"Pagamentos","lig.pay.note":"Pagamento seguro das subscrições.",
+        "lig.ok":"Disponível","lig.val":"Em validação","lig.legal":"Os nomes pertencem aos respetivos donos; não implica parceria.","lig.cta":"Não encontras o teu programa? Fala connosco",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform","btn.demo":"See the demo",
         "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
@@ -272,6 +366,20 @@
         "work.text":"Avatars that speak for your company, websites that move and software with AI agents — made to measure.","work.cta":"Get a quote",
         "work.aria":"Tunnel of images of our work. Drag, scroll sideways or use the arrow keys.","work.play":"Play animation","work.pause":"Pause animation","work.imageOf":"Image {i} of {n}",
         "req.title":"Get a quote","req.lead":"Tell us what you need — we will reply by email.","req.close":"Close","req.what":"What do you need?","req.s.site":"Website","req.s.site.d":"A website or landing page with motion","req.s.avatar":"Avatar","req.s.avatar.d":"An avatar that speaks for your company","req.s.agent":"AI agent","req.s.agent.d":"An agent that works inside your operation","req.s.software":"Custom software","req.s.software.d":"A tool built for your business","req.s.platform":"FleetFlow platform with Orbit","req.s.platform.d":"For transport: planner, fleet, drivers and the Orbit agent","req.name":"Name *","req.company":"Company","req.email":"Email *","req.phone":"Phone","req.fleet":"How many trucks in the fleet?","req.message":"Message","req.privacy":"We only use this data to answer your request. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacy</a>","req.send":"Send request","req.ok":"Request sent. We will get back to you soon.","req.invalid":"Please check your name and email.","req.err":"We could not send it right now.","req.errLink":"Email us instead — it is already filled in.",
+        "nav.modules":"Features","nav.links":"Integrations",
+        "mod.eyebrow":"What FleetFlow does","mod.title_muted":"Everything your operation needs,","mod.title_strong":"in one platform.","mod.lead":"Built inside a real transport company, for people who run trucks, drivers and loads every day.",
+        "mod.planner.t":"Planner","mod.planner.d":"Plan the day or the week in a single view. Loads are sorted north to south and split into National, Iberian and International.",
+        "mod.loads.t":"Loads and e-CMR","mod.loads.d":"Every load with customer, places, times and truck. The digital CMR is filled from the load data — nothing is typed twice.",
+        "mod.apps.t":"Driver and manager apps","mod.apps.d":"Drivers see the day's work on their phone, Android or iPhone, with no extra hardware. Managers follow everything and talk to the team.",
+        "mod.exchange.t":"Load exchange and network","mod.exchange.d":"Hand the loads you can't cover to partner companies and take on theirs. A network between carriers, on the same platform.",
+        "mod.workshop.t":"Workshop and stock","mod.workshop.d":"Jobs per vehicle, services, tyres and mileage with reminders, and spare parts in stock always counted.",
+        "mod.orbit.t":"Orbit, the agent","mod.orbit.d":"It proposes the plan, answers questions about the operation and prepares the work. You approve before it acts.",
+        "mod.invoice.t":"Connected invoicing","mod.invoice.d":"Completed loads become a draft invoice in the software your company already uses. A person confirms — nothing is issued on its own.",
+        "mod.price.t":"Public prices","mod.price.d":"From €150/month + VAT, monthly or yearly. Create your account online in minutes and pick the plan by fleet size.",
+        "mod.ask":"How much for my fleet?","mod.signup":"Create account",
+        "lig.eyebrow":"Integrations","lig.title_muted":"Connects to what","lig.title_strong":"you already use.","lig.lead":"FleetFlow talks to the GPS and software your company already has. The statuses are real: “In validation” means it is still being tested.",
+        "lig.gps":"GPS and telematics","lig.gps.note":"Or just the phone's GPS, through the driver app — nothing to install in the truck.","lig.inv":"Invoicing","lig.inv.note":"Sends drafts; a person confirms before anything is issued.","lig.pay":"Payments","lig.pay.note":"Secure subscription payments.",
+        "lig.ok":"Available","lig.val":"In validation","lig.legal":"Names belong to their respective owners; no partnership is implied.","lig.cta":"Can't find your software? Talk to us",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma","btn.demo":"Ver la demostración",
         "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
@@ -290,6 +398,20 @@
         "work.text":"Avatares que hablan por tu empresa, webs que se mueven y software con agentes de IA — hechos a medida.","work.cta":"Pedir presupuesto",
         "work.aria":"Túnel de imágenes de nuestro trabajo. Arrastra, desliza hacia el lado o usa las flechas.","work.play":"Reanudar animación","work.pause":"Pausar animación","work.imageOf":"Imagen {i} de {n}",
         "req.title":"Pedir presupuesto","req.lead":"Cuéntanos qué necesitas — te respondemos por email.","req.close":"Cerrar","req.what":"¿Qué necesitas?","req.s.site":"Web","req.s.site.d":"Una web o landing page con movimiento","req.s.avatar":"Avatar","req.s.avatar.d":"Un avatar que habla por tu empresa","req.s.agent":"Agente de IA","req.s.agent.d":"Un agente que trabaja en tu operación","req.s.software":"Software a medida","req.s.software.d":"Una herramienta hecha para tu negocio","req.s.platform":"Plataforma FleetFlow con Orbit","req.s.platform.d":"Para transporte: planificador, flota, conductores y el agente Orbit","req.name":"Nombre *","req.company":"Empresa","req.email":"Email *","req.phone":"Teléfono","req.fleet":"¿Cuántos camiones tiene la flota?","req.message":"Mensaje","req.privacy":"Usamos estos datos solo para responder a tu solicitud. <a href=\"https://app.fleetflow.systems/legal/privacidade\" target=\"_blank\" rel=\"noopener\">Privacidad</a>","req.send":"Enviar solicitud","req.ok":"Solicitud enviada. Te respondemos pronto.","req.invalid":"Revisa el nombre y el email.","req.err":"No hemos podido enviarla ahora.","req.errLink":"Escríbenos por email — ya va rellenado.",
+        "nav.modules":"Qué hace","nav.links":"Conexiones",
+        "mod.eyebrow":"Qué hace FleetFlow","mod.title_muted":"Todo lo que tu operación necesita,","mod.title_strong":"en una sola plataforma.","mod.lead":"Hecha dentro de una empresa de transporte, para quien gestiona camiones, conductores y cargas cada día.",
+        "mod.planner.t":"Planificador","mod.planner.d":"Planifica el día o la semana en una sola vista. Las cargas se ordenan de norte a sur y se separan en Nacional, Ibérico e Internacional.",
+        "mod.loads.t":"Cargas y e-CMR","mod.loads.d":"Cada carga con cliente, lugares, horas y camión. El CMR digital sale de los datos de la carga — no se escribe nada dos veces.",
+        "mod.apps.t":"App del conductor y del gestor","mod.apps.d":"El conductor ve el trabajo del día en el móvil, Android o iPhone, sin equipos extra. El gestor lo sigue todo y habla con el equipo.",
+        "mod.exchange.t":"Bolsa de cargas y red","mod.exchange.d":"Pasa a empresas colaboradoras las cargas que no puedes hacer y recibe las suyas. Una red entre transportistas, en la misma plataforma.",
+        "mod.workshop.t":"Taller y stock","mod.workshop.d":"Trabajos por vehículo, revisiones, neumáticos y kilómetros con avisos, y las piezas en stock siempre contadas.",
+        "mod.orbit.t":"Orbit, el agente","mod.orbit.d":"Propone el plan, responde preguntas sobre la operación y prepara el trabajo. Tú apruebas antes de que actúe.",
+        "mod.invoice.t":"Facturación conectada","mod.invoice.d":"Las cargas hechas se convierten en un borrador de factura en el programa que la empresa ya usa. Una persona confirma — nada se emite solo.",
+        "mod.price.t":"Precios públicos","mod.price.d":"Desde 150 €/mes + IVA, mensual o anual. Creas la cuenta online en minutos y eliges el plan según el tamaño de la flota.",
+        "mod.ask":"¿Cuánto cuesta para mi flota?","mod.signup":"Crear cuenta",
+        "lig.eyebrow":"Conexiones","lig.title_muted":"Se conecta a lo que","lig.title_strong":"ya usas.","lig.lead":"FleetFlow habla con el GPS y los programas que tu empresa ya tiene. Los estados son reales: “En validación” significa que aún se está probando.",
+        "lig.gps":"GPS y telemática","lig.gps.note":"O solo el GPS del móvil, con la app del conductor — sin instalar nada en el camión.","lig.inv":"Facturación","lig.inv.note":"Envía borradores; una persona confirma antes de emitir.","lig.pay":"Pagos","lig.pay.note":"Pago seguro de las suscripciones.",
+        "lig.ok":"Disponible","lig.val":"En validación","lig.legal":"Los nombres pertenecen a sus respectivos dueños; no implica colaboración.","lig.cta":"¿No encuentras tu programa? Habla con nosotros",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };
     const label = document.querySelector('.nav__lang-label');
@@ -312,5 +434,7 @@
     apply(saved);
   })();
   </script>
+  <!-- 23/11: assistente do site — conversa guiada, sem IA paga nem chat de terceiros (assistente.css). -->
+  <script src="js/assistente.js"></script>
 </body>
 </html>
