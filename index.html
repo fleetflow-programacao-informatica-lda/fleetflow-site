@@ -170,7 +170,7 @@
     </section>
     <!-- 23/11: o que faz a plataforma, em linguagem de quem gere camiões (modulos.css). -->
     <section class="info" id="modulos" aria-labelledby="modulos-title" data-snap>
-      <div class="info__inner">
+      <div class="info__inner mo-layout">
         <div class="info__head">
           <p class="hold__eyebrow" data-i18n="mod.eyebrow">O que faz a FleetFlow</p>
           <h2 class="hold__title" id="modulos-title">
@@ -178,6 +178,18 @@
             <span data-i18n="mod.title_strong">numa só plataforma.</span>
           </h2>
           <p class="info__lead" data-i18n="mod.lead">Feita dentro de uma empresa de transportes, para quem gere camiões, motoristas e cargas todos os dias.</p>
+        </div>
+        <!-- 23/11: a mesma órbita de quadrados das Ligações, com os módulos (js/orbit.js). Os cartões ao lado explicam. -->
+        <div class="lo-orbit mo-orbit">
+          <div class="po-root" tabindex="0" role="region" data-i18n-aria="mod.o.aria" aria-label="Roda com os módulos da FleetFlow. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam." data-draggable>
+            <div class="po-scene"><div class="po-orbit" aria-hidden="true"></div></div>
+            <div class="po-info" aria-hidden="true">
+              <p class="po-corner po-corner-0" data-i18n="mod.o.tl">Módulos</p>
+              <p class="po-corner po-corner-1" data-i18n="mod.o.tr">Planear · Transportar · Faturar</p>
+              <p class="po-corner po-corner-2" data-i18n="lig.o.bl">Arrasta para explorar</p>
+              <p class="po-corner po-corner-3" data-i18n="lig.o.br">Toca para pausar</p>
+            </div>
+          </div>
         </div>
         <ul class="mods">
           <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M3.5 9.5h17M8 3v4M16 3v4M7.5 13.5h4M7.5 16.5h7" /></svg></span><h3 class="mod__title" data-i18n="mod.planner.t">Planeador</h3><p class="mod__text" data-i18n="mod.planner.d">Planeia o dia ou a semana numa só vista. As cargas ficam ordenadas de norte a sul e separadas em Nacional, Ibérico e Internacional.</p></li>
@@ -207,7 +219,7 @@
           </h2>
           <p class="info__lead" data-i18n="lig.lead">A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.</p>
         </div>
-        <!-- 23/11: órbita de quadrados (Pulse Orbit da HorizonX, licença Pro; quadrados nossos, js/ligacoes-orbit.js) ao lado das listas com os estados reais. -->
+        <!-- 23/11: órbita de quadrados (Pulse Orbit da HorizonX, licença Pro; quadrados nossos, js/orbit.js) ao lado das listas com os estados reais. -->
         <div class="lo-layout">
         <div class="lo-orbit">
           <div class="po-root" tabindex="0" role="region" data-i18n-aria="lig.o.aria" aria-label="Roda com os programas a que a FleetFlow se liga. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam." data-draggable>
@@ -312,7 +324,7 @@
   <script src="js/particles.js"></script>
   <script src="js/steps.js"></script>
   <script type="module" src="js/tunel.js"></script>
-  <script src="js/ligacoes-orbit.js"></script>
+  <script src="js/orbit.js"></script>
   <footer id="ff-foot"><span>© 2026 FleetFlow Programação INF Unipessoal Lda · NIF 519110790 · <span data-i18n="foot.capital">Capital social</span> 5 000 €</span><a href="https://app.fleetflow.systems/legal/termos" data-i18n="foot.terms">Termos</a><a href="https://app.fleetflow.systems/legal/privacidade" data-i18n="foot.privacy">Privacidade</a><a href="https://app.fleetflow.systems/legal/cookies" data-i18n="foot.cookies">Cookies</a></footer>
 
   <!-- 22/11: "Pedir orçamento" — o pedido vai para a plataforma (POST /api/public/pedido-orcamento) e chega ao email da FleetFlow (js/pedido.js). -->
@@ -389,7 +401,7 @@
         "mod.ask":"Quanto custa para a minha frota?","mod.signup":"Criar conta",
         "lig.eyebrow":"Ligações","lig.title_muted":"Liga-se ao que","lig.title_strong":"já usas.","lig.lead":"A FleetFlow fala com o GPS e os programas que a tua empresa já tem. Os estados são reais: “Em validação” quer dizer que ainda está a ser testado.",
         "lig.gps":"GPS e telemática","lig.gps.note":"Ou só o GPS do telemóvel, pela app do motorista — sem instalar nada no camião.","lig.inv":"Faturação","lig.inv.note":"Envia rascunhos; uma pessoa confirma antes de emitir.","lig.pay":"Pagamentos","lig.pay.note":"Pagamento seguro das subscrições.",
-        "lig.ok":"Disponível",
+        "lig.ok":"Disponível","mod.o.tl":"Módulos","mod.o.tr":"Planear · Transportar · Faturar","mod.o.aria":"Roda com os módulos da FleetFlow. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam.",
         "btn.signup":"Criar conta","nav.services":"Serviços","lig.o.tl":"Ligações","lig.o.tr":"GPS · Faturação · Pagamentos","lig.o.bl":"Arrasta para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Roda com os programas a que a FleetFlow se liga. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam.","srv.eyebrow":"Também fazemos","srv.title_muted":"Além do TMS,","srv.title_strong":"software e sites à medida.","srv.lead":"A equipa que faz a FleetFlow também faz software de oficina, sites topo de gama e programas feitos para o teu negócio — e liga-os aos programas que já usas.","srv.ws.t":"Software de oficina","srv.ws.d":"Gestão da oficina e do stock: trabalhos por viatura, marcações, revisões e pneus com avisos, peças sempre contadas e a app da oficina para os mecânicos. Também existe só para oficinas.","srv.ws.cta":"Pedir proposta","srv.site.t":"Sites topo de gama com movimento","srv.site.d":"Sites animados e em 3D, como este: rápidos, em várias línguas e feitos à medida da tua marca.","srv.site.cta":"Pedir orçamento","srv.sw.t":"Software por medida","srv.sw.d":"Ferramentas internas, portais para clientes e agentes de IA que trabalham na tua operação, feitos para o teu negócio.","srv.sw.cta":"Pedir orçamento","srv.int.t":"Integrações","srv.int.d":"Ligamos a FleetFlow à faturação (InvoiceXpress, Moloni e PHC GO, em validação) e ao GPS (Cartrack disponível; outros em validação). Usas outro programa? Diz-nos qual.","srv.int.cta":"Falar de integrações","lig.val":"Em validação","lig.legal":"Os nomes pertencem aos respetivos donos; não implica parceria.","lig.cta":"Não encontras o teu programa? Fala connosco",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform","btn.demo":"See the demo",
@@ -422,7 +434,7 @@
         "mod.ask":"How much for my fleet?","mod.signup":"Create account",
         "lig.eyebrow":"Integrations","lig.title_muted":"Connects to what","lig.title_strong":"you already use.","lig.lead":"FleetFlow talks to the GPS and software your company already has. The statuses are real: “In validation” means it is still being tested.",
         "lig.gps":"GPS and telematics","lig.gps.note":"Or just the phone's GPS, through the driver app — nothing to install in the truck.","lig.inv":"Invoicing","lig.inv.note":"Sends drafts; a person confirms before anything is issued.","lig.pay":"Payments","lig.pay.note":"Secure subscription payments.",
-        "lig.ok":"Available",
+        "lig.ok":"Available","mod.o.tl":"Modules","mod.o.tr":"Plan · Deliver · Invoice","mod.o.aria":"Wheel of the FleetFlow modules. Drag sideways to turn it; Enter or Space pauses; the left and right arrow keys step.",
         "btn.signup":"Create account","nav.services":"Services","lig.o.tl":"Integrations","lig.o.tr":"GPS · Invoicing · Payments","lig.o.bl":"Drag to explore","lig.o.br":"Tap to pause","lig.o.aria":"Wheel of the software FleetFlow connects to. Drag sideways to turn it; Enter or Space pauses; the left and right arrow keys step.","srv.eyebrow":"We also build","srv.title_muted":"Beyond the TMS,","srv.title_strong":"custom software and websites.","srv.lead":"The team behind FleetFlow also builds workshop software, top-end websites and software made for your business — and connects them to the programs you already use.","srv.ws.t":"Workshop software","srv.ws.d":"Workshop and stock management: jobs per vehicle, appointments, services and tyres with reminders, parts always counted and the workshop app for mechanics. Also available for workshops on their own.","srv.ws.cta":"Ask for a proposal","srv.site.t":"Top-end websites with motion","srv.site.d":"Animated and 3D websites, like this one: fast, multilingual and made to fit your brand.","srv.site.cta":"Get a quote","srv.sw.t":"Custom software","srv.sw.d":"Internal tools, customer portals and AI agents that work inside your operation, built for your business.","srv.sw.cta":"Get a quote","srv.int.t":"Integrations","srv.int.d":"We connect FleetFlow to invoicing (InvoiceXpress, Moloni and PHC GO, in validation) and to GPS (Cartrack available; others in validation). Using other software? Tell us which.","srv.int.cta":"Talk about integrations","lig.val":"In validation","lig.legal":"Names belong to their respective owners; no partnership is implied.","lig.cta":"Can't find your software? Talk to us",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma","btn.demo":"Ver la demostración",
@@ -455,7 +467,7 @@
         "mod.ask":"¿Cuánto cuesta para mi flota?","mod.signup":"Crear cuenta",
         "lig.eyebrow":"Conexiones","lig.title_muted":"Se conecta a lo que","lig.title_strong":"ya usas.","lig.lead":"FleetFlow habla con el GPS y los programas que tu empresa ya tiene. Los estados son reales: “En validación” significa que aún se está probando.",
         "lig.gps":"GPS y telemática","lig.gps.note":"O solo el GPS del móvil, con la app del conductor — sin instalar nada en el camión.","lig.inv":"Facturación","lig.inv.note":"Envía borradores; una persona confirma antes de emitir.","lig.pay":"Pagos","lig.pay.note":"Pago seguro de las suscripciones.",
-        "lig.ok":"Disponible",
+        "lig.ok":"Disponible","mod.o.tl":"Módulos","mod.o.tr":"Planificar · Transportar · Facturar","mod.o.aria":"Rueda con los módulos de FleetFlow. Arrastra hacia los lados para girarla; Enter o Espacio pausa; las flechas izquierda y derecha avanzan.",
         "btn.signup":"Crear cuenta","nav.services":"Servicios","lig.o.tl":"Conexiones","lig.o.tr":"GPS · Facturación · Pagos","lig.o.bl":"Arrastra para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Rueda con los programas a los que FleetFlow se conecta. Arrastra hacia los lados para girarla; Enter o Espacio pausa; las flechas izquierda y derecha avanzan.","srv.eyebrow":"También hacemos","srv.title_muted":"Además del TMS,","srv.title_strong":"software y webs a medida.","srv.lead":"El equipo que hace FleetFlow también hace software de taller, webs de gama alta y programas hechos para tu negocio — y los conecta con los programas que ya usas.","srv.ws.t":"Software de taller","srv.ws.d":"Gestión del taller y del stock: trabajos por vehículo, citas, revisiones y neumáticos con avisos, piezas siempre contadas y la app del taller para los mecánicos. También existe solo para talleres.","srv.ws.cta":"Pedir propuesta","srv.site.t":"Webs de gama alta con movimiento","srv.site.d":"Webs animadas y en 3D, como esta: rápidas, en varios idiomas y hechas a la medida de tu marca.","srv.site.cta":"Pedir presupuesto","srv.sw.t":"Software a medida","srv.sw.d":"Herramientas internas, portales para clientes y agentes de IA que trabajan en tu operación, hechos para tu negocio.","srv.sw.cta":"Pedir presupuesto","srv.int.t":"Integraciones","srv.int.d":"Conectamos FleetFlow con la facturación (InvoiceXpress, Moloni y PHC GO, en validación) y con el GPS (Cartrack disponible; otros en validación). ¿Usas otro programa? Dinos cuál.","srv.int.cta":"Hablar de integraciones","lig.val":"En validación","lig.legal":"Los nombres pertenecen a sus respectivos dueños; no implica colaboración.","lig.cta":"¿No encuentras tu programa? Habla con nosotros",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };

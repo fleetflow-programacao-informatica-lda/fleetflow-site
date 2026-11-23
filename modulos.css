@@ -79,3 +79,29 @@
   .lo-orbit{min-height:0;height:clamp(300px,62vw,440px)}
 }
 @media (max-width:640px){.lo-orbit .po-corner{font-size:11px}}
+/* "O que faz a FleetFlow" (#modulos) com a órbita dos módulos (js/orbit.js): no computador, o título, a órbita e os
+   botões à esquerda e os 8 cartões em 2 × 4 à direita, para a cena caber num ecrã; no telemóvel, título, órbita,
+   cartões e botões, por esta ordem. */
+.mo-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"head mods" "orbit mods" "orbit actions";grid-template-rows:auto 1fr auto;column-gap:clamp(20px,2.6vw,36px);row-gap:14px}
+.mo-layout>.info__head{grid-area:head;max-width:none;margin:0;text-align:left}
+.mo-layout>.info__head .info__lead{margin-left:0}
+.mo-layout>.mo-orbit{grid-area:orbit;min-height:300px}
+.mo-layout>.info__head .hold__title{font-size:clamp(28px,2.5vw,38px)}
+.mo-layout>.mods{grid-area:mods;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:center}
+.mo-layout>.info__actions{grid-area:actions;justify-content:flex-start;margin-top:0}
+#modulos.info{padding-top:clamp(72px,9vh,104px);padding-bottom:clamp(64px,8vh,88px)}
+.mo-layout .mod{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px 12px;padding:14px 16px}
+.mo-layout .mod__icon{width:34px;height:34px;margin:0}
+.mo-layout .mod__title{font-size:15px}
+.mo-layout .mod__text{grid-column:1/-1;font-size:13.5px;line-height:1.45}
+@media (max-width:1100px){
+  .mo-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "orbit" "mods" "actions";grid-template-rows:none;row-gap:clamp(14px,2.4vh,22px)}
+  .mo-layout>.info__head{max-width:760px;margin:0 auto;text-align:center}
+  .mo-layout>.info__head .info__lead{margin-left:auto}
+  .mo-layout>.mo-orbit{height:clamp(280px,52vw,400px)}
+  .mo-layout>.info__actions{justify-content:center}
+}
+@media (max-width:640px){
+  .mo-layout>.mods{grid-template-columns:minmax(0,1fr)}
+  .lo-orbit,.mo-layout>.mo-orbit{height:clamp(320px,86vw,420px)}
+}
