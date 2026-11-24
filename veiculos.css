@@ -1,7 +1,9 @@
 /* "Transporte de veículos" (#transporte-veiculos), 24/11 — o módulo para empresas de porta-automóveis.
    Cena sempre clara, também no modo escuro: os tokens claros são redefinidos dentro da secção, por isso os
-   cartões (.mod) e os botões (.btn) de sempre ficam com o aspeto claro. O desenho do camião é um SVG nosso
-   (index.html); só o carro que entra no lugar 8 se mexe, e não se mexe com "reduzir movimento". */
+   cartões (.mod) e os botões (.btn) de sempre ficam com o aspeto claro. O porta-automóveis (camião com 2 lugares
+   + reboque com 6) é desenhado por js/porta-automoveis.js: os carros acendem com a cor do cliente na carga, o
+   conjunto anda em rota e na entrega cada carro apaga com um visto verde. Só anima à vista; com "reduzir
+   movimento" fica parado e carregado. */
 .cv{
   color-scheme:light;
   --bg:#fff;--section-bg:#fff;
@@ -15,8 +17,8 @@
   --cta-shadow:0 1px 2px rgba(16,24,20,.12),0 8px 20px -10px rgba(16,24,20,.45);
   --cta-shadow-hover:0 1px 2px rgba(16,24,20,.14),0 12px 26px -10px rgba(16,24,20,.5);
   --cta-icon-bg:#31e0a0;--cta-icon-text:#04120c;--cta-icon-shadow:none;
-  /* As três cores dos clientes no desenho: sóbrias, sem néon. */
-  --cv-a:#0f9d6e;--cv-b:#2f5d8a;--cv-c:#b8741a;
+  /* As quatro cores dos clientes no desenho (as mesmas de js/porta-automoveis.js): sóbrias, sem néon. */
+  --cv-a:#0E8F6A;--cv-b:#2F6FDB;--cv-c:#D49406;--cv-d:#7A5AF0;
   position:relative;z-index:5;
   padding:clamp(84px,11vh,120px) clamp(16px,4vw,40px) clamp(84px,10vh,108px);
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -39,34 +41,68 @@
 /* O desenho */
 .cv__art{margin:0;padding:clamp(14px,2vw,22px);border:1px solid var(--card-line);border-radius:20px;background:linear-gradient(180deg,#f8faf9,#eff4f1);box-shadow:var(--card-shadow)}
 .cv__stage{position:relative}
-.cv__truck{display:block;width:100%;height:auto}
-.cv__chip{position:absolute;top:0;display:flex;align-items:center;gap:9px;max-width:48%;padding:7px 11px 7px 8px;border:1px solid var(--card-line);border-radius:11px;background:#fff;box-shadow:var(--card-shadow);font-size:12.5px;line-height:1.25}
-.cv__chip--vin{left:0}
-.cv__chip--doc{right:0}
+.cv__rig{aspect-ratio:852/250;border-radius:12px;overflow:hidden}
+.cv__chip{display:flex;align-items:center;gap:9px;min-width:0;padding:7px 11px 7px 8px;border:1px solid var(--card-line);border-radius:11px;background:#fff;box-shadow:var(--card-shadow);font-size:12.5px;line-height:1.25}
 .cv__chip svg{flex:none;width:24px;height:24px}
 .cv__chip strong{display:block;color:var(--text);font-weight:600;letter-spacing:-.01em}
 .cv__chip small{display:block;color:var(--text-muted);font-size:11.5px;font-variant-numeric:tabular-nums}
+.cv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+/* Linha de estado por baixo do desenho: fase da viagem, lugares ocupados e pausa. */
+.cv__bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px;padding:9px 10px 9px 14px;border:1px solid var(--card-line);border-radius:12px;background:#fff}
+.cv__status{flex:1 1 200px;min-width:0;margin:0;color:var(--text);font-size:13.5px;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+.cv__occ{display:inline-flex;align-items:center;gap:8px;margin-left:auto;color:var(--text-2);font-size:12.5px}
+.cv__occ b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cv__occ-bar{width:72px;height:6px;border-radius:99px;background:#EDF1EF;overflow:hidden}
+.cv__occ-bar i{display:block;width:0;height:100%;border-radius:inherit;background:var(--cv-a);transition:width .45s ease}
+.cv__play{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;padding:0;border:1px solid var(--outline-line);border-radius:999px;background:#fff;color:var(--text);cursor:pointer}
+.cv__play:hover{border-color:var(--outline-line-hover)}
+.cv__play:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.cv__play svg{width:14px;height:14px}
+.cv__play-pause{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.cv__play-play{display:none;fill:currentColor}
+.cv__play.is-paused .cv__play-pause{display:none}
+.cv__play.is-paused .cv__play-play{display:inline}
+
+/* O porta-automóveis (SVG feito por js/porta-automoveis.js). Carros: fantasma → aceso → entregue. */
+.cv-rig{display:block;width:100%;height:auto;--rig-steel:#26303A;--rig-steel-2:#55616C;--rig-brand:#0E8F6A;--rig-ghost:#E9EEEC;--rig-ghost-line:#AEBAB5}
+.cv-rig__settle{transition:transform .5s ease}
+.cv-rig__car .cv-rig__paint{fill:var(--rig-ghost);stroke:var(--rig-ghost-line);stroke-width:1.3;transition:fill .55s ease,stroke .55s ease}
+.cv-rig__car .cv-rig__glass{fill:#F6F8F7;stroke:var(--rig-ghost-line);stroke-width:.8;transition:fill .55s ease}
+.cv-rig__car .cv-rig__trim{stroke:var(--rig-ghost-line);transition:stroke .55s ease}
+.cv-rig__car .cv-rig__lamp{fill:#F6F8F7;transition:fill .55s ease}
+.cv-rig__car.is-lit .cv-rig__paint{fill:var(--c);stroke:var(--c-line)}
+.cv-rig__car.is-lit .cv-rig__glass{fill:#DCEAF3;stroke:var(--c-glass)}
+.cv-rig__car.is-lit .cv-rig__trim{stroke:var(--c-trim)}
+.cv-rig__car.is-lit .cv-rig__lamp{fill:#FFE7A3}
+.cv-rig__halo{fill:var(--c);opacity:0;transform-box:fill-box;transform-origin:center}
+.cv-rig__car.is-flash .cv-rig__halo{animation:cv-rig-halo .9s ease-out}
+@keyframes cv-rig-halo{0%{opacity:.35;transform:scale(.7)}100%{opacity:0;transform:scale(1.35)}}
+.cv-rig__tick{opacity:0;transition:opacity .4s}
+.cv-rig__car.is-done .cv-rig__tick{opacity:1}
+.cv-rig__slot{font:600 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#7E8B86;transition:opacity .3s}
+.cv-rig__car.is-lit .cv-rig__slot,.cv-rig__car.is-done .cv-rig__slot{opacity:0}
+.cv-rig__wheel{transform-box:fill-box;transform-origin:center}
+.cv-rig.is-moving .cv-rig__wheel{animation:cv-rig-spin .6s linear infinite}
+.cv-rig.is-moving .cv-rig__road{animation:cv-rig-dash .5s linear infinite}
+.cv-rig.is-moving .cv-rig__body{animation:cv-rig-bob .4s ease-in-out infinite}
+.cv-rig.is-moving .cv-rig__far{animation:cv-rig-drift 10s linear infinite}
+.cv-rig.is-paused *{animation-play-state:paused}
+@keyframes cv-rig-spin{to{transform:rotate(360deg)}}
+@keyframes cv-rig-dash{to{stroke-dashoffset:-90}}
+@keyframes cv-rig-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.2px)}}
+@keyframes cv-rig-drift{to{transform:translateX(-600px)}}
 .cv__legend{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-.cv__legend ul{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;color:var(--text-2);font-size:13px}
+.cv__legend ul{display:flex;flex-wrap:wrap;gap:6px 15px;margin:0;padding:0;list-style:none;color:var(--text-2);font-size:13px}
 .cv__legend li{display:inline-flex;align-items:center;gap:7px}
 .cv__sw{flex:none;width:12px;height:12px;border-radius:3px}
 .cv__sw--a{background:var(--cv-a)}
 .cv__sw--b{background:var(--cv-b)}
 .cv__sw--c{background:var(--cv-c)}
-.cv__sw--free{border:1.5px dashed #8f9893}
+.cv__sw--d{background:var(--cv-d)}
+.cv__sw--done{position:relative;margin-right:3px;background:#E9EEEC;border:1px solid #AEBAB5;box-sizing:border-box}
+.cv__sw--done::after{content:"";position:absolute;right:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:#0E8F6A;box-shadow:0 0 0 1.5px #fff}
 .cv__decks{margin:8px 0 0;color:var(--text-muted);font-size:12.5px;line-height:1.45}
-.cv-a{color:var(--cv-a)}
-.cv-b{color:var(--cv-b)}
-.cv-c{color:var(--cv-c)}
-/* O carro do cliente C entra no lugar 8 (piso inferior, atrás), fica e volta a entrar. */
-.cv-in{animation:cv-in 7s cubic-bezier(.22,.8,.3,1) infinite}
-@keyframes cv-in{
-  0%{transform:translateX(200px);opacity:0}
-  8%{opacity:1}
-  34%{transform:translateX(0);opacity:1}
-  88%{transform:translateX(0);opacity:1}
-  96%,100%{transform:translateX(0);opacity:0}
-}
 
 /* Funcionalidades: os cartões .mod do resto do site, em 3 colunas. */
 .cv .cv__feats{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(32px,5vh,52px)}
@@ -89,14 +125,17 @@
 @media (max-width:640px){
   .cv .cv__feats,.cv__steps{grid-template-columns:minmax(0,1fr)}
   .cv__art{padding:12px;border-radius:16px}
-  .cv__chip{gap:6px;padding:5px 8px 5px 6px;border-radius:9px;font-size:11px}
-  .cv__chip small{font-size:10px}
+  .cv__rig{border-radius:8px}
+  .cv__chip{gap:6px;padding:5px 8px 5px 6px;border-radius:9px;font-size:11.5px}
+  .cv__chip small{font-size:10.5px}
   .cv__chip svg{width:18px;height:18px}
+  .cv__bar{padding:8px 8px 8px 12px}
+  .cv__status{flex-basis:100%;font-size:13px}
+  .cv__occ{margin-left:0;margin-right:auto}
   .cv__legend ul{gap:6px 14px;font-size:12.5px}
   .cv__feats .mod{padding:16px}
 }
 @media (max-width:420px){
   .cv .btn{white-space:normal;height:auto;min-height:var(--btn-h,44px);padding-top:6px;padding-bottom:6px;text-align:left}
-  .cv__chip--vin small{display:none}
 }
-@media (prefers-reduced-motion:reduce){.cv-in{animation:none}}
+@media (prefers-reduced-motion:reduce){.cv-rig *{animation:none!important;transition:none!important}}
