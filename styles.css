@@ -1376,12 +1376,12 @@ main {
   }
 }
 
-/* Narrow desktops and tablets in landscape: five links, the theme switch and
+/* Narrow desktops and tablets in landscape: six links, the theme switch and
    the language menu share one row, so the links tighten and the language
    button keeps only its globe (its label says the language). */
 @media (min-width: 901px) and (max-width: 1180px) {
   .nav__link {
-    padding: 0 11px;
+    padding: 0 9px;
     font-size: 13.5px;
   }
 

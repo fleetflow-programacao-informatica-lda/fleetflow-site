@@ -1,0 +1,102 @@
+/* "Transporte de veículos" (#transporte-veiculos), 24/11 — o módulo para empresas de porta-automóveis.
+   Cena sempre clara, também no modo escuro: os tokens claros são redefinidos dentro da secção, por isso os
+   cartões (.mod) e os botões (.btn) de sempre ficam com o aspeto claro. O desenho do camião é um SVG nosso
+   (index.html); só o carro que entra no lugar 8 se mexe, e não se mexe com "reduzir movimento". */
+.cv{
+  color-scheme:light;
+  --bg:#fff;--section-bg:#fff;
+  --text:#0d0f0e;--text-soft:#3d4441;--text-2:#4a524e;--text-muted:#5f6763;
+  --primary:#0f9d6e;--primary-soft:#0b7a55;
+  --card-bg:#fff;--card-line:rgba(13,15,14,.09);--card-line-hover:rgba(15,157,110,.45);
+  --card-shadow:0 1px 2px rgba(16,24,20,.04),0 8px 24px -16px rgba(16,24,20,.14);
+  --line:rgba(13,15,14,.08);--icon-bg:rgba(15,157,110,.1);--icon-ink:#0b7a55;
+  --outline-line:rgba(13,15,14,.18);--outline-line-hover:rgba(13,15,14,.36);--outline-bg:rgba(255,255,255,.72);--outline-bg-hover:#fff;
+  --cta-bg:#0d0f0e;--cta-bg-hover:#1f2522;--cta-line:#0d0f0e;--cta-text:#fff;
+  --cta-shadow:0 1px 2px rgba(16,24,20,.12),0 8px 20px -10px rgba(16,24,20,.45);
+  --cta-shadow-hover:0 1px 2px rgba(16,24,20,.14),0 12px 26px -10px rgba(16,24,20,.5);
+  --cta-icon-bg:#31e0a0;--cta-icon-text:#04120c;--cta-icon-shadow:none;
+  /* As três cores dos clientes no desenho: sóbrias, sem néon. */
+  --cv-a:#0f9d6e;--cv-b:#2f5d8a;--cv-c:#b8741a;
+  position:relative;z-index:5;
+  padding:clamp(84px,11vh,120px) clamp(16px,4vw,40px) clamp(84px,10vh,108px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#fff;color:var(--text);box-sizing:border-box
+}
+.cv__inner{width:100%;max-width:1180px;margin:0 auto}
+.cv .btn{font:inherit;font-size:var(--btn-font,14.5px);cursor:pointer}
+
+/* Topo: título, texto, preço e botões à esquerda; o camião desenhado à direita. */
+.cv__top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:center}
+.cv__head .hold__eyebrow{margin-bottom:12px}
+.cv .hold__title{font-size:clamp(30px,3.1vw,44px)}
+.cv .hold__title span{white-space:normal;text-wrap:balance}
+.cv__lead{max-width:34em;margin:16px 0 0;color:var(--text-soft);font-size:clamp(15px,1.15vw,16.5px);line-height:1.6;letter-spacing:-.01em}
+.cv__price{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:22px 0 0;padding:14px 18px;border:1px solid rgba(15,157,110,.26);border-radius:14px;background:rgba(15,157,110,.055)}
+.cv__price strong{color:var(--text);font-size:clamp(22px,2vw,28px);font-weight:700;letter-spacing:-.025em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cv__price span{color:var(--text-2);font-size:14.5px;line-height:1.4}
+.cv__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:22px}
+
+/* O desenho */
+.cv__art{margin:0;padding:clamp(14px,2vw,22px);border:1px solid var(--card-line);border-radius:20px;background:linear-gradient(180deg,#f8faf9,#eff4f1);box-shadow:var(--card-shadow)}
+.cv__stage{position:relative}
+.cv__truck{display:block;width:100%;height:auto}
+.cv__chip{position:absolute;top:0;display:flex;align-items:center;gap:9px;max-width:48%;padding:7px 11px 7px 8px;border:1px solid var(--card-line);border-radius:11px;background:#fff;box-shadow:var(--card-shadow);font-size:12.5px;line-height:1.25}
+.cv__chip--vin{left:0}
+.cv__chip--doc{right:0}
+.cv__chip svg{flex:none;width:24px;height:24px}
+.cv__chip strong{display:block;color:var(--text);font-weight:600;letter-spacing:-.01em}
+.cv__chip small{display:block;color:var(--text-muted);font-size:11.5px;font-variant-numeric:tabular-nums}
+.cv__legend{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.cv__legend ul{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;color:var(--text-2);font-size:13px}
+.cv__legend li{display:inline-flex;align-items:center;gap:7px}
+.cv__sw{flex:none;width:12px;height:12px;border-radius:3px}
+.cv__sw--a{background:var(--cv-a)}
+.cv__sw--b{background:var(--cv-b)}
+.cv__sw--c{background:var(--cv-c)}
+.cv__sw--free{border:1.5px dashed #8f9893}
+.cv__decks{margin:8px 0 0;color:var(--text-muted);font-size:12.5px;line-height:1.45}
+.cv-a{color:var(--cv-a)}
+.cv-b{color:var(--cv-b)}
+.cv-c{color:var(--cv-c)}
+/* O carro do cliente C entra no lugar 8 (piso inferior, atrás), fica e volta a entrar. */
+.cv-in{animation:cv-in 7s cubic-bezier(.22,.8,.3,1) infinite}
+@keyframes cv-in{
+  0%{transform:translateX(200px);opacity:0}
+  8%{opacity:1}
+  34%{transform:translateX(0);opacity:1}
+  88%{transform:translateX(0);opacity:1}
+  96%,100%{transform:translateX(0);opacity:0}
+}
+
+/* Funcionalidades: os cartões .mod do resto do site, em 3 colunas. */
+.cv .cv__feats{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(32px,5vh,52px)}
+.cv__feats .mod{padding:20px 22px}
+
+/* Como funciona */
+.cv__how{margin-top:clamp(32px,5vh,52px)}
+.cv__how-title{margin:0 0 16px;color:var(--primary-soft);font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.cv__steps{counter-reset:cv;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px clamp(16px,2vw,28px);margin:0;padding:0;list-style:none}
+.cv__step{padding-top:16px;border-top:2px solid rgba(15,157,110,.3)}
+.cv__step::before{counter-increment:cv;content:counter(cv,decimal-leading-zero);display:block;margin-bottom:10px;color:var(--primary);font-size:13px;font-weight:700;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.cv__step h4{margin:0 0 6px;font-size:16px;font-weight:600;letter-spacing:-.015em}
+.cv__step p{margin:0;color:var(--text-2);font-size:14px;line-height:1.5}
+
+@media (max-width:1100px){
+  .cv__top{grid-template-columns:minmax(0,1fr)}
+  .cv__head{max-width:720px}
+  .cv .cv__feats,.cv__steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .cv .cv__feats,.cv__steps{grid-template-columns:minmax(0,1fr)}
+  .cv__art{padding:12px;border-radius:16px}
+  .cv__chip{gap:6px;padding:5px 8px 5px 6px;border-radius:9px;font-size:11px}
+  .cv__chip small{font-size:10px}
+  .cv__chip svg{width:18px;height:18px}
+  .cv__legend ul{gap:6px 14px;font-size:12.5px}
+  .cv__feats .mod{padding:16px}
+}
+@media (max-width:420px){
+  .cv .btn{white-space:normal;height:auto;min-height:var(--btn-h,44px);padding-top:6px;padding-bottom:6px;text-align:left}
+  .cv__chip--vin small{display:none}
+}
+@media (prefers-reduced-motion:reduce){.cv-in{animation:none}}

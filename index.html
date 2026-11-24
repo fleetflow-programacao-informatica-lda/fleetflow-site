@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="tunel.css" />
   <link rel="stylesheet" href="pedido.css" />
   <link rel="stylesheet" href="modulos.css" />
+  <link rel="stylesheet" href="veiculos.css" />
   <link rel="stylesheet" href="assistente.css" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FleetFlow" />
@@ -56,6 +57,7 @@
         <li><a class="nav__link" href="#top" aria-current="page" data-i18n="nav.home">Início</a></li>
         <li><a class="nav__link" href="#platform" data-i18n="nav.platform">Plataforma</a></li>
         <li><a class="nav__link" href="#modulos" data-i18n="nav.modules">O que faz</a></li>
+        <li><a class="nav__link" href="#transporte-veiculos" data-i18n="nav.cars">Veículos</a></li>
         <li><a class="nav__link" href="#ligacoes" data-i18n="nav.links">Ligações</a></li>
         <li><a class="nav__link" href="#servicos" data-i18n="nav.services">Serviços</a></li>
       </ul>
@@ -208,6 +210,126 @@
           <button type="button" class="btn btn--glow" data-assistente="price"><span data-i18n="mod.ask">Quanto custa para a minha frota?</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span></button>
           <a class="btn btn--outline" href="https://app.fleetflow.systems/api/auth/demo-login?kind=full" data-i18n="btn.demo">Ver demonstração</a>
           <a class="btn btn--outline" href="https://app.fleetflow.systems" data-i18n="mod.signup">Criar conta</a>
+        </div>
+      </div>
+    </section>
+    <!-- 24/11: Transporte de veículos — módulo extra para porta-automóveis (+1 000 €/mês sobre o plano). Cena clara (veiculos.css);
+         o camião é um desenho nosso em SVG: 8 lugares em dois pisos, os carros com a cor do cliente. -->
+    <section class="cv" id="transporte-veiculos" aria-labelledby="cv-title" data-snap>
+      <div class="cv__inner">
+        <div class="cv__top">
+          <div class="cv__head">
+            <p class="hold__eyebrow" data-i18n="cv.eyebrow">Novo módulo · Transporte de veículos</p>
+            <h2 class="hold__title" id="cv-title">
+              <span class="hold__title-muted" data-i18n="cv.title_muted">Transporte de veículos:</span>
+              <span data-i18n="cv.title_strong">cada carro no seu lugar.</span>
+            </h2>
+            <p class="cv__lead" data-i18n="cv.lead">Para empresas de porta-automóveis. Tens a FleetFlow completa — planeador, cargas, apps, oficina, faturação e o Orbit — e uma área feita para transportar carros: cada motorista com o seu camião, cada carro com o seu cliente.</p>
+            <p class="cv__price"><strong data-i18n="cv.price.v">+1&nbsp;000&nbsp;€/mês</strong><span data-i18n="cv.price.d">sobre o plano FleetFlow (+IVA)</span></p>
+            <div class="cv__actions">
+              <a class="btn btn--glow" href="mailto:support@fleetflow.systems?subject=Transporte%20de%20ve%C3%ADculos" data-pedido="platform"><span data-i18n="cv.cta">Pedir proposta</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span hidden data-pedido-note data-i18n="cv.note">Interesse: módulo Transporte de veículos (porta-automóveis).</span></a>
+              <a class="btn btn--outline" href="https://app.fleetflow.systems/api/auth/demo-login?kind=full" data-i18n="btn.demo">Ver demonstração</a>
+            </div>
+          </div>
+          <figure class="cv__art">
+            <div class="cv__stage" role="img" data-i18n-aria="cv.art.aria" aria-label="Desenho de um camião porta-automóveis com 8 lugares em dois pisos: sete carros de três clientes, cada cliente com a sua cor, e um lugar livre.">
+              <svg class="cv__truck" viewBox="0 -40 760 320" aria-hidden="true" focusable="false">
+                <defs>
+                  <!-- Um carro de perfil, virado para a frente do camião; a cor vem do cliente (currentColor). -->
+                  <symbol id="cv-car" viewBox="0 0 118 40">
+                    <path d="M3 29v-7c0-3.6 2.4-6 6-6.8L30 12l16-8.8C49 1.6 52 1 55.5 1H82c4 0 7 1.2 9.6 3.6L102 13l9 1.6c3.6.7 6 3.4 6 7V29c0 1.6-1.2 2.8-2.8 2.8H5.8C4.2 31.8 3 30.6 3 29Z" fill="currentColor" />
+                    <path d="M36 13.2 48.5 5.6c1.6-.9 3.4-1.4 5.2-1.4H66v9H36ZM70 4.2h11.5c2.4 0 4.6.9 6.3 2.5l6.7 6.5H70Z" fill="#fff" fill-opacity=".62" />
+                    <path d="M68 5v25" stroke="#000" stroke-opacity=".14" />
+                    <rect x="4" y="19" width="6" height="3" rx="1.2" fill="#fff" fill-opacity=".85" />
+                    <rect x="112" y="18" width="4" height="4" rx="1" fill="#7a1c14" fill-opacity=".7" />
+                    <circle cx="25" cy="31" r="7.5" fill="#1d2320" /><circle cx="25" cy="31" r="3" fill="#c9cfcc" />
+                    <circle cx="94" cy="31" r="7.5" fill="#1d2320" /><circle cx="94" cy="31" r="3" fill="#c9cfcc" />
+                  </symbol>
+                </defs>
+                <!-- chão -->
+                <ellipse cx="390" cy="270" rx="372" ry="6" fill="#0d0f0e" fill-opacity=".06" />
+                <path d="M0 270.5h760" stroke="#d3d8d5" />
+                <!-- lugares: piso superior 1–4, piso inferior 5–8 -->
+                <g fill="none" stroke="#a9b1ad" stroke-width="1.4" stroke-dasharray="5 4">
+                  <rect x="150" y="96" width="141" height="48" rx="8" /><rect x="297" y="96" width="141" height="48" rx="8" /><rect x="444" y="96" width="141" height="48" rx="8" /><rect x="591" y="96" width="141" height="48" rx="8" />
+                  <rect x="200" y="164" width="127" height="48" rx="8" /><rect x="333" y="164" width="127" height="48" rx="8" /><rect x="466" y="164" width="127" height="48" rx="8" fill="#0f9d6e" fill-opacity=".05" /><rect x="599" y="164" width="127" height="48" rx="8" />
+                </g>
+                <g fill="#6a716d" font-family="Geist, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">
+                  <text x="157" y="109">1</text><text x="304" y="109">2</text><text x="451" y="109">3</text><text x="598" y="109">4</text>
+                  <text x="207" y="177">5</text><text x="340" y="177">6</text><text x="473" y="177">7</text><text x="606" y="177">8</text>
+                </g>
+                <!-- reboque: dois pisos, pescoço sobre o trator, rodados atrás -->
+                <g fill="#3d4441">
+                  <rect x="140" y="146" width="600" height="6" rx="2" />
+                  <rect x="192" y="214" width="548" height="8" rx="2" />
+                  <rect x="140" y="146" width="7" height="70" rx="2" />
+                  <rect x="140" y="208" width="60" height="8" rx="2" />
+                  <rect x="440" y="152" width="4" height="62" />
+                  <rect x="734" y="146" width="6" height="76" rx="2" />
+                  <rect x="578" y="230" width="124" height="4" rx="2" />
+                </g>
+                <rect x="192" y="222" width="548" height="6" fill="#2b302d" />
+                <rect x="734" y="224" width="6" height="7" rx="1" fill="#b42318" />
+                <!-- trator (virado para a esquerda) -->
+                <rect x="30" y="222" width="170" height="10" rx="2" fill="#2b302d" />
+                <rect x="150" y="216" width="46" height="6" rx="1" fill="#2b302d" />
+                <path d="M45 236a21 21 0 0 1 42 0M145 236a21 21 0 0 1 42 0" fill="none" stroke="#2f3a35" stroke-width="5" />
+                <path d="M28 226v-74c0-14 10-26 26-26h58c8 0 14 6 14 14v86Z" fill="#2f3a35" />
+                <path d="M36 170v-14c0-9 6-16 15-16h19v30Z" fill="#d7e6df" />
+                <rect x="78" y="140" width="38" height="30" rx="4" fill="#d7e6df" />
+                <path d="M74 140v82" stroke="#fff" stroke-opacity=".14" />
+                <rect x="28" y="204" width="98" height="5" fill="#0f9d6e" />
+                <rect x="104" y="180" width="12" height="3" rx="1.5" fill="#fff" fill-opacity=".4" />
+                <rect x="26" y="192" width="10" height="6" rx="2" fill="#f2efe4" />
+                <rect x="22" y="214" width="22" height="14" rx="3" fill="#1d2320" />
+                <!-- rodas -->
+                <g fill="#1d2320"><circle cx="66" cy="252" r="17" /><circle cx="166" cy="252" r="17" /><circle cx="600" cy="252" r="17" /><circle cx="640" cy="252" r="17" /><circle cx="680" cy="252" r="17" /></g>
+                <g fill="#9aa29e"><circle cx="66" cy="252" r="7" /><circle cx="166" cy="252" r="7" /><circle cx="600" cy="252" r="7" /><circle cx="640" cy="252" r="7" /><circle cx="680" cy="252" r="7" /></g>
+                <!-- carros: cliente A (1, 2, 5), cliente B (3, 6), cliente C (4, 8); o 7 está livre -->
+                <use href="#cv-car" class="cv-a" x="161.5" y="107" width="118" height="40" />
+                <use href="#cv-car" class="cv-a" x="308.5" y="107" width="118" height="40" />
+                <use href="#cv-car" class="cv-b" x="455.5" y="107" width="118" height="40" />
+                <use href="#cv-car" class="cv-c" x="602.5" y="107" width="118" height="40" />
+                <use href="#cv-car" class="cv-a" x="204.5" y="175" width="118" height="40" />
+                <use href="#cv-car" class="cv-b" x="337.5" y="175" width="118" height="40" />
+                <g class="cv-in"><use href="#cv-car" class="cv-c" x="603.5" y="175" width="118" height="40" /></g>
+              </svg>
+              <div class="cv__chip cv__chip--vin" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16" fill="none" stroke="#0f9d6e" stroke-width="1.8" stroke-linecap="round" /><path d="M7.5 8.5v7M10 8.5v7M12.5 8.5v7M15 8.5v7M16.8 8.5v7" stroke="#0d0f0e" stroke-width="1.3" /></svg>
+                <span><strong data-i18n="cv.vin.t">Número de quadro lido</strong><small>VIN ••••••••••••4521</small></span>
+              </div>
+              <div class="cv__chip cv__chip--doc" aria-hidden="true">
+                <svg viewBox="0 0 22 22"><rect x="1" y="1" width="20" height="20" rx="3.5" fill="#0d0f0e" /><path fill="#fff" d="M4 4h5v5H4zM13 4h5v5h-5zM4 13h5v5H4zM13 13h2v2h-2zM16 16h2v2h-2zM13 16h2v2h-2zM16 13h2v2h-2z" /><path fill="#0d0f0e" d="M5.5 5.5h2v2h-2zM14.5 5.5h2v2h-2zM5.5 14.5h2v2h-2z" /></svg>
+                <span><strong data-i18n="cv.doc.t">Guia de transporte</strong><small data-i18n="cv.doc.v">GT-0142 · versão 2</small></span>
+              </div>
+            </div>
+            <figcaption class="cv__legend">
+              <ul>
+                <li><span class="cv__sw cv__sw--a" aria-hidden="true"></span><span data-i18n="cv.lg.a">Cliente A · 3 carros</span></li>
+                <li><span class="cv__sw cv__sw--b" aria-hidden="true"></span><span data-i18n="cv.lg.b">Cliente B · 2 carros</span></li>
+                <li><span class="cv__sw cv__sw--c" aria-hidden="true"></span><span data-i18n="cv.lg.c">Cliente C · 2 carros</span></li>
+                <li><span class="cv__sw cv__sw--free" aria-hidden="true"></span><span data-i18n="cv.lg.free">Livre · 1 lugar</span></li>
+              </ul>
+              <p class="cv__decks" data-i18n="cv.lg.decks">Piso superior: lugares 1 a 4 · piso inferior: lugares 5 a 8.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <ul class="mods cv__feats">
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2" /><path d="M3.5 12h17M9.2 5v14M14.8 5v14" /></svg></span><h3 class="mod__title" data-i18n="cv.f1.t">Planeamento por lugares</h3><p class="mod__text" data-i18n="cv.f1.d">Cada camião tem os seus lugares, no piso de cima e no de baixo. O gestor — ou o Orbit, a teu pedido — configura-os, e cada motorista fica com o seu camião.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 16.5h12v-8h-12zM14.5 11h3.6l3.4 3.2v2.3h-7" /><circle cx="6.5" cy="17.5" r="1.8" /><circle cx="17.5" cy="17.5" r="1.8" /></svg></span><h3 class="mod__title" data-i18n="cv.f2.t">Viagens com o reboque desenhado</h3><p class="mod__text" data-i18n="cv.f2.d">Cada viagem mostra o camião desenhado com os carros por cima, pintados com a cor de cada cliente ou encomenda. Vê-se num relance o que vai e o que está livre.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z" /><path d="M14 3.5V8h4.5" /><rect x="8.5" y="11.5" width="3" height="3" rx=".4" /><rect x="12.5" y="15.5" width="3" height="3" rx=".4" /><path d="M14 11.5v1.5M8.5 17.5h2" /></svg></span><h3 class="mod__title" data-i18n="cv.f3.t">Guias digitais com QR e versão</h3><p class="mod__text" data-i18n="cv.f3.d">A guia de transporte sai da própria viagem, com código QR e número de versão, e fica na app do motorista. Se a viagem muda, sai a versão nova. Para internacional, CMR.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" /><path d="M8 9v6M10.5 9v6M13 9v6M16 9v6" /></svg></span><h3 class="mod__title" data-i18n="cv.f4.t">Parque com leitura do número de quadro</h3><p class="mod__text" data-i18n="cv.f4.d">O stock do parque sempre à vista. O número de quadro (VIN) lê-se com o telemóvel, sem copiar 17 caracteres à mão.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2h7l1.5 2h3v10H4z" /><circle cx="12" cy="13" r="3.2" /></svg></span><h3 class="mod__title" data-i18n="cv.f5.t">Inspeção com fotos e assinatura</h3><p class="mod__text" data-i18n="cv.f5.d">Na recolha e na entrega, o motorista tira fotos, marca os danos no desenho do carro e recolhe a assinatura. Fica tudo guardado na viagem.</p></li>
+          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.5-2 1.5-1.5-1.2-1.5 1.2-2-1.5L6 20.5z" /><path d="M9 8.5h6M9 12h6M9 15.5h3.5" /></svg></span><h3 class="mod__title" data-i18n="cv.f6.t">Faturação mensal por cliente</h3><p class="mod__text" data-i18n="cv.f6.d">No fim do mês, os carros transportados juntam-se por cliente e seguem para o programa de faturação certificado que já usas. Uma pessoa confirma antes de emitir.</p></li>
+        </ul>
+        <div class="cv__how">
+          <h3 class="cv__how-title" data-i18n="cv.how">Como funciona</h3>
+          <ol class="cv__steps">
+            <li class="cv__step"><h4 data-i18n="cv.s1.t">Configura os camiões</h4><p data-i18n="cv.s1.d">Diz quantos lugares tem cada camião e em que piso. O Orbit pode preparar a configuração; tu confirmas.</p></li>
+            <li class="cv__step"><h4 data-i18n="cv.s2.t">Recebe os carros</h4><p data-i18n="cv.s2.d">As encomendas dos clientes entram com os carros a transportar. Os que já estão no parque são lidos pelo número de quadro.</p></li>
+            <li class="cv__step"><h4 data-i18n="cv.s3.t">Planeia a viagem</h4><p data-i18n="cv.s3.d">Escolhes o lugar de cada carro no desenho do camião. A guia de transporte sai da viagem e chega à app do motorista.</p></li>
+            <li class="cv__step"><h4 data-i18n="cv.s4.t">Entrega e fatura</h4><p data-i18n="cv.s4.d">Inspeção com fotos e assinatura na recolha e na entrega. No fim do mês, a faturação de cada cliente segue para o teu programa.</p></li>
+          </ol>
         </div>
       </div>
     </section>
@@ -423,6 +545,7 @@
         "lig.gps":"GPS e telemática","lig.gps.note":"Ou só o GPS do telemóvel, pela app do motorista — sem instalar nada no camião.","lig.inv":"Faturação","lig.inv.note":"Envia rascunhos; uma pessoa confirma antes de emitir.","lig.pay":"Pagamentos","lig.pay.note":"Pagamento seguro das subscrições.",
         "lig.ok":"Disponível","srv.fold.aria":"Cartazes dos serviços. Arrasta para os lados ou usa as setas do teclado.","srv.fold.hint":"Arrasta ou usa as setas","srv.fold.prev":"Serviço anterior","srv.fold.next":"Serviço seguinte","mod.o.tl":"Módulos","mod.o.tr":"Planear · Transportar · Faturar","mod.o.aria":"Roda com os módulos da FleetFlow. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam.",
         "btn.signup":"Criar conta","nav.services":"Serviços","lig.o.tl":"Ligações","lig.o.tr":"GPS · Faturação · Pagamentos","lig.o.bl":"Arrasta para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Roda com os programas a que a FleetFlow se liga. Arrasta para os lados para rodar; Enter ou Espaço pausa; as setas esquerda e direita avançam.","srv.eyebrow":"Também fazemos","srv.title_muted":"Além do TMS,","srv.title_strong":"software e sites à medida.","srv.lead":"A equipa que faz a FleetFlow também faz software de oficina, sites topo de gama e programas feitos para o teu negócio — e liga-os aos programas que já usas.","srv.ws.t":"Software de oficina","srv.ws.d":"Gestão da oficina e do stock: trabalhos por viatura, marcações, revisões e pneus com avisos, peças sempre contadas e a app da oficina para os mecânicos. Também existe só para oficinas.","srv.ws.cta":"Pedir proposta","srv.site.t":"Sites topo de gama com movimento","srv.site.d":"Sites animados e em 3D, como este: rápidos, em várias línguas e feitos à medida da tua marca.","srv.site.cta":"Pedir orçamento","srv.sw.t":"Software por medida","srv.sw.d":"Ferramentas internas, portais para clientes e agentes de IA que trabalham na tua operação, feitos para o teu negócio.","srv.sw.cta":"Pedir orçamento","srv.int.t":"Integrações","srv.int.d":"Ligamos a FleetFlow à faturação (InvoiceXpress, Moloni e PHC GO, em validação) e ao GPS (Cartrack disponível; outros em validação). Usas outro programa? Diz-nos qual.","srv.int.cta":"Falar de integrações","lig.val":"Em validação","lig.legal":"Os nomes pertencem aos respetivos donos; não implica parceria.","lig.cta":"Não encontras o teu programa? Fala connosco",
+        "nav.cars":"Veículos","cv.eyebrow":"Novo módulo · Transporte de veículos","cv.title_muted":"Transporte de veículos:","cv.title_strong":"cada carro no seu lugar.","cv.lead":"Para empresas de porta-automóveis. Tens a FleetFlow completa — planeador, cargas, apps, oficina, faturação e o Orbit — e uma área feita para transportar carros: cada motorista com o seu camião, cada carro com o seu cliente.","cv.price.v":"+1&nbsp;000&nbsp;€/mês","cv.price.d":"sobre o plano FleetFlow (+IVA)","cv.cta":"Pedir proposta","cv.note":"Interesse: módulo Transporte de veículos (porta-automóveis).","cv.art.aria":"Desenho de um camião porta-automóveis com 8 lugares em dois pisos: sete carros de três clientes, cada cliente com a sua cor, e um lugar livre.","cv.vin.t":"Número de quadro lido","cv.doc.t":"Guia de transporte","cv.doc.v":"GT-0142 · versão 2","cv.lg.a":"Cliente A · 3 carros","cv.lg.b":"Cliente B · 2 carros","cv.lg.c":"Cliente C · 2 carros","cv.lg.free":"Livre · 1 lugar","cv.lg.decks":"Piso superior: lugares 1 a 4 · piso inferior: lugares 5 a 8.","cv.f1.t":"Planeamento por lugares","cv.f1.d":"Cada camião tem os seus lugares, no piso de cima e no de baixo. O gestor — ou o Orbit, a teu pedido — configura-os, e cada motorista fica com o seu camião.","cv.f2.t":"Viagens com o reboque desenhado","cv.f2.d":"Cada viagem mostra o camião desenhado com os carros por cima, pintados com a cor de cada cliente ou encomenda. Vê-se num relance o que vai e o que está livre.","cv.f3.t":"Guias digitais com QR e versão","cv.f3.d":"A guia de transporte sai da própria viagem, com código QR e número de versão, e fica na app do motorista. Se a viagem muda, sai a versão nova. Para internacional, CMR.","cv.f4.t":"Parque com leitura do número de quadro","cv.f4.d":"O stock do parque sempre à vista. O número de quadro (VIN) lê-se com o telemóvel, sem copiar 17 caracteres à mão.","cv.f5.t":"Inspeção com fotos e assinatura","cv.f5.d":"Na recolha e na entrega, o motorista tira fotos, marca os danos no desenho do carro e recolhe a assinatura. Fica tudo guardado na viagem.","cv.f6.t":"Faturação mensal por cliente","cv.f6.d":"No fim do mês, os carros transportados juntam-se por cliente e seguem para o programa de faturação certificado que já usas. Uma pessoa confirma antes de emitir.","cv.how":"Como funciona","cv.s1.t":"Configura os camiões","cv.s1.d":"Diz quantos lugares tem cada camião e em que piso. O Orbit pode preparar a configuração; tu confirmas.","cv.s2.t":"Recebe os carros","cv.s2.d":"As encomendas dos clientes entram com os carros a transportar. Os que já estão no parque são lidos pelo número de quadro.","cv.s3.t":"Planeia a viagem","cv.s3.d":"Escolhes o lugar de cada carro no desenho do camião. A guia de transporte sai da viagem e chega à app do motorista.","cv.s4.t":"Entrega e fatura","cv.s4.d":"Inspeção com fotos e assinatura na recolha e na entrega. No fim do mês, a faturação de cada cliente segue para o teu programa.",
         _title:"FleetFlow — Software e IA que movem o mundo real", _desc:"Software para transporte, oficina e qualquer negócio, com o agente de IA Orbit. Entra na plataforma." },
       en:{ "nav.home":"Home","nav.platform":"Platform","nav.login":"Sign in","btn.platform":"Open the platform","btn.demo":"See the demo",
         "foot.capital":"Share capital","foot.terms":"Terms","foot.privacy":"Privacy","foot.cookies":"Cookies",
@@ -456,6 +579,7 @@
         "lig.gps":"GPS and telematics","lig.gps.note":"Or just the phone's GPS, through the driver app — nothing to install in the truck.","lig.inv":"Invoicing","lig.inv.note":"Sends drafts; a person confirms before anything is issued.","lig.pay":"Payments","lig.pay.note":"Secure subscription payments.",
         "lig.ok":"Available","srv.fold.aria":"Service posters. Drag sideways or use the arrow keys.","srv.fold.hint":"Drag or use the arrows","srv.fold.prev":"Previous service","srv.fold.next":"Next service","mod.o.tl":"Modules","mod.o.tr":"Plan · Deliver · Invoice","mod.o.aria":"Wheel of the FleetFlow modules. Drag sideways to turn it; Enter or Space pauses; the left and right arrow keys step.",
         "btn.signup":"Create account","nav.services":"Services","lig.o.tl":"Integrations","lig.o.tr":"GPS · Invoicing · Payments","lig.o.bl":"Drag to explore","lig.o.br":"Tap to pause","lig.o.aria":"Wheel of the software FleetFlow connects to. Drag sideways to turn it; Enter or Space pauses; the left and right arrow keys step.","srv.eyebrow":"We also build","srv.title_muted":"Beyond the TMS,","srv.title_strong":"custom software and websites.","srv.lead":"The team behind FleetFlow also builds workshop software, top-end websites and software made for your business — and connects them to the programs you already use.","srv.ws.t":"Workshop software","srv.ws.d":"Workshop and stock management: jobs per vehicle, appointments, services and tyres with reminders, parts always counted and the workshop app for mechanics. Also available for workshops on their own.","srv.ws.cta":"Ask for a proposal","srv.site.t":"Top-end websites with motion","srv.site.d":"Animated and 3D websites, like this one: fast, multilingual and made to fit your brand.","srv.site.cta":"Get a quote","srv.sw.t":"Custom software","srv.sw.d":"Internal tools, customer portals and AI agents that work inside your operation, built for your business.","srv.sw.cta":"Get a quote","srv.int.t":"Integrations","srv.int.d":"We connect FleetFlow to invoicing (InvoiceXpress, Moloni and PHC GO, in validation) and to GPS (Cartrack available; others in validation). Using other software? Tell us which.","srv.int.cta":"Talk about integrations","lig.val":"In validation","lig.legal":"Names belong to their respective owners; no partnership is implied.","lig.cta":"Can't find your software? Talk to us",
+        "nav.cars":"Car transport","cv.eyebrow":"New module · Vehicle transport","cv.title_muted":"Vehicle transport:","cv.title_strong":"every car in its place.","cv.lead":"For car-carrier companies. You get the full FleetFlow — planner, loads, apps, workshop, invoicing and Orbit — plus an area built for moving cars: every driver with their own truck, every car with its customer.","cv.price.v":"+€1,000/month","cv.price.d":"on top of your FleetFlow plan (+VAT)","cv.cta":"Ask for a proposal","cv.note":"Interested in: Vehicle transport module (car carriers).","cv.art.aria":"Drawing of a car-carrier truck with 8 slots on two decks: seven cars from three customers, each customer in its own colour, and one free slot.","cv.vin.t":"VIN scanned","cv.doc.t":"Transport document","cv.doc.v":"GT-0142 · version 2","cv.lg.a":"Customer A · 3 cars","cv.lg.b":"Customer B · 2 cars","cv.lg.c":"Customer C · 2 cars","cv.lg.free":"Free · 1 slot","cv.lg.decks":"Upper deck: slots 1 to 4 · lower deck: slots 5 to 8.","cv.f1.t":"Slot-based planning","cv.f1.d":"Every truck has its own slots, on the upper and the lower deck. The manager — or Orbit, when you ask — sets them up, and each driver keeps their own truck.","cv.f2.t":"Trips with the trailer drawn","cv.f2.d":"Every trip shows the truck drawn with the cars on top, coloured by customer or order. You see at a glance what is loaded and what is free.","cv.f3.t":"Digital documents with QR and version","cv.f3.d":"The transport document is issued from the trip itself, with a QR code and a version number, and it is in the driver app. If the trip changes, a new version is issued. CMR for international.","cv.f4.t":"Yard stock with VIN reading","cv.f4.d":"Yard stock always in view. The VIN is read with a phone, with no copying 17 characters by hand.","cv.f5.t":"Inspection with photos and signature","cv.f5.d":"At pickup and at delivery the driver takes photos, marks damage on the car drawing and collects a signature. Everything is kept with the trip.","cv.f6.t":"Monthly invoicing per customer","cv.f6.d":"At the end of the month, the cars moved are grouped per customer and sent to the certified invoicing software you already use. A person confirms before anything is issued.","cv.how":"How it works","cv.s1.t":"Set up the trucks","cv.s1.d":"Say how many slots each truck has and on which deck. Orbit can prepare the setup; you confirm.","cv.s2.t":"Receive the cars","cv.s2.d":"Customer orders come in with the cars to move. Cars already in the yard are identified by their VIN.","cv.s3.t":"Plan the trip","cv.s3.d":"Choose the slot for each car on the truck drawing. The transport document is issued from the trip and reaches the driver app.","cv.s4.t":"Deliver and invoice","cv.s4.d":"Inspection with photos and signature at pickup and at delivery. At the end of the month, each customer’s invoicing goes to your software.",
         _title:"FleetFlow — Software and AI that move the real world", _desc:"Software for transport, workshop and any business, powered by the Orbit AI agent." },
       es:{ "nav.home":"Inicio","nav.platform":"Plataforma","nav.login":"Acceder","btn.platform":"Entrar en la plataforma","btn.demo":"Ver la demostración",
         "foot.capital":"Capital social","foot.terms":"Términos","foot.privacy":"Privacidad","foot.cookies":"Cookies",
@@ -489,6 +613,7 @@
         "lig.gps":"GPS y telemática","lig.gps.note":"O solo el GPS del móvil, con la app del conductor — sin instalar nada en el camión.","lig.inv":"Facturación","lig.inv.note":"Envía borradores; una persona confirma antes de emitir.","lig.pay":"Pagos","lig.pay.note":"Pago seguro de las suscripciones.",
         "lig.ok":"Disponible","srv.fold.aria":"Carteles de los servicios. Arrastra hacia los lados o usa las flechas del teclado.","srv.fold.hint":"Arrastra o usa las flechas","srv.fold.prev":"Servicio anterior","srv.fold.next":"Servicio siguiente","mod.o.tl":"Módulos","mod.o.tr":"Planificar · Transportar · Facturar","mod.o.aria":"Rueda con los módulos de FleetFlow. Arrastra hacia los lados para girarla; Enter o Espacio pausa; las flechas izquierda y derecha avanzan.",
         "btn.signup":"Crear cuenta","nav.services":"Servicios","lig.o.tl":"Conexiones","lig.o.tr":"GPS · Facturación · Pagos","lig.o.bl":"Arrastra para explorar","lig.o.br":"Toca para pausar","lig.o.aria":"Rueda con los programas a los que FleetFlow se conecta. Arrastra hacia los lados para girarla; Enter o Espacio pausa; las flechas izquierda y derecha avanzan.","srv.eyebrow":"También hacemos","srv.title_muted":"Además del TMS,","srv.title_strong":"software y webs a medida.","srv.lead":"El equipo que hace FleetFlow también hace software de taller, webs de gama alta y programas hechos para tu negocio — y los conecta con los programas que ya usas.","srv.ws.t":"Software de taller","srv.ws.d":"Gestión del taller y del stock: trabajos por vehículo, citas, revisiones y neumáticos con avisos, piezas siempre contadas y la app del taller para los mecánicos. También existe solo para talleres.","srv.ws.cta":"Pedir propuesta","srv.site.t":"Webs de gama alta con movimiento","srv.site.d":"Webs animadas y en 3D, como esta: rápidas, en varios idiomas y hechas a la medida de tu marca.","srv.site.cta":"Pedir presupuesto","srv.sw.t":"Software a medida","srv.sw.d":"Herramientas internas, portales para clientes y agentes de IA que trabajan en tu operación, hechos para tu negocio.","srv.sw.cta":"Pedir presupuesto","srv.int.t":"Integraciones","srv.int.d":"Conectamos FleetFlow con la facturación (InvoiceXpress, Moloni y PHC GO, en validación) y con el GPS (Cartrack disponible; otros en validación). ¿Usas otro programa? Dinos cuál.","srv.int.cta":"Hablar de integraciones","lig.val":"En validación","lig.legal":"Los nombres pertenecen a sus respectivos dueños; no implica colaboración.","lig.cta":"¿No encuentras tu programa? Habla con nosotros",
+        "nav.cars":"Vehículos","cv.eyebrow":"Nuevo módulo · Transporte de vehículos","cv.title_muted":"Transporte de vehículos:","cv.title_strong":"cada coche en su sitio.","cv.lead":"Para empresas de portavehículos. Tienes FleetFlow completa — planificador, cargas, apps, taller, facturación y Orbit — y un área hecha para transportar coches: cada conductor con su camión, cada coche con su cliente.","cv.price.v":"+1&nbsp;000&nbsp;€/mes","cv.price.d":"sobre el plan FleetFlow (+IVA)","cv.cta":"Pedir propuesta","cv.note":"Interés: módulo Transporte de vehículos (portavehículos).","cv.art.aria":"Dibujo de un camión portavehículos con 8 plazas en dos pisos: siete coches de tres clientes, cada cliente con su color, y una plaza libre.","cv.vin.t":"Número de bastidor leído","cv.doc.t":"Documento de control","cv.doc.v":"GT-0142 · versión 2","cv.lg.a":"Cliente A · 3 coches","cv.lg.b":"Cliente B · 2 coches","cv.lg.c":"Cliente C · 2 coches","cv.lg.free":"Libre · 1 plaza","cv.lg.decks":"Piso superior: plazas 1 a 4 · piso inferior: plazas 5 a 8.","cv.f1.t":"Planificación por plazas","cv.f1.d":"Cada camión tiene sus plazas, en el piso de arriba y en el de abajo. El gestor — u Orbit, si se lo pides — las configura, y cada conductor tiene su camión.","cv.f2.t":"Viajes con el remolque dibujado","cv.f2.d":"Cada viaje muestra el camión dibujado con los coches encima, pintados con el color de cada cliente o pedido. Se ve de un vistazo qué va y qué está libre.","cv.f3.t":"Documentos digitales con QR y versión","cv.f3.d":"El documento de control sale del propio viaje, con código QR y número de versión, y queda en la app del conductor. Si el viaje cambia, sale la versión nueva. Para internacional, CMR.","cv.f4.t":"Campa con lectura del número de bastidor","cv.f4.d":"El stock de la campa siempre a la vista. El número de bastidor (VIN) se lee con el móvil, sin copiar 17 caracteres a mano.","cv.f5.t":"Inspección con fotos y firma","cv.f5.d":"En la recogida y en la entrega, el conductor hace fotos, marca los daños en el dibujo del coche y recoge la firma. Todo queda guardado en el viaje.","cv.f6.t":"Facturación mensual por cliente","cv.f6.d":"A final de mes, los coches transportados se agrupan por cliente y van al programa de facturación certificado que ya usas. Una persona confirma antes de emitir.","cv.how":"Cómo funciona","cv.s1.t":"Configura los camiones","cv.s1.d":"Indica cuántas plazas tiene cada camión y en qué piso. Orbit puede preparar la configuración; tú confirmas.","cv.s2.t":"Recibe los coches","cv.s2.d":"Los pedidos de los clientes entran con los coches a transportar. Los que ya están en la campa se identifican por el número de bastidor.","cv.s3.t":"Planifica el viaje","cv.s3.d":"Eliges la plaza de cada coche en el dibujo del camión. El documento de control sale del viaje y llega a la app del conductor.","cv.s4.t":"Entrega y factura","cv.s4.d":"Inspección con fotos y firma en la recogida y en la entrega. A final de mes, la facturación de cada cliente va a tu programa.",
         _title:"FleetFlow — Software e IA que mueven el mundo real", _desc:"Software para transporte, taller y cualquier negocio, con el agente de IA Orbit." }
     };
     const label = document.querySelector('.nav__lang-label');
