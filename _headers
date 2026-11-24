@@ -1,0 +1,12 @@
+# Cabeçalhos de segurança do site (Netlify) — 24/11/2026.
+# - ninguém mete o site dentro de outra página para enganar visitantes (frame-ancestors / X-Frame-Options);
+# - o browser não "adivinha" tipos de ficheiro; plugins antigos desligados; formulários só vão para nós ou para a app;
+# - câmara, microfone e localização desligados (o site não precisa).
+# Não restringe scripts/estilos (há scripts e estilos na própria página); por isso não parte nada.
+/*
+  Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://app.fleetflow.systems; upgrade-insecure-requests
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
