@@ -32,9 +32,11 @@
   const showMsg = (which) => Object.entries(msgs).forEach(([k, el]) => (el.hidden = k !== which));
   const syncFleet = () => (fleet.hidden = form.elements.service.value !== 'platform');
 
-  function open(service) {
+  // note: texto para começar a mensagem (ex.: o botão do Transporte de veículos diz de que módulo se trata); não apaga o que a pessoa já escreveu.
+  function open(service, note) {
     form.classList.remove('is-sent');
     if (service && form.querySelector(`input[name="service"][value="${service}"]`)) form.elements.service.value = service;
+    if (note && !form.elements.message.value.trim()) form.elements.message.value = note;
     syncFleet();
     showMsg(null);
     if (!dialog.open) dialog.showModal();
@@ -44,7 +46,8 @@
   document.querySelectorAll('[data-pedido]').forEach((el) =>
     el.addEventListener('click', (e) => {
       e.preventDefault();
-      open(el.getAttribute('data-pedido'));
+      const note = el.querySelector('[data-pedido-note]');
+      open(el.getAttribute('data-pedido'), note ? note.textContent.trim() : '');
     })
   );
   dialog.querySelector('.pedido__close').addEventListener('click', () => dialog.close());
