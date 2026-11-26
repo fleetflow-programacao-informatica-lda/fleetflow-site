@@ -146,3 +146,39 @@
 .of__close-title{margin:0 0 12px;font-size:clamp(22px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;text-wrap:balance}
 .of__close p{max-width:44em;margin:0 0 8px;color:var(--text-soft);font-size:clamp(15px,1.15vw,16.5px);line-height:1.6}
 .of__close .of__close-strong{margin-top:14px;color:var(--text);font-weight:600}
+
+/* 26/11: "Novidades" — cartões que anunciam as secções (tratamento do Scroll Stack da HorizonX; js/anuncios.js).
+   A cena fica presa enquanto o segundo cartão sobe por cima do primeiro, que encolhe, desfoca e escurece. */
+.stk{position:relative;z-index:5;height:230vh;background:#fff;border-top:1px solid var(--line)}
+.stk__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.stk__stage{position:sticky;top:0;height:100vh;height:100svh;display:grid;place-items:center;overflow:hidden;padding:0 16px;box-sizing:border-box}
+.stk__card{--dim:0;position:absolute;width:min(920px,calc(100% - 32px));height:min(68vh,620px);border-radius:22px;overflow:hidden;
+  background:radial-gradient(120% 90% at 100% 0%,rgba(15,157,110,.32),transparent 55%),linear-gradient(160deg,#16201c 0%,#0d0f0e 70%);color:#fff;text-decoration:none;transform-origin:50% 0;
+  will-change:transform,filter;box-shadow:0 30px 60px -28px rgba(13,15,14,.45),0 0 0 1px rgba(13,15,14,.06)}
+.stk__card[data-tone="b"]{background:radial-gradient(120% 90% at 0% 0%,rgba(47,111,219,.30),transparent 55%),linear-gradient(200deg,#141a24 0%,#0d0f0e 70%)}
+.stk__card::after{content:"";position:absolute;inset:0;background:#0d0f0e;opacity:var(--dim);pointer-events:none}
+.stk__card:focus-visible{outline:3px solid var(--primary,#0f9d6e);outline-offset:4px}
+.stk__num{position:absolute;top:20px;right:24px;z-index:1;font-size:12px;font-weight:600;letter-spacing:.14em;opacity:.8;font-variant-numeric:tabular-nums}
+.stk__body{position:absolute;left:clamp(20px,3vw,40px);right:clamp(20px,3vw,40px);top:50%;transform:translateY(-50%);z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.stk__card[data-tone="b"] .stk__eyebrow{color:#9cc0ff}
+.stk__eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7fe0bb}
+.stk__title{display:block;max-width:18em;font-size:clamp(28px,3.6vw,48px);line-height:1.06;letter-spacing:-.03em;font-weight:400;text-wrap:balance}
+.stk__title strong{font-weight:700}
+.stk__go{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-size:14px;font-weight:600;backdrop-filter:blur(6px)}
+.stk__go svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.stk__card:hover .stk__go{background:rgba(255,255,255,.24)}
+.stk__progress{position:absolute;left:50%;bottom:clamp(18px,4vh,36px);width:120px;height:2px;margin-left:-60px;border-radius:2px;background:rgba(13,15,14,.12);overflow:hidden}
+.stk__progress i{display:block;height:100%;background:var(--primary,#0f9d6e);transform-origin:0 50%;transform:scaleX(.5)}
+@media (max-width:640px){
+  .stk__card{height:min(58vh,520px);border-radius:18px}
+  .stk__title{font-size:clamp(24px,7vw,32px)}
+}
+.stk__lead{max-width:40em;color:rgba(255,255,255,.78);font-size:clamp(14px,1.1vw,16px);line-height:1.55}
+.stk__pts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.stk__pts li{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:13px;line-height:1.3}
+@media (max-width:640px){.stk__lead{display:none}.stk__pts li{font-size:12px;padding:5px 10px}.stk__card{height:min(70vh,560px)}}
+/* Reduzir movimento (ou sem JS): um cartão por baixo do outro, parados. */
+.stk--static{height:auto;padding:clamp(56px,8vh,88px) 0}
+.stk--static .stk__stage{position:static;height:auto;display:flex;flex-direction:column;gap:24px;overflow:visible}
+.stk--static .stk__card{position:relative;transform:none!important;filter:none!important}
+.stk--static .stk__progress{display:none}

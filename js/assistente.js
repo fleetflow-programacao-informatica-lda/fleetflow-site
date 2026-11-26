@@ -7,6 +7,8 @@
 
   const APP = 'https://app.fleetflow.systems';
   const DEMO = `${APP}/api/auth/demo-login?kind=full`;
+  // 26/11: demo do pacote Transporte de veículos (porta-automóveis).
+  const DEMO_CAR = `${APP}/api/auth/demo-login?kind=car`;
   const PRIVACY = `${APP}/legal/privacidade`;
   const TERMS = `${APP}/legal/termos`;
   const SIGNUP = `${APP}/login`;
@@ -51,7 +53,7 @@
       trucks: (n) => (n === 1 ? '1 camião' : `${fmt(n, 'pt')} camiões`),
       chips: {
         price: 'Quanto custa?', benefits: 'O que ganho com isto?', orbit: 'O que é o Orbit?', what: 'O que faz a FleetFlow?',
-        integrations: 'Integrações', workshop: 'Software de oficina', start: 'Como começar', contact: 'Falar com uma pessoa',
+        integrations: 'Integrações', workshop: 'Software de oficina', cars: 'Transporte de veículos', business: 'Orbit Business', start: 'Como começar', contact: 'Falar com uma pessoa',
         more: 'Mais temas', app: 'App do motorista', ecmr: 'e-CMR', planner: 'Planeador', exchange: 'Bolsa de Cargas',
         gps: 'GPS', invoice: 'Faturação', security: 'Segurança e RGPD', contract: 'Contrato e cancelamento',
         import: 'Importar dados', support: 'Apoio e formação', sites: 'Sites com movimento', custom: 'Software à medida',
@@ -126,6 +128,16 @@
           '<ul><li>Trabalhos por viatura, agenda de marcações e histórico.</li><li>Revisões, pneus e quilómetros com avisos.</li><li>Stock de peças sempre contado e gastos por viatura.</li><li>Folha de obra em PDF e a app da oficina para a equipa.</li><li>Peças e viaturas importadas de PDF, Excel ou CSV.</li></ul>',
           `Vem nos planos com oficina e existe também como produto só de oficina — vê os preços em ${LINK(SIGNUP, 'app.fleetflow.systems')} ou pede-nos uma proposta.`,
         ],
+        cars: [
+          'Para empresas de porta-automóveis temos o pacote <b>Transporte de veículos</b> — a FleetFlow completa e uma área feita para transportar carros:',
+          '<ul><li>Cada camião com os seus lugares (piso de cima e de baixo) e o desenho do camião com os carros por cliente.</li><li>Novo pedido ou nova carga com N carros ou carga completa; os carros sem matrícula ficam «por identificar» e o motorista completa na recolha.</li><li>Pedidos por email lidos e transformados em carros.</li><li>Parque com leitura do número de quadro (VIN) pelo telemóvel.</li><li>Guias digitais com QR, inspeção com fotos e assinatura, e faturação mensal por cliente para o programa certificado que já usas.</li></ul>',
+          `Experimenta a demonstração: ${LINK(DEMO_CAR, 'abrir a demo dos porta-automóveis')}. Para o preço, pede-nos uma proposta.`,
+        ],
+        business: [
+          'O <b>Orbit Business</b> é um agente de inteligência artificial personalizado para a tua empresa — de transportes ou de qualquer outro setor:',
+          '<ul><li>Emails: interpreta pedidos, classifica mensagens, extrai a informação e prepara respostas.</li><li>Documentos: lê e organiza PDFs, folhas Excel e anexos.</li><li>Finanças: prepara a faturação para o programa certificado que já usas.</li><li>Equipas: registo de horários e folhas de horas.</li><li>Relatórios por departamento e resumos para a administração.</li></ul>',
+          'Uma pessoa confirma sempre o que importa. Instalamos na tua empresa e pagas por mês — pede-nos uma proposta.',
+        ],
         custom: [
           'Fazemos software à medida: ferramentas internas, portais para clientes, ligações entre os programas que já usas e agentes de IA que trabalham na tua operação.',
           'Conta-nos o que precisas e respondemos com uma proposta.',
@@ -187,7 +199,7 @@
       trucks: (n) => (n === 1 ? '1 truck' : `${fmt(n, 'en')} trucks`),
       chips: {
         price: 'How much?', benefits: 'What do I gain?', orbit: 'What is Orbit?', what: 'What does FleetFlow do?',
-        integrations: 'Integrations', workshop: 'Workshop software', start: 'How to start', contact: 'Talk to a person',
+        integrations: 'Integrations', workshop: 'Workshop software', cars: 'Vehicle transport', business: 'Orbit Business', start: 'How to start', contact: 'Talk to a person',
         more: 'More topics', app: 'Driver app', ecmr: 'e-CMR', planner: 'Planner', exchange: 'Load Exchange',
         gps: 'GPS', invoice: 'Invoicing', security: 'Security and GDPR', contract: 'Contract and cancelling',
         import: 'Importing data', support: 'Support and training', sites: 'Websites with motion', custom: 'Custom software',
@@ -262,6 +274,16 @@
           '<ul><li>Jobs per vehicle, appointment calendar and history.</li><li>Services, tyres and mileage with reminders.</li><li>Parts stock always counted and costs per vehicle.</li><li>Job sheet in PDF and the workshop app for the team.</li><li>Parts and vehicles imported from PDF, Excel or CSV.</li></ul>',
           `It comes with the plans that include the workshop and also as a workshop-only product — see prices at ${LINK(SIGNUP, 'app.fleetflow.systems')} or ask us for a proposal.`,
         ],
+        cars: [
+          'For car-carrier companies we have the <b>Vehicle transport</b> package — the full FleetFlow plus an area built for moving cars:',
+          '<ul><li>Every truck with its own slots (upper and lower deck) and the truck drawn with the cars by customer.</li><li>New order or new load with N cars or a full load; cars without a plate are «to identify» and the driver completes them at pickup.</li><li>Email orders read and turned into cars.</li><li>Yard with VIN reading by phone.</li><li>Digital documents with QR, inspection with photos and signature, and monthly invoicing per customer to the certified software you already use.</li></ul>',
+          `Try the demo: ${LINK(DEMO_CAR, 'open the car-carrier demo')}. For pricing, ask us for a proposal.`,
+        ],
+        business: [
+          '<b>Orbit Business</b> is a custom artificial intelligence agent for your company — in transport or any other sector:',
+          '<ul><li>Email: understands requests, sorts messages, extracts information and drafts replies.</li><li>Documents: reads and organises PDFs, Excel sheets and attachments.</li><li>Finance: prepares invoicing for the certified software you already use.</li><li>Teams: time records and timesheets.</li><li>Reports per department and summaries for management.</li></ul>',
+          'A person always confirms what matters. We set it up in your company and you pay monthly — ask us for a proposal.',
+        ],
         custom: [
           'We build custom software: internal tools, customer portals, connections between the programs you already use and AI agents that work inside your operation.',
           'Tell us what you need and we will reply with a proposal.',
@@ -323,7 +345,7 @@
       trucks: (n) => (n === 1 ? '1 camión' : `${fmt(n, 'es')} camiones`),
       chips: {
         price: '¿Cuánto cuesta?', benefits: '¿Qué gano con esto?', orbit: '¿Qué es Orbit?', what: '¿Qué hace FleetFlow?',
-        integrations: 'Integraciones', workshop: 'Software de taller', start: 'Cómo empezar', contact: 'Hablar con una persona',
+        integrations: 'Integraciones', workshop: 'Software de taller', cars: 'Transporte de vehículos', business: 'Orbit Business', start: 'Cómo empezar', contact: 'Hablar con una persona',
         more: 'Más temas', app: 'App del conductor', ecmr: 'e-CMR', planner: 'Planificador', exchange: 'Bolsa de Cargas',
         gps: 'GPS', invoice: 'Facturación', security: 'Seguridad y RGPD', contract: 'Contrato y cancelación',
         import: 'Importar datos', support: 'Soporte y formación', sites: 'Webs con movimiento', custom: 'Software a medida',
@@ -397,6 +419,16 @@
           'Tenemos software de taller completo:',
           '<ul><li>Trabajos por vehículo, agenda de citas e historial.</li><li>Revisiones, neumáticos y kilómetros con avisos.</li><li>Stock de piezas siempre contado y gastos por vehículo.</li><li>Hoja de trabajo en PDF y la app del taller para el equipo.</li><li>Piezas y vehículos importados desde PDF, Excel o CSV.</li></ul>',
           `Viene en los planes con taller y existe también como producto solo de taller — mira los precios en ${LINK(SIGNUP, 'app.fleetflow.systems')} o pídenos una propuesta.`,
+        ],
+        cars: [
+          'Para empresas de portavehículos tenemos el paquete <b>Transporte de vehículos</b> — FleetFlow completa y un área hecha para transportar coches:',
+          '<ul><li>Cada camión con sus plazas (piso de arriba y de abajo) y el camión dibujado con los coches por cliente.</li><li>Nuevo pedido o nueva carga con N coches o carga completa; los coches sin matrícula quedan «por identificar» y el conductor los completa en la recogida.</li><li>Pedidos por email leídos y convertidos en coches.</li><li>Campa con lectura del número de bastidor (VIN) con el móvil.</li><li>Documentos digitales con QR, inspección con fotos y firma, y facturación mensual por cliente al programa certificado que ya usas.</li></ul>',
+          `Prueba la demostración: ${LINK(DEMO_CAR, 'abrir la demo de portavehículos')}. Para el precio, pídenos una propuesta.`,
+        ],
+        business: [
+          '<b>Orbit Business</b> es un agente de inteligencia artificial personalizado para tu empresa — de transporte o de cualquier otro sector:',
+          '<ul><li>Emails: interpreta pedidos, clasifica mensajes, extrae la información y prepara respuestas.</li><li>Documentos: lee y organiza PDFs, hojas Excel y adjuntos.</li><li>Finanzas: prepara la facturación para el programa certificado que ya usas.</li><li>Equipos: registro de horarios y hojas de horas.</li><li>Informes por departamento y resúmenes para la dirección.</li></ul>',
+          'Una persona siempre confirma lo importante. Lo instalamos en tu empresa y pagas cada mes — pídenos una propuesta.',
         ],
         custom: [
           'Hacemos software a medida: herramientas internas, portales para clientes, conexiones entre los programas que ya usas y agentes de IA que trabajan en tu operación.',
@@ -486,6 +518,8 @@
   // Erros de escrita: uma letra trocada, a mais ou a menos numa palavra de 5+ letras conta metade.
   const INTENTS = [
     ['ecmr', 'cmr ecmr e-cmr:4 guia-de-transporte carta-de-porte consignment waybill guia$:2'],
+    ['business', 'orbit-business:8 business:4 ia-na-empresa:6 ia-para-empresas:6 ia-nas-empresas:6 ai-for-business:6 agente-de-ia:5 ai-agent:5 agente-de-ia-para:5 folhas-de-horas:5 folha-de-horas:5 hojas-de-horas:5 timesheet:5 ler-emails:5 leer-emails:5 read-emails:5 gestao-documental:5 gestion-documental:5 document-management:5 relatorios:2 informes:2 reports:2 departamento:2 department:2 administrativ:3 automatiz:3 automation:3'],
+    ['cars', 'porta-automoveis:8 portaautomoveis:8 porta-carros:8 car-carrier:8 car-carriers:8 portavehiculos:8 transporte-de-veiculos:8 transporte-de-carros:8 transporte-de-vehiculos:8 transporte-de-coches:8 vehicle-transport:8 car-transport:8 carros:3 coches:3 cars$:3 automoveis:3 vin$:4 numero-de-quadro:5 bastidor:5 chassis:3 campa:3 rent-a-car:4 concessionario:3 concesionario:3 dealership:3 leiloes:2 subastas:2'],
     ['orbit', 'orbit:4 agente agent inteligencia-artificial ia$ ai$ artificial chatgpt robo:2 copiloto copilot'],
     ['exchange', 'bolsa:4 exchange troca-de-cargas intercambio-de-cargas load-board subcontrat parceir:2 partner:2 colaborador:2 cargas-de-retorno'],
     ['workshop', 'oficina:4 workshop:4 taller:4 mecanic mechanic revis:2 pneu neumatic tyre tire$ pecas:2 piezas:2 spare manutenc mantenim maintenance avaria averia repara garage garagem'],
@@ -583,7 +617,7 @@
   };
   // O menu principal e o segundo ("Mais temas").
   const TOPIC_CHIPS = ['price', 'benefits', 'orbit', 'integrations', 'workshop', 'start', 'contact', 'more'];
-  const MORE_CHIPS = ['what', 'app', 'planner', 'ecmr', 'exchange', 'security', 'contract', 'import', 'support', 'sites', 'custom', 'where', 'menu'];
+  const MORE_CHIPS = ['cars', 'business', 'what', 'app', 'planner', 'ecmr', 'exchange', 'security', 'contract', 'import', 'support', 'sites', 'custom', 'where', 'menu'];
   const FLEET_CHIPS = [10, 25, 50, 100, 300];
 
   const state = {
@@ -736,6 +770,8 @@
     gps: ['integrations', 'app', 'price', 'menu'],
     invoice: ['integrations', 'price', 'contact', 'menu'],
     workshop: ['quotePlatform', 'import', 'price', 'menu'],
+    cars: ['quotePlatform', 'demo', 'app', 'menu'],
+    business: ['quotePlatform', 'orbit', 'contact', 'menu'],
     custom: ['quoteSoftware', 'sites', 'contact', 'menu'],
     sites: ['quoteSite', 'custom', 'contact', 'menu'],
     planner: ['orbit', 'price', 'demo', 'menu'],
