@@ -139,3 +139,6 @@
   .cv .btn{white-space:normal;height:auto;min-height:var(--btn-h,44px);padding-top:6px;padding-bottom:6px;text-align:left}
 }
 @media (prefers-reduced-motion:reduce){.cv-rig *{animation:none!important;transition:none!important}}
+
+/* 26/11: Orbit Business — a mesma pele da secção dos veículos, sem o desenho (só o texto à largura de leitura). */
+.cv--office .cv__head{max-width:760px}
