@@ -182,3 +182,10 @@
 .stk--static .stk__stage{position:static;height:auto;display:flex;flex-direction:column;gap:24px;overflow:visible}
 .stk--static .stk__card{position:relative;transform:none!important;filter:none!important}
 .stk--static .stk__progress{display:none}
+/* 26/11: o título, o texto e os pontos estão nos cartões «Novidades» — as secções ficam só com o que os cartões não
+   têm (o camião animado, os botões e «Como funciona»; o bloco final do Orbit Business). */
+.cv--slim{padding-top:clamp(48px,7vh,80px)}
+.cv--slim .cv__top{grid-template-columns:minmax(0,1fr)}
+.cv--slim .cv__head{order:2;display:flex;justify-content:center}
+.cv--slim .cv__art{width:100%;max-width:960px;margin:0 auto}
+.cv--office.cv--slim .of__close{margin-top:0}

@@ -242,16 +242,14 @@
     </section>
     <!-- 24/11: Transporte de veículos — módulo extra para porta-automóveis (preço fora do site por decisão do founder, 24/11). Cena clara (veiculos.css);
          o porta-automóveis é desenhado por js/porta-automoveis.js: camião com 2 lugares + reboque com 6; os carros acendem com a cor do cliente na carga e apagam na entrega. -->
-    <section class="cv" id="transporte-veiculos" aria-labelledby="cv-title" data-snap>
+    <section class="cv cv--slim" id="transporte-veiculos" aria-labelledby="cv-title" data-snap>
       <div class="cv__inner">
         <div class="cv__top">
           <div class="cv__head">
-            <p class="hold__eyebrow" data-i18n="cv.eyebrow">Novo módulo · Transporte de veículos</p>
-            <h2 class="hold__title" id="cv-title">
+            <h2 class="hold__title stk__sr" id="cv-title">
               <span class="hold__title-muted" data-i18n="cv.title_muted">Transporte de veículos:</span>
               <span data-i18n="cv.title_strong">cada carro no seu lugar.</span>
             </h2>
-            <p class="cv__lead" data-i18n="cv.lead">Para empresas de porta-automóveis. Tens a FleetFlow completa — planeador, cargas, apps, oficina, faturação e o Orbit — e uma área feita para transportar carros: cada motorista com o seu camião, cada carro com o seu cliente.</p>
             <div class="cv__actions">
               <a class="btn btn--glow" href="mailto:support@fleetflow.systems?subject=Transporte%20de%20ve%C3%ADculos" data-pedido="platform"><span data-i18n="cv.cta">Pedir proposta</span><span class="btn__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span hidden data-pedido-note data-i18n="cv.note">Interesse: módulo Transporte de veículos (porta-automóveis).</span></a>
               <a class="btn btn--outline" href="https://app.fleetflow.systems/api/auth/demo-login?kind=car" data-i18n="btn.demo">Ver demonstração</a>
@@ -290,14 +288,6 @@
             </figcaption>
           </figure>
         </div>
-        <ul class="mods cv__feats">
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2" /><path d="M3.5 12h17M9.2 5v14M14.8 5v14" /></svg></span><h3 class="mod__title" data-i18n="cv.f1.t">Planeamento por lugares</h3><p class="mod__text" data-i18n="cv.f1.d">Cada camião tem os seus lugares, no piso de cima e no de baixo. O gestor — ou o Orbit, a teu pedido — configura-os, e cada motorista fica com o seu camião.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 16.5h12v-8h-12zM14.5 11h3.6l3.4 3.2v2.3h-7" /><circle cx="6.5" cy="17.5" r="1.8" /><circle cx="17.5" cy="17.5" r="1.8" /></svg></span><h3 class="mod__title" data-i18n="cv.f2.t">Viagens com o reboque desenhado</h3><p class="mod__text" data-i18n="cv.f2.d">Cada viagem mostra o camião desenhado com os carros por cima, pintados com a cor de cada cliente ou encomenda. Vê-se num relance o que vai e o que está livre.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z" /><path d="M14 3.5V8h4.5" /><rect x="8.5" y="11.5" width="3" height="3" rx=".4" /><rect x="12.5" y="15.5" width="3" height="3" rx=".4" /><path d="M14 11.5v1.5M8.5 17.5h2" /></svg></span><h3 class="mod__title" data-i18n="cv.f3.t">Guias digitais com QR e versão</h3><p class="mod__text" data-i18n="cv.f3.d">A guia de transporte sai da própria viagem, com código QR e número de versão, e fica na app do motorista. Se a viagem muda, sai a versão nova. Para internacional, CMR.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" /><path d="M8 9v6M10.5 9v6M13 9v6M16 9v6" /></svg></span><h3 class="mod__title" data-i18n="cv.f4.t">Parque com leitura do número de quadro</h3><p class="mod__text" data-i18n="cv.f4.d">O stock do parque sempre à vista. O número de quadro (VIN) lê-se com o telemóvel, sem copiar 17 caracteres à mão.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2h7l1.5 2h3v10H4z" /><circle cx="12" cy="13" r="3.2" /></svg></span><h3 class="mod__title" data-i18n="cv.f5.t">Inspeção com fotos e assinatura</h3><p class="mod__text" data-i18n="cv.f5.d">Na recolha e na entrega, o motorista tira fotos, marca os danos no desenho do carro e recolhe a assinatura. Fica tudo guardado na viagem.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.5-2 1.5-1.5-1.2-1.5 1.2-2-1.5L6 20.5z" /><path d="M9 8.5h6M9 12h6M9 15.5h3.5" /></svg></span><h3 class="mod__title" data-i18n="cv.f6.t">Faturação mensal por cliente</h3><p class="mod__text" data-i18n="cv.f6.d">No fim do mês, os carros transportados juntam-se por cliente e seguem para o programa de faturação certificado que já usas. Uma pessoa confirma antes de emitir.</p></li>
-        </ul>
         <div class="cv__how">
           <h3 class="cv__how-title" data-i18n="cv.how">Como funciona</h3>
           <ol class="cv__steps">
@@ -310,24 +300,14 @@
       </div>
     </section>
     <!-- 26/11: Orbit Business — agente de IA para a empresa (texto do founder); instalação + mensalidade, sem preços no site. -->
-    <section class="cv cv--office" id="orbit-business" aria-labelledby="of-title" data-snap>
+    <section class="cv cv--office cv--slim" id="orbit-business" aria-labelledby="of-title" data-snap>
       <div class="cv__inner">
         <div class="cv__head">
-          <p class="hold__eyebrow" data-i18n="of.eyebrow">Conheça o Orbit Business</p>
-          <h2 class="hold__title" id="of-title">
+          <h2 class="hold__title stk__sr" id="of-title">
             <span class="hold__title-muted" data-i18n="of.title_muted">A inteligência artificial</span>
             <span data-i18n="of.title_strong">que trabalha com a sua empresa.</span>
           </h2>
-          <p class="cv__lead" data-i18n="of.lead">Um agente de inteligência artificial personalizado para a sua organização, concebido para automatizar tarefas administrativas, organizar informação e simplificar os processos diários de cada departamento.</p>
         </div>
-        <ul class="mods cv__feats">
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 6.5h17v11h-17z" /><path d="m3.5 6.5 8.5 6 8.5-6" /></svg></span><h3 class="mod__title" data-i18n="of.f1.t">Gestão inteligente de emails</h3><p class="mod__text" data-i18n="of.f1.d">Interpretação de pedidos, classificação de mensagens, extração de informação e preparação de respostas.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z" /><path d="M14 3.5V8h4.5M8.5 12.5h7M8.5 16h5" /></svg></span><h3 class="mod__title" data-i18n="of.f2.t">Gestão documental</h3><p class="mod__text" data-i18n="of.f2.d">Importação, leitura, classificação e organização de documentos, PDFs, folhas Excel e anexos.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.5-2 1.5-1.5-1.2-1.5 1.2-2-1.5L6 20.5z" /><path d="M9 8.5h6M9 12h6M9 15.5h3.5" /></svg></span><h3 class="mod__title" data-i18n="of.f3.t">Automação financeira</h3><p class="mod__text" data-i18n="of.f3.d">Preparação de dados para faturação, organização de despesas e integração com sistemas de gestão compatíveis.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3" /><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.8a3 3 0 0 1 0 5.4M18 14.2a5.5 5.5 0 0 1 2.5 5.3" /></svg></span><h3 class="mod__title" data-i18n="of.f4.t">Gestão de equipas</h3><p class="mod__text" data-i18n="of.f4.d">Registo de horários, folhas de horas, organização de tarefas e acompanhamento da atividade dos colaboradores.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5V10M9.3 19.5V5M14.7 19.5v-7M20 19.5v-11" /></svg></span><h3 class="mod__title" data-i18n="of.f5.t">Relatórios inteligentes</h3><p class="mod__text" data-i18n="of.f5.d">Relatórios personalizados por departamento, indicadores de desempenho e resumos para a administração.</p></li>
-          <li class="mod"><span class="mod__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5" /><path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6 18 18M6 18l1.4-1.4M16.6 7.4 18 6" /></svg></span><h3 class="mod__title" data-i18n="of.f6.t">Inteligência empresarial</h3><p class="mod__text" data-i18n="of.f6.d">Um agente que conhece os processos, documentos e regras da sua organização, ajudando as equipas a trabalhar de forma mais eficiente.</p></li>
-        </ul>
         <div class="of__close">
           <h3 class="of__close-title" data-i18n="of.close.t">Uma empresa. Um sistema. Uma inteligência.</h3>
           <p data-i18n="of.close.d1">O Orbit Business adapta-se à sua organização, aos seus processos e às ferramentas que já utiliza.</p>
