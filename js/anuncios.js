@@ -53,7 +53,12 @@
     cards[1].style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`;
     cards[1].style.filter = p < 0.98 ? `blur(${(BLUR * (1 - p) * 0.5).toFixed(2)}px)` : 'none';
     if (bar) bar.style.transform = `scaleX(${(0.5 + 0.5 * p).toFixed(3)})`;
-    cards.forEach((c, i) => c.setAttribute('tabindex', (i === 0 ? p < 0.5 : p >= 0.5) ? '0' : '-1'));
+    cards.forEach((c, i) => {
+      const front = i === 0 ? p < 0.5 : p >= 0.5;
+      c.setAttribute('tabindex', front ? '0' : '-1');
+      // Os pontos acendem um de cada vez só no cartão da frente (veiculos.css, .is-front).
+      c.classList.toggle('is-front', front && e > 0.6);
+    });
   }
 
   function tick() {
