@@ -142,3 +142,7 @@
 
 /* 26/11: Orbit Business — a mesma pele da secção dos veículos, sem o desenho (só o texto à largura de leitura). */
 .cv--office .cv__head{max-width:760px}
+.of__close{margin-top:clamp(32px,5vh,52px);padding:clamp(22px,3vw,34px);border:1px solid rgba(15,157,110,.26);border-radius:18px;background:rgba(15,157,110,.055)}
+.of__close-title{margin:0 0 12px;font-size:clamp(22px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;text-wrap:balance}
+.of__close p{max-width:44em;margin:0 0 8px;color:var(--text-soft);font-size:clamp(15px,1.15vw,16.5px);line-height:1.6}
+.of__close .of__close-strong{margin-top:14px;color:var(--text);font-weight:600}
