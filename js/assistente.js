@@ -53,7 +53,7 @@
       trucks: (n) => (n === 1 ? '1 camião' : `${fmt(n, 'pt')} camiões`),
       chips: {
         price: 'Quanto custa?', benefits: 'O que ganho com isto?', orbit: 'O que é o Orbit?', what: 'O que faz a FleetFlow?',
-        integrations: 'Integrações', workshop: 'Software de oficina', cars: 'Transporte de veículos', business: 'Orbit Business', start: 'Como começar', contact: 'Falar com uma pessoa',
+        integrations: 'Integrações', workshop: 'Software de oficina', cars: 'Transporte de veículos', business: 'Orbit Business', warehouse: 'Software para armazéns', start: 'Como começar', contact: 'Falar com uma pessoa',
         more: 'Mais temas', app: 'App do motorista', ecmr: 'e-CMR', planner: 'Planeador', exchange: 'Bolsa de Cargas',
         gps: 'GPS', invoice: 'Faturação', security: 'Segurança e RGPD', contract: 'Contrato e cancelamento',
         import: 'Importar dados', support: 'Apoio e formação', sites: 'Sites com movimento', custom: 'Software à medida',
@@ -138,6 +138,11 @@
           '<ul><li>Emails: interpreta pedidos, classifica mensagens, extrai a informação e prepara respostas.</li><li>Documentos: lê e organiza PDFs, folhas Excel e anexos.</li><li>Finanças: prepara a faturação para o programa certificado que já usas.</li><li>Equipas: registo de horários e folhas de horas.</li><li>Relatórios por departamento e resumos para a administração.</li></ul>',
           'Uma pessoa confirma sempre o que importa. Instalamos na tua empresa e pagas por mês — pede-nos uma proposta.',
         ],
+        warehouse: [
+          'O <b>Software para armazéns</b> mostra o teu armazém em 3D, palete a palete. Cada posição tem o seu código — fila, andar e palete: A-0-1 é a primeira no chão, A-1-1 a de cima.',
+          '<ul><li>Toca numa palete e vês produto, lote, quantidade e validade.</li><li>Leitor com pistola ou telemóvel: lê a etiqueta que a palete já traz e a da posição — entrada, saída e mudança de sítio sem papel; a palete errada é recusada.</li><li>Stock importado de Excel, PDF ou Word, ou metido à mão.</li><li>Inventário semanal, mensal ou anual para auditoria, com a contagem e as diferenças.</li><li>Etiquetas QR das posições e das paletes sem etiqueta.</li><li>Armazenagem, entradas e saídas seguem para o programa de faturação certificado que já usas.</li></ul>',
+          'Para armazéns, fábricas e operadores logísticos — de transportes ou não. Instalamos e configuramos as tuas estantes; pede-nos uma demonstração.',
+        ],
         custom: [
           'Fazemos software à medida: ferramentas internas, portais para clientes, ligações entre os programas que já usas e agentes de IA que trabalham na tua operação.',
           'Conta-nos o que precisas e respondemos com uma proposta.',
@@ -199,7 +204,7 @@
       trucks: (n) => (n === 1 ? '1 truck' : `${fmt(n, 'en')} trucks`),
       chips: {
         price: 'How much?', benefits: 'What do I gain?', orbit: 'What is Orbit?', what: 'What does FleetFlow do?',
-        integrations: 'Integrations', workshop: 'Workshop software', cars: 'Vehicle transport', business: 'Orbit Business', start: 'How to start', contact: 'Talk to a person',
+        integrations: 'Integrations', workshop: 'Workshop software', cars: 'Vehicle transport', business: 'Orbit Business', warehouse: 'Warehouse software', start: 'How to start', contact: 'Talk to a person',
         more: 'More topics', app: 'Driver app', ecmr: 'e-CMR', planner: 'Planner', exchange: 'Load Exchange',
         gps: 'GPS', invoice: 'Invoicing', security: 'Security and GDPR', contract: 'Contract and cancelling',
         import: 'Importing data', support: 'Support and training', sites: 'Websites with motion', custom: 'Custom software',
@@ -284,6 +289,11 @@
           '<ul><li>Email: understands requests, sorts messages, extracts information and drafts replies.</li><li>Documents: reads and organises PDFs, Excel sheets and attachments.</li><li>Finance: prepares invoicing for the certified software you already use.</li><li>Teams: time records and timesheets.</li><li>Reports per department and summaries for management.</li></ul>',
           'A person always confirms what matters. We set it up in your company and you pay monthly — ask us for a proposal.',
         ],
+        warehouse: [
+          '<b>Warehouse software</b> shows your warehouse in 3D, pallet by pallet. Every location has its code — row, level and pallet: A-0-1 is the first one on the floor, A-1-1 the one above.',
+          '<ul><li>Tap a pallet to see product, batch, quantity and expiry.</li><li>Scanner gun or phone: reads the label the pallet already has and the location label — goods in, out and moves without paper; the wrong pallet is refused.</li><li>Stock imported from Excel, PDF or Word, or entered by hand.</li><li>Weekly, monthly or yearly inventory for audits, with the count and the differences.</li><li>QR labels for locations and for pallets without a label.</li><li>Storage, goods in and out go to the certified invoicing software you already use.</li></ul>',
+          'For warehouses, factories and logistics operators — in transport or not. We set it up with your racking; ask us for a demo.',
+        ],
         custom: [
           'We build custom software: internal tools, customer portals, connections between the programs you already use and AI agents that work inside your operation.',
           'Tell us what you need and we will reply with a proposal.',
@@ -345,7 +355,7 @@
       trucks: (n) => (n === 1 ? '1 camión' : `${fmt(n, 'es')} camiones`),
       chips: {
         price: '¿Cuánto cuesta?', benefits: '¿Qué gano con esto?', orbit: '¿Qué es Orbit?', what: '¿Qué hace FleetFlow?',
-        integrations: 'Integraciones', workshop: 'Software de taller', cars: 'Transporte de vehículos', business: 'Orbit Business', start: 'Cómo empezar', contact: 'Hablar con una persona',
+        integrations: 'Integraciones', workshop: 'Software de taller', cars: 'Transporte de vehículos', business: 'Orbit Business', warehouse: 'Software para almacenes', start: 'Cómo empezar', contact: 'Hablar con una persona',
         more: 'Más temas', app: 'App del conductor', ecmr: 'e-CMR', planner: 'Planificador', exchange: 'Bolsa de Cargas',
         gps: 'GPS', invoice: 'Facturación', security: 'Seguridad y RGPD', contract: 'Contrato y cancelación',
         import: 'Importar datos', support: 'Soporte y formación', sites: 'Webs con movimiento', custom: 'Software a medida',
@@ -429,6 +439,11 @@
           '<b>Orbit Business</b> es un agente de inteligencia artificial personalizado para tu empresa — de transporte o de cualquier otro sector:',
           '<ul><li>Emails: interpreta pedidos, clasifica mensajes, extrae la información y prepara respuestas.</li><li>Documentos: lee y organiza PDFs, hojas Excel y adjuntos.</li><li>Finanzas: prepara la facturación para el programa certificado que ya usas.</li><li>Equipos: registro de horarios y hojas de horas.</li><li>Informes por departamento y resúmenes para la dirección.</li></ul>',
           'Una persona siempre confirma lo importante. Lo instalamos en tu empresa y pagas cada mes — pídenos una propuesta.',
+        ],
+        warehouse: [
+          'El <b>Software para almacenes</b> muestra tu almacén en 3D, palé a palé. Cada ubicación tiene su código — fila, nivel y palé: A-0-1 es el primero en el suelo, A-1-1 el de encima.',
+          '<ul><li>Toca un palé y ves producto, lote, cantidad y caducidad.</li><li>Lector con pistola o móvil: lee la etiqueta que el palé ya trae y la de la ubicación — entradas, salidas y cambios sin papel; el palé equivocado se rechaza.</li><li>Stock importado desde Excel, PDF o Word, o introducido a mano.</li><li>Inventario semanal, mensual o anual para auditoría, con el recuento y las diferencias.</li><li>Etiquetas QR de las ubicaciones y de los palés sin etiqueta.</li><li>Almacenaje, entradas y salidas van al programa de facturación certificado que ya usas.</li></ul>',
+          'Para almacenes, fábricas y operadores logísticos — de transporte o no. Lo instalamos con tus estanterías; pídenos una demostración.',
         ],
         custom: [
           'Hacemos software a medida: herramientas internas, portales para clientes, conexiones entre los programas que ya usas y agentes de IA que trabajan en tu operación.',
@@ -518,6 +533,7 @@
   // Erros de escrita: uma letra trocada, a mais ou a menos numa palavra de 5+ letras conta metade.
   const INTENTS = [
     ['ecmr', 'cmr ecmr e-cmr:4 guia-de-transporte carta-de-porte consignment waybill guia$:2'],
+    ['warehouse', 'armazem:8 armazens:8 armazen:6 almacen:8 almacenes:8 warehouse:8 warehouses:8 wms:8 paletes:6 palete:6 pallet:6 pallets:6 pale:5 pales:5 estantes:5 estanterias:5 racks:5 racking:5 posicoes:3 ubicaciones:4 locations:3 inventario:5 inventory:5 auditoria:3 audit:3 codigo-de-barras:6 codigos-de-barras:6 barcode:6 pistola:5 scanner:4 leitor:3 lector:3 stock:3 fabrica:3 fabricas:3 factory:3 logistica:2'],
     ['business', 'orbit-business:8 business:4 ia-na-empresa:6 ia-para-empresas:6 ia-nas-empresas:6 ai-for-business:6 agente-de-ia:5 ai-agent:5 agente-de-ia-para:5 folhas-de-horas:5 folha-de-horas:5 hojas-de-horas:5 timesheet:5 ler-emails:5 leer-emails:5 read-emails:5 gestao-documental:5 gestion-documental:5 document-management:5 relatorios:2 informes:2 reports:2 departamento:2 department:2 administrativ:3 automatiz:3 automation:3'],
     ['cars', 'porta-automoveis:8 portaautomoveis:8 porta-carros:8 car-carrier:8 car-carriers:8 portavehiculos:8 transporte-de-veiculos:8 transporte-de-carros:8 transporte-de-vehiculos:8 transporte-de-coches:8 vehicle-transport:8 car-transport:8 carros:3 coches:3 cars$:3 automoveis:3 vin$:4 numero-de-quadro:5 bastidor:5 chassis:3 campa:3 rent-a-car:4 concessionario:3 concesionario:3 dealership:3 leiloes:2 subastas:2'],
     ['orbit', 'orbit:4 agente agent inteligencia-artificial ia$ ai$ artificial chatgpt robo:2 copiloto copilot'],
@@ -617,7 +633,7 @@
   };
   // O menu principal e o segundo ("Mais temas").
   const TOPIC_CHIPS = ['price', 'benefits', 'orbit', 'integrations', 'workshop', 'start', 'contact', 'more'];
-  const MORE_CHIPS = ['cars', 'business', 'what', 'app', 'planner', 'ecmr', 'exchange', 'security', 'contract', 'import', 'support', 'sites', 'custom', 'where', 'menu'];
+  const MORE_CHIPS = ['warehouse', 'cars', 'business', 'what', 'app', 'planner', 'ecmr', 'exchange', 'security', 'contract', 'import', 'support', 'sites', 'custom', 'where', 'menu'];
   const FLEET_CHIPS = [10, 25, 50, 100, 300];
 
   const state = {
@@ -772,6 +788,7 @@
     workshop: ['quotePlatform', 'import', 'price', 'menu'],
     cars: ['quotePlatform', 'demo', 'app', 'menu'],
     business: ['quotePlatform', 'orbit', 'contact', 'menu'],
+    warehouse: ['quotePlatform', 'import', 'contact', 'menu'],
     custom: ['quoteSoftware', 'sites', 'contact', 'menu'],
     sites: ['quoteSite', 'custom', 'contact', 'menu'],
     planner: ['orbit', 'price', 'demo', 'menu'],
