@@ -24,13 +24,15 @@
   if (!dialog || typeof dialog.showModal !== 'function') return; // browser muito antigo: os botões continuam a ser links de email
 
   const form = dialog.querySelector('form');
-  const fleet = form.querySelector('[data-only="platform"]');
+  const fleet = form.querySelector('[data-only~="platform"]');
+  // a frota conta na plataforma de transportes e no transporte de veículos
+  const FLEET = ['platform', 'vehicles'];
   const submit = form.querySelector('button[type="submit"]');
   const msgs = { ok: form.querySelector('[data-msg="ok"]'), err: form.querySelector('[data-msg="err"]'), invalid: form.querySelector('[data-msg="invalid"]') };
   const errLink = msgs.err.querySelector('a');
 
   const showMsg = (which) => Object.entries(msgs).forEach(([k, el]) => (el.hidden = k !== which));
-  const syncFleet = () => (fleet.hidden = form.elements.service.value !== 'platform');
+  const syncFleet = () => (fleet.hidden = !FLEET.includes(form.elements.service.value));
 
   // note: texto para começar a mensagem (ex.: o botão do Transporte de veículos diz de que módulo se trata); não apaga o que a pessoa já escreveu.
   function open(service, note) {
@@ -62,7 +64,7 @@
       email: f.email.value,
       company: f.company.value,
       phone: f.phone.value,
-      fleetSize: f.service.value === 'platform' ? f.fleetSize.value : '',
+      fleetSize: FLEET.includes(f.service.value) ? f.fleetSize.value : '',
       message: f.message.value,
       lang: (document.documentElement.lang || 'pt').slice(0, 2),
       website: f.website.value,
