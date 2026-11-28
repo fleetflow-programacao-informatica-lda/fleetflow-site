@@ -1,6 +1,7 @@
 /* Porta-automóveis da secção "Transporte de veículos" (#transporte-veiculos), 24/11.
-   O desenho aprovado pelo founder: camião rígido com 2 lugares (sobre a cabine e no estrado) + reboque de lança
-   com 6 (3 em cima, 3 em baixo). Dados de exemplo: 8 carros de 4 clientes, sem nomes de empresas.
+   O desenho aprovado pelo founder: camião rígido + reboque de lança. 28/11 (founder: «o normal é 10, e não 8»):
+   camião com 3 lugares (sobre a cabine, em cima e no estrado) + reboque com 7 (4 em cima, 3 em baixo). Os carros
+   ficam um pouco mais pequenos (S) para caberem os 10. Dados de exemplo: 10 carros de 4 clientes, sem nomes.
    Ciclo: lugares vazios (fantasmas com o código) → os carros acendem um a um com a cor do cliente → em rota
    (rodas e estrada mexem) → entrega: cada carro volta a fantasma com o visto verde → pausa → repete.
    Só anima com a secção à vista; com "reduzir movimento" fica o camião carregado, parado.
@@ -22,28 +23,36 @@
   // ── Dados de exemplo ──────────────────────────────────────────────────────
   var CLIENTS = { A: '#0E8F6A', B: '#2F6FDB', C: '#D49406', D: '#7A5AF0' };
   // Lugares: x = traseira do carro, y = linha das rodas, rot = inclinação (+ desce para a frente)
+  var S = 0.82; // escala dos carros (comprimento 140 → ~115)
   var SLOTS = {
-    H1: { x: 792, y: 104, rot: 5 },     // sobre a cabine
-    G1: { x: 652, y: 186, rot: 6 },     // estrado do camião
-    U1: { x: 515, y: 139, rot: 0 },     // reboque, em cima
-    U2: { x: 355, y: 139, rot: 0 },
-    U3: { x: 190, y: 147, rot: -8.5 },  // reboque, rampa de cima
-    L1: { x: 490, y: 214, rot: 0 },     // reboque, em baixo
-    L2: { x: 330, y: 214, rot: 0 },
-    L3: { x: 152, y: 197, rot: 12.5 }   // reboque, rampa de baixo
+    H1: { x: 806, y: 104, rot: 5 },     // sobre a cabine
+    G2: { x: 684, y: 139, rot: 0 },     // camião, em cima
+    G1: { x: 668, y: 190, rot: 6 },     // estrado do camião
+    U1: { x: 556, y: 139, rot: 0 },     // reboque, em cima
+    U2: { x: 436, y: 139, rot: 0 },
+    U3: { x: 316, y: 139, rot: 0 },
+    U4: { x: 194, y: 146, rot: -8.5 },  // reboque, rampa de cima
+    L1: { x: 500, y: 214, rot: 0 },     // reboque, em baixo
+    L2: { x: 340, y: 214, rot: 0 },
+    L3: { x: 156, y: 199, rot: 12.5 }   // reboque, rampa de baixo
   };
   var CARS = [
     { type: 'estate', client: 'A', slot: 'H1' },
+    { type: 'hatch', client: 'A', slot: 'G2' },
+    { type: 'suv', client: 'C', slot: 'G1' },
     { type: 'suv', client: 'A', slot: 'U1' },
     { type: 'hatch', client: 'B', slot: 'U2' },
-    { type: 'estate', client: 'B', slot: 'U3' },
-    { type: 'suv', client: 'C', slot: 'G1' },
+    { type: 'sedan', client: 'B', slot: 'U3' },
+    { type: 'estate', client: 'B', slot: 'U4' },
     { type: 'hatch', client: 'C', slot: 'L1' },
     { type: 'sedan', client: 'D', slot: 'L2' },
-    { type: 'sedan', client: 'A', slot: 'L3' }
+    { type: 'sedan', client: 'D', slot: 'L3' }
   ];
-  var LOAD_ORDER = ['H1', 'G1', 'U1', 'U2', 'U3', 'L1', 'L2', 'L3'];
-  var UNLOAD_ORDER = ['L3', 'L2', 'L1', 'U3', 'U2', 'U1', 'G1', 'H1'];
+  var LOAD_ORDER = ['H1', 'G1', 'G2', 'U1', 'U2', 'U3', 'U4', 'L1', 'L2', 'L3'];
+  var UNLOAD_ORDER = ['L3', 'L2', 'L1', 'U4', 'U3', 'U2', 'U1', 'G2', 'G1', 'H1'];
+  function slotTransform(s) {
+    return 'translate(' + s.x + ',' + (s.y - 51 * S) + ') rotate(' + s.rot + ',' + 70 * S + ',' + 51 * S + ') scale(' + S + ')';
+  }
   var TOTAL = CARS.length;
 
   // Mistura uma cor com preto (contorno mais escuro da cor do cliente), sem depender de color-mix().
@@ -98,8 +107,8 @@
   line('M150,218 L644,218', 3, trailer);
   thin('M168,224 L644,224', trailer);
   for (var tx = 190; tx < 640; tx += 46) el('rect', { x: tx, y: 216, width: 3, height: 10, fill: 'var(--rig-steel-2)' }, trailer);
-  line('M332,141 L660,141', 3, trailer);
-  thin('M332,145 L660,145', trailer);
+  line('M300,141 L676,141', 3, trailer);
+  thin('M300,145 L676,145', trailer);
   [326, 486, 644].forEach(function (x) { line('M' + x + ',141 L' + x + ',218', 2.2, trailer); });
   thin('M330,205 L352,150'); thin('M490,205 L512,150');
   el('rect', { x: 128, y: 214, width: 18, height: 7, rx: 1.5, fill: 'var(--rig-steel)' }, trailer);
@@ -111,6 +120,8 @@
   // ── CAMIÃO (à frente): chassis, estrado inclinado, mastro e rack sobre a cabine ──
   var truck = el('g', {}, body);
   line('M694,226 L946,226', 3.2, truck);
+  line('M684,141 L806,141', 3, truck);   // 28/11: o piso de cima do camião
+  line('M690,141 L690,200', 2.2, truck);
   line('M806,98 L806,226', 3.2, truck);
   thin('M800,150 L812,112', truck);
   line('M944,94 L944,110', 2.4, truck);
@@ -119,8 +130,8 @@
   // plataformas sob cada lugar (alinhadas com o carro)
   Object.keys(SLOTS).forEach(function (k) {
     var s = SLOTS[k];
-    var g = el('g', { transform: 'translate(' + s.x + ',' + (s.y - 51) + ') rotate(' + s.rot + ',70,51)' }, body);
-    line('M-6,53 L146,53', 2.6, g);
+    var g = el('g', { transform: slotTransform(s) }, body);
+    line('M-6,53 L146,53', 2.6 / S, g);
   });
 
   // cabine avançada
@@ -154,7 +165,7 @@
     var g = el('g', {
       class: 'cv-rig__car',
       style: '--c:' + hex + ';--c-line:' + darken(hex, 0.7) + ';--c-glass:' + darken(hex, 0.6) + ';--c-trim:' + darken(hex, 0.55),
-      transform: 'translate(' + s.x + ',' + (s.y - 51) + ') rotate(' + s.rot + ',70,51)'
+      transform: slotTransform(s)
     }, carLayer);
     el('ellipse', { class: 'cv-rig__halo', cx: 70, cy: 26, rx: 80, ry: 30 }, g);
     el('path', { class: 'cv-rig__paint', d: BODY[c.type] }, g);
